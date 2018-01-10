@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Button} from 'react-elemental';
-//import Modal from 'react-modal';
-import AModal from 'react-modal';
+import Modal from 'react-modal';
+//import AModal from 'react-modal';
 
   
 const MyConnection = ({myconnection,currentUser,actions,isOpen}) => {
@@ -92,7 +92,7 @@ const MyConnection = ({myconnection,currentUser,actions,isOpen}) => {
             </div>
          </div>}
          </div>}
-          <AModal
+          <Modal
           isOpen={isOpen}
           onRequestClose={toggleCloseModal}
          ariaHideApp={false}
@@ -100,7 +100,7 @@ const MyConnection = ({myconnection,currentUser,actions,isOpen}) => {
           <h2>Hello {myconnection.friend.username || myconnection.customer.username} </h2>
           <button onClick={toggleCloseModal}>close</button>
           <div>I am a modal</div>
-        </AModal>
+        </Modal>
         </div>
         </div>
     );

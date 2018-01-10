@@ -4,7 +4,7 @@ import {Button} from 'react-elemental';
 //import Modal from 'react-modal';
 //import AModal from 'react-modal';
 
-//,isOpen  
+//isOpen  
 const MyConnection = ({myconnection,currentUser,actions}) => {
   function toggleOpenModal(){
     actions.messageModalOpen(); 

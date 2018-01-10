@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Button} from 'react-elemental';
-import Modal from 'react-modal';
+//import Modal from 'react-modal';
 //import AModal from 'react-modal';
 
   
@@ -92,15 +92,7 @@ const MyConnection = ({myconnection,currentUser,actions,isOpen}) => {
             </div>
          </div>}
          </div>}
-          <Modal
-          isOpen={isOpen}
-          onRequestClose={toggleCloseModal}
-         ariaHideApp={false}
-          contentLabel="Example Modal">
-          <h2>Hello {myconnection.friend.username || myconnection.customer.username} </h2>
-          <button onClick={toggleCloseModal}>close</button>
-          <div>I am a modal</div>
-        </Modal>
+         
         </div>
         </div>
     );

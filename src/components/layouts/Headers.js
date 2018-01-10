@@ -1,0 +1,7 @@
+import React from 'react';
+
+export default ({children}) => (
+    <footer className="row">
+     {children}
+    </footer>
+);

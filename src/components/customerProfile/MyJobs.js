@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const MyJobs =  ({myJobs}) => {
-    debugger;
+    //debugger;
     return (
      <div>    
       {myJobs && myJobs.map(myJob => 
-       <article key={myJob.mypost.id} className="panel panel-info">
+       (<article key={myJob.mypost.id} className="panel panel-info">
         <header className="panel-heading">
          <h2 className="h4">Job Title: {myJob.mypost.title}</h2> 
          </header>
@@ -91,9 +91,8 @@ const MyJobs =  ({myJobs}) => {
                 </p>
               </section>
            
-         </article>
+         </article>)
          )}
-       
      </div>  
    );    
 }; 

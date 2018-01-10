@@ -26,9 +26,9 @@ class GeneralFooter extends Component {
   <nav className="navbar navbar-default navbar-fixed-bottom">
  
         <div className="row"> 
-          <div className="col-md-2 col-xs-2"></div>
+          <div className="col-md-2 col-xs-2"/>
           <div className="col-md-4 col-xs-4">Welcome to kwangala network</div>
-          <div className="col-md-2 col-xs-2"></div>
+          <div className="col-md-2 col-xs-2"/>
           <div className="col-md-4 col-xs-4">&copy; 2017 kwangs.com.ng</div>
          </div>
          </nav>   

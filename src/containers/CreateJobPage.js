@@ -33,13 +33,13 @@ class CreateJobPage extends Component {
   }
    componentDidMount() {
      //if (!this.props.job_offer.id) {
-       debugger;
+       //debugger;
        this.props.dispatch(loadJobCategories());
     // }
    }
   shouldComponentUpdate(nextProps) {
     if (this.props.myJobOffer){
-     debugger;
+     //debugger;
         const differentjobCategory = this.props.jobCategories.length !== nextProps.jobCategories.length;
         const differentJob = this.props.myJobOffer.id !== nextProps.myJobOffer.id;
         const differentInsight = this.props.myJobInsight.id !== nextProps.myJobInsight.id;
@@ -49,24 +49,24 @@ class CreateJobPage extends Component {
     }
     saveJobNew(values,event) {
     event.preventDefault();
-     debugger;
+     //debugger;
     this.props.actions.saveJobOffer(values);
     this.context.router.history.push('/jobs');
   }
   
    submitMyJobOffer(values){
-     debugger;
+     //debugger;
     this.props.dispatch(actions.saveMyJobOffer(values.title,values.description,this.props.profile.id));
     //this.context.router.history.push('/add_job_details');
   }
   submitJobInsight(values){
-    debugger;
+    //ebugger;
     this.props.dispatch(actions.saveJobInsight(values.job_category,values.employee_category,values.job_duration,
     values.pay_type,values.employee_type,
     values.employee_title,values.employee_experience,this.props.myJobOffer.id));
   }
   submitMyJobLocation(values){
-     debugger;
+     //debugger;
     this.props.dispatch(actions.saveJobLocation(values.location,values.city,values.state,this.props.myJobOffer.id));
     //this.context.router.history.push('/add_job_details');
   }
@@ -92,7 +92,7 @@ class CreateJobPage extends Component {
   }
 
   render() {
-    const {myJobOffer,jobCategories, myJobInsight, myJobLocation} = this.props
+    const {myJobOffer,jobCategories, myJobInsight, myJobLocation} = this.props;
     return (
       <Page>
       <Headers>
@@ -110,7 +110,7 @@ class CreateJobPage extends Component {
        <div>
        <h4>{myJobOffer.title}</h4>
        <AddJobDetailForm 
-       jobCategories={this.props.jobCategories}
+       jobCategories={jobCategories}
        submitJobInsight={this.submitJobInsight}
        myJobOffer={myJobOffer}/>
        </div>}
@@ -222,7 +222,9 @@ CreateJobPage.propTypes = {
   jobCategories: PropTypes.array.isRequired,
   myJobOffer: PropTypes.object.isRequired,
   myJobInsight: PropTypes.object.isRequired,
-  myJobLocation: PropTypes.object.isRequired
+  myJobLocation: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  dispatch: PropTypes.func
 };
 
 function getJobOfferById(jobOffers, id) {

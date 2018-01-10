@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import {Button} from 'react-elemental';
 //import { Field, reduxForm } from 'redux-form';
 
-const ShowJobOffer = ({job_offer, onSave, profile, errors, customerConnect, secureJob, onChange}) => {
-    debugger;
+const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onChange}) => {
+    //debugger;
     const currentcustomer = secureJob.customer.id == profile.id;
   return(
       <div>
@@ -67,7 +67,7 @@ const ShowJobOffer = ({job_offer, onSave, profile, errors, customerConnect, secu
               error={errors.msg}/>
               </form>}
          { !currentcustomer && <Button className="pull-right" onClick={onSave}>
-          <span className="fa fa-check-square-o fa-lg fa-pull-right"></span><b>Connect</b>
+          <span className="fa fa-check-square-o fa-lg fa-pull-right"/><b>Connect</b>
          </Button>}
          
           </div>
@@ -81,7 +81,9 @@ ShowJobOffer.propTypes = {
     profile: PropTypes.object.isRequired,
     customerConnect: PropTypes.array,
     secureJob: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired,
+    onSave: PropTypes.func,
+    onChange: PropTypes.func
 };
 
 export default ShowJobOffer;

@@ -2,7 +2,7 @@ import * as types from '../constants/actionTypes';
 //import courseApi from '../api/mockCourseApi';
 import axios from 'axios';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
-import localStorage from 'localStorage';
+//import localStorage from 'localStorage';
 
 //const ROOT_URL = 'http://fen-pi-kofian.c9users.io';
 //debugger;
@@ -13,7 +13,7 @@ import localStorage from 'localStorage';
 //  };
   
 export function loadJobOffersSuccess(jobOffers) {
-    debugger;
+    //debugger;
     return { type: types.LOAD_JOB_OFFERS_SUCCESS,
              jobOffers,
              //jobOffers: jobOffers.data.children.map(child => child.data),
@@ -59,9 +59,9 @@ export function loadJobOfferings() {
 }
 
 export function saveJobOffer(employer_post) {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         //dispatch(beginAjaxCall());
-        debugger;
+        //debugger;
         return axios.post('https://fen-pi-kofian.c9users.io/employer_posts',{employer_post},
          {headers: types.API_HEADERS }).then(jobOffer => {
             jobOffer.id ? dispatch(updateJobOfferSuccess(jobOffer)) :
@@ -74,8 +74,8 @@ export function saveJobOffer(employer_post) {
 }
 
 export function showJobOffer(jobId) {
-    return function (dispatch, getState) {
-        //debugger;
+    return function (dispatch) {
+        dispatch(beginAjaxCall());
         return axios.get(`http://fen-pi-kofian.c9users.io/employer_posts/${jobId}`, {headers: types.API_HEADERS }).then(job_offer => {
           dispatch(showJobOfferSuccess)(job_offer); 
         }).catch(error => {
@@ -83,12 +83,3 @@ export function showJobOffer(jobId) {
         });   
     };
 }
-export function availJobs(city,job_type) {
-    return function(dispatch, getState) {
-       debugger;
-       return getState.jobOffers.then(avail_jobs => {
-           //calculate the job availability from here?
-       dispatch(calculateJobAvailability)(avail_jobs);
-       });
-    };
-} 

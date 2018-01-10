@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import localStorage from 'localStorage';
+//import localStorage from 'localStorage';
 //import LoadingDots from './LoadingDots';
 //{loading && <LoadingDots interval={100} dots={20}/>}
 import { connect } from 'react-redux';

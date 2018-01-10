@@ -44,7 +44,7 @@ export function updateLocationSuccess(location) {
 }
 
 export function showJobOffer(jobId) {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         //debugger;
         return axios.get(`${types.ROOT_URL}/employer_posts/${jobId}`, {headers: types.API_HEADERS }).then(job_offer => {
             //debugger;
@@ -54,18 +54,10 @@ export function showJobOffer(jobId) {
         });   
     };
 }
-export function availJobs(city,job_type) {
-    return function(dispatch, getState) {
-       //debugger;
-       return getState.jobOffers.then(avail_jobs => {
-           //calculate the job availability from here?
-       dispatch(calculateJobAvailability)(avail_jobs);
-       });
-    };
-} 
+ 
 
 export function saveJobInsight(insight) {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         dispatch(beginAjaxCall());
         //debugger;
         return axios.post(`${types.ROOT_URL}/employer_posts/${insight.employer_post_id}/insights`,{insight},{headers: types.API_HEADERS }).then(jobInsight => {
@@ -79,7 +71,7 @@ export function saveJobInsight(insight) {
 }
 
 export function showJobInsight(jobId) {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         //debugger;
         return axios.get(`${types.ROOT_URL}/employer_posts/${jobId}`, {headers: types.API_HEADERS }).then(jobInsight => {
           dispatch(showJobOfferSuccess)(jobInsight); 
@@ -90,7 +82,7 @@ export function showJobInsight(jobId) {
 }
 
 export function saveJobLocation(job_location) {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         dispatch(beginAjaxCall());
         //debugger;
         return axios.post(`${types.ROOT_URL}/employer_posts/${job_location.employer_post_id}/job_locations`,{job_location},{headers: types.API_HEADERS }).then(jobLocation => {

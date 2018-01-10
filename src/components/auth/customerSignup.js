@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, FieldArray, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 //import validate from './validateSignup';

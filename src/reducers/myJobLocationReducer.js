@@ -5,7 +5,7 @@ export default function myJobLocationReducer(state = initialState.myJobLocation,
     switch (action.type) {
             
         case types.CREATE_JOB_LOCATION_SUCCESS:
-            debugger;
+            //debugger;
             return { ...state, myJobLocation: action.myJobLocation};
             //return [
              //   ...state,

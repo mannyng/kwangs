@@ -31,13 +31,13 @@ const jobCategories = [
 ];
 
 //This would be performed on the server in a real app. Just stubbing in.
-const generateId = (jobCategory) => {
-  return jobCategory.name.toLowerCase();
-};
+//const generateId = (jobCategory) => {
+//  return jobCategory.name.toLowerCase();
+//};
 
 class jobCategoryApi {
   static getAllJobCategories() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve(Object.assign([], jobCategories));
       }, delay);

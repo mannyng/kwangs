@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 //import { Link, IndexLink } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import localStorage from 'localStorage';
+//import localStorage from 'localStorage';
 //import LoadingDots from './LoadingDots';
 //{loading && <LoadingDots interval={100} dots={20}/>}
-import { connect } from 'react-redux';
-import * as actions from '../../actions/customerProfilesActions';
+//import { connect } from 'react-redux';
+//import * as actions from '../../actions/customerProfilesActions';
 
 class GeneralFooter extends Component {
  

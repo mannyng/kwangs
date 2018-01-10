@@ -16,7 +16,7 @@ import Sidebar from '../components/layouts/Sidebar';
 import CustomerControls from '../components/controls/CustomerControls';
 import { Tab, Tabs } from 'react-bootstrap-tabs';
 import {messageModalOpen,messageModalClose} from '../actions/modalStatusActions';
-import Modal from 'react-modal';
+//import Modal from 'react-modal';
 
 
 //import localStorage from 'localStorage';
@@ -46,7 +46,7 @@ export class CustomerProfile extends React.Component {
     // }
 
    shouldComponentUpdate(nextProps) {
-     debugger;
+    // debugger;
         const differentUser = this.props.currentUser !== nextProps.currentUser;
         const differenJobsLength = this.props.myJobs.length !== nextProps.myJobs.length;
         const differenConnect = this.props.customerConnect.length !== nextProps.customerConnect.length;
@@ -93,8 +93,8 @@ export class CustomerProfile extends React.Component {
   }
   
   render() {
-    debugger;
-    const {profile, customerConnect, actions, currentUser, myJobs, isOpen,onModalOpen} = this.props;
+    //debugger;
+    const {profile, customerConnect, actions, currentUser, myJobs, isOpen} = this.props;
     return (
       <Page>
         <Headers>
@@ -107,10 +107,10 @@ export class CustomerProfile extends React.Component {
           
           <div className="col-xs-7">
           {profile.id &&
-           <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
+           <Tabs>
            
            <Tab label="Connections"><MyConnections actions={actions} customerConnect={customerConnect}
-            currentUser={currentUser}  isOpen={isOpen} onModalOpen={onModalOpen}/></Tab>
+            currentUser={currentUser}  isOpen={isOpen} /></Tab>
             
             {profile.customer_type == 'employer' &&
             <Tab label="My Jobs"><MyJobs myJobs={myJobs}/></Tab>
@@ -144,8 +144,8 @@ CustomerProfile.propTypes = {
  // createJobOffer: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-  debugger;
+function mapStateToProps(state) {
+  //debugger;
   return {
     profile: state.profile,
     currentUser: state.currentUser.currentUser,

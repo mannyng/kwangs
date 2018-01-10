@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Glyph} from 'react-elemental';
+import {Button} from 'react-elemental';
 import BaseWidget from '../widgets/BaseWidget';
 import WidgetHeader from '../widgets/WidgetHeader';
 import {bindActionCreators} from 'redux';
@@ -23,19 +23,19 @@ class CustomerControls extends Component {
   }
   
   redirectToAddJobOfferPage() {
-      debugger;
+     // debugger;
     this.context.router.history.push('/customerSignup');
   }
   redirectToAddJobInsight() {
-      debugger;
+      //debugger;
     this.context.router.history.push('/manageJobInsight');
   }
   redirectToAddJobLocation() {
-      debugger;
+      //debugger;
     this.context.router.history.push('/manageJobLocation');
   }
   redirectToAddJob() {
-      debugger;
+     // debugger;
     this.context.router.history.push('/create_job');
   }
   
@@ -46,7 +46,7 @@ class CustomerControls extends Component {
          <WidgetHeader loading={loading}>Control Center</WidgetHeader>
          {profile.customer_type == 'employer' &&
          <Button onClick={this.redirectToAddJob}>Create Job
-          <span className="fa fa-cog fa-lg fa-pull-right"></span>
+          <span className="fa fa-cog fa-lg fa-pull-right"/>
          </Button>
           } 
        </BaseWidget>

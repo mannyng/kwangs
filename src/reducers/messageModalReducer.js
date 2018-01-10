@@ -4,12 +4,12 @@ import initialState from './initialState';
 export default function messageModalReducer(state = initialState.isOpen, action) {
     switch (action.type) {
         case types.MESSAGE_MODAL_OPEN:
-            debugger;
-            let isOpen = true;
-            return  isOpen; 
+            //debugger;
+            //let isOpen = true;
+            return { isOpen: true}; 
             
          case types.MESSAGE_MODAL_CLOSE:
-             debugger;
+             //debugger;
              return initialState.isOpen;
              
             default:

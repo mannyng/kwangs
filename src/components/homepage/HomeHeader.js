@@ -9,13 +9,13 @@ import React from 'react';
 import TextTruncate from 'react-text-truncate';
 
 const HomeHeader = (jobOffers) => {
-    debugger;
+    //debugger;
   return (
    <div className="jumbotron" id="fronte">
        
        <article className="row">
        {jobOffers.jobOffers && jobOffers.jobOffers.map(jobOffer => 
-        <section key={jobOffer.job.id} className="col-md-4 col-xs-12">
+        (<section key={jobOffer.job.id} className="col-md-4 col-xs-12">
          <div key={"1"} className="panel panel-default">
           <div key={"1"} className="panel-body">
            
@@ -38,8 +38,8 @@ const HomeHeader = (jobOffers) => {
                </div>
           </div>
          </div>
-        </section>)}
-        
+        </section>)
+        )}
       </article>
      </div>
     

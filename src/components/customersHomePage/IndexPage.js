@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import TextTruncate from 'react-text-truncate';
 
 const IndexPage = (secureJobs) => {
-    debugger;
+    //debugger;
   return (
       <article>
       {secureJobs.secureJobs && secureJobs.secureJobs.map((secureJob, index) => 
@@ -22,7 +22,6 @@ const IndexPage = (secureJobs) => {
                   truncateText="…"
                   text={secureJob.job.description}
                   textTruncateChild={<Link to={'/job/' + index}>Read on</Link>}
-                  
                  />
                </div>
                

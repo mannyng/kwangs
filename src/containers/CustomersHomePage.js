@@ -34,19 +34,19 @@ export class CustomersPage extends React.Component {
      }
 
    shouldComponentUpdate(nextProps) {
-     debugger;
+    // debugger;
         const differentUser = this.props.currentUser !== nextProps.currentUser;
         const differenSecureJob = this.props.secureJobs.length !== nextProps.secureJobs.length;
         return differentUser || differenSecureJob;
     }
 
   redirectToShowJobOfferPage() {
-    debugger;
+    //debugger;
    this.context.router.history.push('/job');
   }
 
   render() {
-    const {secureJobs,loading} = this.props;
+    const {secureJobs} = this.props;
     //;
     return (
       <Page>
@@ -79,14 +79,15 @@ CustomersPage.propTypes = {
   actions: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   secureJobs: PropTypes.array.isRequired,
-  //history: PropTypes.object.isRequired,
+  currentUser: PropTypes.number.isRequired,
   loading: PropTypes.number,
-  job_offer: PropTypes.array.isRequired
+  job_offer: PropTypes.array.isRequired,
+  dispatch: PropTypes.func
  // createJobOffer: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-  debugger;
+function mapStateToProps(state) {
+  //debugger;
   return {
     secureJobs: state.secureJobs,
     job_offer: state.job_offer,

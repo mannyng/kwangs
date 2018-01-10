@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux';
+//import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/authActions';
-import Page from '../layouts/Page';
-import Main from '../layouts/Main';
-import Content from '../layouts/Content';
-import Headers from '../layouts/Headers';
+//import Page from '../layouts/Page';
+//import Main from '../layouts/Main';
+//import Content from '../layouts/Content';
+//import Headers from '../layouts/Headers';
 //import Sidebar from '../layouts/Sidebar';
-import Header from '../universal/CustomerHeader';
+//import Header from '../universal/CustomerHeader';
 
 class ASignup extends Component {
    submit = (values) => {
-     debugger;
+     //debugger;
     this.props.signupUser(values,this.context.router.history);
-    debugger;
+    //debugger;
      //this.props.dispatch(actions.signupUser(values));
      //this.context.router.history.push('/customerSignup');
   }

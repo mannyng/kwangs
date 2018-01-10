@@ -23,33 +23,33 @@ class Controls extends Component {
   
   
   redirectToAddJobOfferPage() {
-      debugger;
+      //debugger;
     this.context.router.history.push('/customerSignup');
   }
   redirectToAddJobInsight() {
-      debugger;
+      //debugger;
     this.context.router.history.push('/manageJobInsight');
   }
   redirectToAddJobLocation() {
-      debugger;
+     // debugger;
     this.context.router.history.push('/manageJobLocation');
   }
   
   render(){
-      const {actions, loading} = this.props;
+      const {loading} = this.props;
       return (
        <BaseWidget type="info">
          <WidgetHeader  loading={loading}>Control Center</WidgetHeader>
          <Button onClick={this.redirectToAddJobOfferPage}>View Active Employers
-          <span className="fa fa-cogs fa-lg fa-pull-right"></span>
+          <span className="fa fa-cogs fa-lg fa-pull-right"/>
          </Button>
          <hr />
          <Button onClick={this.redirectToAddJobInsight}>Latest Jobs
-          <span className="fa fa-cog fa-lg fa-pull-right"></span>
+          <span className="fa fa-cog fa-lg fa-pull-right"/>
          </Button>
          <hr />
          <Button onClick={this.redirectToAddJobLocation}>Newest Employers
-          <span className="fa fa-cogs fa-lg fa-pull-right"></span>
+          <span className="fa fa-cogs fa-lg fa-pull-right"/>
          </Button>
        </BaseWidget>
       );

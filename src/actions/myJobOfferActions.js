@@ -5,7 +5,7 @@ import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 
 export function showMyJobsSuccess(myJobs) {
-    debugger;
+   // debugger;
     return { type: types.SHOW_MY_JOB_SUCCESS,
              myJobs,
              //jobOffers: jobOffers.data.children.map(child => child.data),
@@ -31,9 +31,9 @@ export function updateMyJobOfferSuccess(myJobOffer) {
 
 
 export function saveMyJobOffer(title,description,customer_id) {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         //dispatch(beginAjaxCall());
-        debugger;
+       // debugger;
         return axios.post(`${types.ROOT_URL}/employer_posts`,{title,description,customer_id},
          {headers: types.API_HEADERS }).then(myJobOffer => {
             myJobOffer.id ? dispatch(updateMyJobOfferSuccess(myJobOffer)) :
@@ -83,7 +83,7 @@ export function updateLocationSuccess(myJobLocation) {
 
 export function saveJobInsight(job_category,employee_category,job_duration,pay_type,employee_type,
     employee_title,employee_experience,employer_post_id) {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         dispatch(beginAjaxCall());
         //debugger;
         return axios.post(`${types.ROOT_URL}/employer_posts/${employer_post_id}/insights`,
@@ -101,7 +101,7 @@ export function saveJobInsight(job_category,employee_category,job_duration,pay_t
 
 
 export function saveJobLocation(location,city,state,employer_post_id) {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         dispatch(beginAjaxCall());
         //debugger;
         return axios.post(`${types.ROOT_URL}/employer_posts/${employer_post_id}/job_locations`,

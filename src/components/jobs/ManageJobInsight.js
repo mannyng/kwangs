@@ -48,7 +48,7 @@ class ManageJobInsight extends Component {
   }
   
   render(){
-      const {actions, jobInsight} = this.props;
+      
       return (
        <Page>
        

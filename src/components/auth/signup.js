@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-import {bindActionCreators} from 'redux';
+//import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/authActions';
 import Page from '../layouts/Page';
 import Main from '../layouts/Main';
@@ -90,19 +90,20 @@ Signup.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   signupUser: PropTypes.func.isRequired,
   errorMessage:PropTypes.string.isRequired,
-  errors: PropTypes.string
+  errors: PropTypes.string,
+  dispatch: PropTypes.func
 };
 
 function mapStateToProps(state) {
-  debugger;
+  //debugger;
   return { fields: state.state.fields,
            errorMessage: state.auth.error };
 }
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  };
-}
+//function mapDispatchToProps(dispatch) {
+ // return {
+//    actions: bindActionCreators(actions, dispatch)
+//  };
+//}
 
 export default reduxForm({
   form: 'signup',

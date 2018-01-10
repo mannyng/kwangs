@@ -24,7 +24,7 @@ class Header extends React.Component {
   }
   
  componentDidMount() {
-    debugger;
+    //debugger;
     if (this.props.currentUser) {
      this.props.dispatch(fetchCustomerConnect(this.props.currentUser));
     this.props.dispatch(actions.fetchCustomerProfiles(this.props.currentUser));
@@ -32,7 +32,7 @@ class Header extends React.Component {
     }
   }
   shouldComponentUpdate(nextProps) {
-     debugger;
+     //debugger;
         const differentUser = this.props.currentUser !== nextProps.currentUser;
         const differenSecureJob = this.props.secureJobs.length !== nextProps.secureJobs.length;
         const differenConnect = this.props.customerConnect.length !== nextProps.customerConnect.length;        
@@ -45,7 +45,7 @@ class Header extends React.Component {
   //debugger;
  const activeStyle = { color: 'blue' };
  const mytoken = localStorage.getItem('token');
- debugger;
+ //debugger;
  if (mytoken){
  return (
   <div>
@@ -101,10 +101,11 @@ class Header extends React.Component {
   </div>
  );
  }
-};
+}
 }
 Header.propTypes = {
  profile: PropTypes.object.isRequired,
+ dispatch: PropTypes.func,
  currentUser: PropTypes.number,
   loading: PropTypes.number,
   secureJobs: PropTypes.array.isRequired,

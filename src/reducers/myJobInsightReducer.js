@@ -5,7 +5,7 @@ export default function myJobInsightReducer(state = initialState.myJobInsight, a
     switch (action.type) {
             
         case types.CREATE_JOB_INSIGHT_SUCCESS:
-            debugger;
+            //debugger;
             return { ...state, myJobInsight: action.myJobInsight};
             //return [
              //   ...state,

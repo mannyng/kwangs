@@ -107,7 +107,8 @@ ViewJobOfferPage.propTypes = {
   secureJob: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   customerConnect: PropTypes.array,
-  loading: PropTypes.number.isRequired
+  loading: PropTypes.number.isRequired,
+  dispatch: PropTypes.func
 };
 
 ViewJobOfferPage.contextTypes = {

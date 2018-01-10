@@ -9,7 +9,7 @@ class Signout extends Component {
     this.props.signoutUser();
   }
   componentWillUnmount(){
-    debugger;
+    //debugger;
     this.props.dispatch(actions.reset_current_user());
     this.props.dispatch(actions.reset_current_customer());
     this.props.dispatch(actions.reset_customer_connect());
@@ -17,10 +17,10 @@ class Signout extends Component {
   }
   
   handleOnLogout(nextState, replaceState) {
-   console.log('Clear your session here...');
-   debugger;
+   //console.log('Clear your session here...');
+   //debugger;
    this.props.dispatch(actions.reset_current_user());
-   debugger;
+  // debugger;
    replaceState({ nextPathname: nextState.location.pathname }, '/');
   }
   
@@ -30,7 +30,8 @@ class Signout extends Component {
 }
 
 Signout.propTypes = {
-  signoutUser: PropTypes.func.isRequired
+  signoutUser: PropTypes.func.isRequired,
+  dispatch: PropTypes.func
 };
 Signout.contextTypes = {
   router: PropTypes.object.isRequired

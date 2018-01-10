@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Glyph} from 'react-elemental';
-import BaseWidget from '../widgets/BaseWidget';
-import WidgetHeader from '../widgets/WidgetHeader';
+//import {Button, Glyph} from 'react-elemental';
+//import BaseWidget from '../widgets/BaseWidget';
+//import WidgetHeader from '../widgets/WidgetHeader';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/jobOfferActions';
 import {connect} from 'react-redux';
@@ -11,7 +11,7 @@ import Header from '../universal/CustomerHeader';
 import Page from '../layouts/Page';
 import Main from '../layouts/Main';
 import Headers from '../layouts/Headers';
-import Sidebar from '../layouts/Sidebar';
+//import Sidebar from '../layouts/Sidebar';
 
 
 class ManageJobLocation extends Component {
@@ -48,7 +48,7 @@ class ManageJobLocation extends Component {
   }
   
   render(){
-      const {actions, jobLocation} = this.props;
+      
       return (
        <Page>
        

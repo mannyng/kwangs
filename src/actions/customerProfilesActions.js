@@ -4,12 +4,12 @@ import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 //import {loadSecuredJobOfferings} from './loggedInUserSearchActions';
 
 export function fetchProfilesSuccess(profile) {
-    debugger;
+    //debugger;
     return { type: types.FETCH_CUSTOMER_SUCCESS, profile};
 }
 
 export function fetchCustomerConnectSuccess(customerConnect) {
-    debugger;
+    //debugger;
     return { type: types.FETCH_CUSTOMER_CONNECT_SUCCESS, customerConnect};
 }
 
@@ -32,7 +32,7 @@ export function messageModalClose(){
 }
 
 export function fetchCustomerProfiles(user) {
-    debugger;
+    //debugger;
     return function(dispatch) {
         //dispatch(beginAjaxCall());
         return axios.get(`${types.ROOT_URL}/customers/${user}`).then(profile => {
@@ -47,14 +47,14 @@ export function fetchCustomerProfiles(user) {
 export function customerSignup({ username, firstname, lastname, customer_type, address, city, 
 state, country, user_id },history) {
   return function(dispatch,getState) {
-    debugger;
+    //debugger;
     axios.post(`${types.ROOT_URL}/users/${user_id}/customers`, { username, firstname, lastname, 
     customer_type, address, city, state, country, user_id })
       .then(response => {
-        dispatch({ type: types.CREATE_CUSTOMER_SUCCESS });
+        dispatch({ type: types.CREATE_CUSTOMER_SUCCESS, response });
         dispatch(fetchCustomerProfiles(getState().currentUser.currentUser));
         
-        debugger;
+       // debugger;
         history.push('/jobs');
       })
       .catch(response => dispatch(authError(response.data.errors)));
@@ -62,7 +62,7 @@ state, country, user_id },history) {
 }
 
 export function authError(error) {
-  debugger; 
+  //debugger; 
   return {
     type: types.AUTH_ERROR,
     payload: error
@@ -70,9 +70,9 @@ export function authError(error) {
 }
 
 export function saveCustomerConnect(customer_id,friend_id) {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         dispatch(beginAjaxCall());
-        debugger;
+        //debugger;
         return axios.post(`${types.ROOT_URL}/customers/${customer_id}/customer_connects`,{customer_id,
           friend_id
         },
@@ -87,7 +87,7 @@ export function saveCustomerConnect(customer_id,friend_id) {
 }
 
 export function fetchCustomerConnect(customer_id) {
-    debugger;
+    //debugger;
     return function(dispatch) {
         dispatch(beginAjaxCall());
         return axios.get(`${types.ROOT_URL}/customers/${customer_id}/customer_connects/my_connections/`,
@@ -101,7 +101,7 @@ export function fetchCustomerConnect(customer_id) {
 }
 
 export function acceptCustomerConnect(id,customer_id) {
-    debugger;
+    //debugger;
     return function(dispatch) { 
         dispatch(beginAjaxCall());
         return axios.get(`${types.ROOT_URL}/customers/${customer_id}/customer_connects/${id}/accept`,
@@ -127,7 +127,7 @@ export function readMessagesSuccess(myMessages) {
 export function sendMessage(sender,reciever,msg) {
     return function (dispatch) {
          dispatch(beginAjaxCall());
-        debugger;
+        //debugger;
         return axios.post(`${types.ROOT_URL}/customers/${sender}/messages`,{sender,reciever,msg},
          {headers: types.API_HEADERS }).then(myMessage => {
             dispatch(sendMessageSuccess(myMessage.data));
@@ -141,7 +141,7 @@ export function sendMessage(sender,reciever,msg) {
 export function readMessages(customer_id) {
     return function (dispatch) {
          dispatch(beginAjaxCall());
-        debugger;
+        //debugger;
         return axios.get(`${types.ROOT_URL}/customers/${customer_id}/messages/my_messages`,
          {headers: types.API_HEADERS }).then(myMessages => {
             dispatch(readMessagesSuccess(myMessages.data));

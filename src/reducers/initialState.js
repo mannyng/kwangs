@@ -15,7 +15,7 @@ export default {
       threeYear: 0
     }
   },
-  currentUser: { currentUser: 0},
+  currentUser: 0,
   jobOffers: [],
   jobCategories: [],
   ajaxCallsInProgress: 0,

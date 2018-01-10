@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/jobOfferingsActions';
-import Homepage from '../components/HomePage';
+//import Homepage from '../components/HomePage';
 import Header from '../components/universal/CustomerHeader';
 import Footer from '../components/universal/GeneralFooter';
 import Page from '../components/layouts/Page';
 import Main from '../components/layouts/Main';
-import Content from '../components//layouts/Content';
+//import Content from '../components//layouts/Content';
 import MainContent from '../components//layouts/MainContent';
 import Headers from '../components/layouts/Headers';
 import Footers from '../components/layouts/Footers';
@@ -57,9 +57,9 @@ export class HomeContainer extends React.Component {
       
         <div className="navbar navbar-default navbar-fixed-bottom">
         <div className="row"> 
-          <div className="col-md-2 col-xs-2"></div>
+          <div className="col-md-2 col-xs-2"/>
           <div className="col-md-4 col-xs-4">Welcome to kwangala network</div>
-          <div className="col-md-2 col-xs-2"></div>
+          <div className="col-md-2 col-xs-2"/>
           <div className="col-md-4 col-xs-4">&copy; 2017 kwangs.com.ng</div>
          </div>
          </div>
@@ -79,7 +79,7 @@ HomeContainer.propTypes = {
  // createJobOffer: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   //debugger;
   return {
     jobOffers: state.jobOffers,

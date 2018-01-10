@@ -4,7 +4,7 @@ import * as types from '../constants/actionTypes';
 export default function myMessagesReducer(state = [], action) {
     switch (action.type) {
         case types.READ_MESSAGES_SUCCESS:
-            debugger;
+            //debugger;
             return action.myMessages;
             
                  

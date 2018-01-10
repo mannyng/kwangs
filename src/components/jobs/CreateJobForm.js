@@ -14,17 +14,7 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
     </div>
   </div>
 );
-const renderTextArea = ({ textarea, label, type, meta: { touched, error } }) => (
-  <div className="row">
-   <div className="col-xs-4">
-    <label>{label}</label>
-    </div>
-    <div className="col-xs-8">
-      <textarea {...textarea} type={type} placeholder={label} className="form-control" rows="5"/>
-      {touched && error && <span>{error}</span>}
-    </div>
-  </div>
-);
+
 
 const CreateJobForm = props => {
   const { handleSubmit, pristine, reset, submitting, submitMyJobOffer, profile } = props;

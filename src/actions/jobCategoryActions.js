@@ -3,7 +3,7 @@ import jobCategoryApi from '../api/jobCategoryApi';
 import {beginAjaxCall} from './ajaxStatusActions';
 
 export function loadJobCategoriesSuccess(jobCategories) {
-    debugger;
+    //debugger;
     return { type: types.LOAD_JOB_CATEGORIES_SUCCESS, jobCategories};
 }
 

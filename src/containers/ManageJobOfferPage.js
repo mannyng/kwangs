@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/jobOfferingsActions';
 import JobOfferForm from '../components/jobs/JobOfferForm';
-import {NavLink} from 'react-router-dom';
+//import {NavLink} from 'react-router-dom';
 import Header from '../components/universal/CustomerHeader';
 
 export class ManageJobOfferPage extends React.Component {

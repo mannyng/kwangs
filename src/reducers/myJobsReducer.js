@@ -4,7 +4,7 @@ import * as types from '../constants/actionTypes';
 export default function myJobsReducer(state = [], action) {
     switch (action.type) {
         case types.SHOW_MY_JOB_SUCCESS:
-            debugger;
+            //debugger;
             return action.myJobs;
             
                  

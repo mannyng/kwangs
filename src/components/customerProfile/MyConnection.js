@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Button} from 'react-elemental';
-import Modal from 'react-modal';
+//import Modal from 'react-modal';
 import AModal from 'react-modal';
 
   
-const MyConnection = ({myconnection,currentUser,actions,isOpen,onModalOpen}) => {
+const MyConnection = ({myconnection,currentUser,actions,isOpen}) => {
   function toggleOpenModal(){
     actions.messageModalOpen(); 
   }
@@ -17,23 +17,14 @@ const MyConnection = ({myconnection,currentUser,actions,isOpen,onModalOpen}) => 
   }
   
   function onClickAccept() {
-    debugger;
+    //debugger;
     actions.acceptCustomerConnect(myconnection.customer_connect.id,myconnection.customer_connect.customer_id);
     alert(`Accepting ${myconnection.friend.username} to you network`);
   }
-  const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-  debugger;
-  const friend = myconnection.friend.user_id == currentUser
-  const notcustomer = myconnection.customer.user_id == currentUser
+  
+  //debugger;
+  const friend = myconnection.friend.user_id == currentUser;
+  const notcustomer = myconnection.customer.user_id == currentUser;
   return (
       <div>
         <div className="row" key={myconnection.customer_connect.id}>
@@ -49,15 +40,15 @@ const MyConnection = ({myconnection,currentUser,actions,isOpen,onModalOpen}) => 
           <div className="col-md-5">
            <Button onClick={onClickAccept}>
            Accept Connection
-           <span className="fa fa-handshake-o fa-lg fa-pull-right"></span>
+           <span className="fa fa-handshake-o fa-lg fa-pull-right"/>
          </Button>
          </div>
-         <div className="col-md-2">
-         </div>
+         <div className="col-md-2"/>
+         
          <div className="col-md-5">
          <Button onClick={onClickAccept}>
            Reject Connection
-           <span className="fa fa-battery-empty fa-lg fa-pull-right"></span>
+           <span className="fa fa-battery-empty fa-lg fa-pull-right"/>
          </Button>
          </div>
          </div>
@@ -67,16 +58,16 @@ const MyConnection = ({myconnection,currentUser,actions,isOpen,onModalOpen}) => 
          {!friend &&
            <div className="row">
             <div className="col-md-5"><h3 className="bold">{myconnection.friend && myconnection.friend.username}</h3></div>
-             <div className="col-md-1"></div>
+             <div className="col-md-1"/>
             <div className="col-md-6">
             <Button onClick={toggleOpenModal}>
                  Contact
-                <span className="fa fa-cut fa-lg fa-pull-right"></span>
+                <span className="fa fa-cut fa-lg fa-pull-right"/>
               </Button> 
               OR
               <Button onClick={onClickAccept}>
                  Block
-                <span className="fa fa-cut fa-lg fa-pull-right"></span>
+                <span className="fa fa-cut fa-lg fa-pull-right"/>
               </Button>
              
             </div>
@@ -87,7 +78,7 @@ const MyConnection = ({myconnection,currentUser,actions,isOpen,onModalOpen}) => 
          {!notcustomer &&
            <div className="row">
             <div className="col-md-5"><h3 className="bold">{myconnection.customer && myconnection.customer.username}</h3></div>
-             <div className="col-md-1"></div>
+             <div className="col-md-1"/>
             <div className="col-md-6">
               <Button onClick={atoggleOpenModal}>
                  Contact
@@ -98,22 +89,17 @@ const MyConnection = ({myconnection,currentUser,actions,isOpen,onModalOpen}) => 
                  Block
                 <span className="fa fa-cut fa-lg fa-pull-right"></span>
               </Button>
-               
             </div>
          </div>}
          </div>}
           <AModal
           isOpen={isOpen}
-         
           onRequestClose={toggleCloseModal}
          ariaHideApp={false}
-          contentLabel="Example Modal"
-        >
-
+          contentLabel="Example Modal">
           <h2>Hello {myconnection.friend.username || myconnection.customer.username} </h2>
           <button onClick={toggleCloseModal}>close</button>
           <div>I am a modal</div>
-          
         </AModal>
         </div>
         </div>
@@ -121,6 +107,10 @@ const MyConnection = ({myconnection,currentUser,actions,isOpen,onModalOpen}) => 
 };
 
 MyConnection.propTypes = {
-    myconnection: PropTypes.object.isRequired
+    myconnection: PropTypes.object.isRequired,
+    currentUser: PropTypes.number.isRequired,
+    actions: PropTypes.func,
+    isOpen: PropTypes.bool,
+    
 };
 export default MyConnection;

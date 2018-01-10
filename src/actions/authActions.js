@@ -29,7 +29,7 @@ export function signinUser({ email, password },history ) {
         dispatch(fetchCustomerConnect(getState().currentUser.currentUser));
         dispatch(showMyJobs(getState().currentUser.currentUser));
         dispatch(loadSecuredJobOfferings(MAPI_HEADERS));
-        console.log(getState().currentUser.currentUser);
+        //console.log(getState().currentUser.currentUser);
         history.push('/jobs');
       })
       .catch(() => {
@@ -64,7 +64,7 @@ export function signupUser({ email, password, password_confirmation }, history) 
 }
 
 export function authError(error) {
-  debugger; 
+  //debugger; 
   return {
     type: types.AUTH_ERROR,
     payload: error
@@ -72,7 +72,7 @@ export function authError(error) {
 }
 
 export function signoutUser() {
-  debugger;
+  //debugger;
   localStorage.removeItem('token');
   return { type: types.UNAUTH_USER };
   //browserHistory.push('/');
@@ -116,7 +116,7 @@ export function fetchCustomerProfiles(user) {
 }
 
 export function loadSecuredJobOffersSuccess(secureJobs) {
-    debugger;
+    //debugger;
     return { type: types.LOAD_SECURED_JOB_OFFERS_SUCCESS,
              secureJobs,
              receivedAt: Date.now()
@@ -126,7 +126,7 @@ export function loadSecuredJobOffersSuccess(secureJobs) {
 export function loadSecuredJobOfferings(MAPI_HEADERS) {
     return function(dispatch) {
         dispatch(beginAjaxCall());
-        debugger;
+       // debugger;
         return axios.get(`${types.ROOT_URL}/employer_posts/private_jobs/`, {headers: MAPI_HEADERS })
         .then(secureJobs => {
             dispatch(loadSecuredJobOffersSuccess(secureJobs));

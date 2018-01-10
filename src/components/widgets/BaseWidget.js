@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert} from 'react-elemental';
+//import {Alert} from 'react-elemental';
 import PropTypes from 'prop-types';
 
 class BaseWidget extends Component {
@@ -12,8 +12,8 @@ class BaseWidget extends Component {
   }
   
   render(){
-      const {children, type, ...other} = this.props;
-      debugger;
+      const {children} = this.props;
+      //debugger;
       return (
          <div>
            {children}
@@ -23,7 +23,6 @@ class BaseWidget extends Component {
 } 
 BaseWidget.propTypes = {
   children: PropTypes.array,
-  message: PropTypes.string,
   type: PropTypes.string
 };
 export default BaseWidget;

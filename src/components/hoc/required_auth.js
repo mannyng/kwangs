@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as actions from '../../actions/authActions';
+//import * as actions from '../../actions/authActions';
 
 export default function (ComposedComponent) {
   class Authentication extends Component {

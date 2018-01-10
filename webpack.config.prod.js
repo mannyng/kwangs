@@ -11,6 +11,8 @@ const GLOBALS = {
   __DEV__: false
 };
 
+//stuck
+
 export default {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json']

@@ -4,17 +4,17 @@ import {Button} from 'react-elemental';
 //import Modal from 'react-modal';
 //import AModal from 'react-modal';
 
-  
-const MyConnection = ({myconnection,currentUser,actions,isOpen}) => {
+//,isOpen  
+const MyConnection = ({myconnection,currentUser,actions}) => {
   function toggleOpenModal(){
     actions.messageModalOpen(); 
   }
   function atoggleOpenModal(){
     actions.messageModalOpen(); 
   }
-  function toggleCloseModal(){
-    actions.messageModalClose(); 
-  }
+  //function toggleCloseModal(){
+   // actions.messageModalClose(); 
+ // }
   
   function onClickAccept() {
     //debugger;
@@ -102,7 +102,7 @@ MyConnection.propTypes = {
     myconnection: PropTypes.object.isRequired,
     currentUser: PropTypes.number.isRequired,
     actions: PropTypes.func,
-    isOpen: PropTypes.bool,
+    //isOpen: PropTypes.bool,
     
 };
 export default MyConnection;

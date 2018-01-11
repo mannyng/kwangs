@@ -45,11 +45,11 @@ export function fetchCustomerProfiles(user) {
 }
 
 export function customerSignup({ username, firstname, lastname, customer_type, address, city, 
-state, country, user_id },history) {
+state}, user_id,history) {
   return function(dispatch,getState) {
-    //debugger;
+    debugger;
     axios.post(`${types.ROOT_URL}/users/${user_id}/customers`, { username, firstname, lastname, 
-    customer_type, address, city, state, country, user_id })
+    customer_type, address, city, state, user_id })
       .then(response => {
         dispatch({ type: types.CREATE_CUSTOMER_SUCCESS, response });
         dispatch(fetchCustomerProfiles(getState().currentUser.currentUser));

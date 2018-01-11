@@ -13,7 +13,7 @@ import * as actions from '../../actions/customerProfilesActions';
 
 class CustomerSignup extends Component {
    submit = (values) => {
-    this.props.customerSignup(values,this.props.currentUser, this.context.router.history);
+    this.props.customerSignup(values, this.context.router.history);
      //this.props.dispatch(actions.customerSignup(values, this.props.history));
      //this.context.router.history.push('/profile');
   }
@@ -27,7 +27,6 @@ class CustomerSignup extends Component {
       );
     }
   }
-  
   
   //handleFormSubmit(formProps) {
     // Call action creator to sign up the user!
@@ -45,19 +44,7 @@ class CustomerSignup extends Component {
   }
 
   render() {
-    const renderField = ({ input, label, type, meta: { touched, error } }) => (
-  <div className="row">
-   <div className="col-xs-4">
-    <label>{label}</label>
-    </div>
-    <div className="col-xs-8">
-      <input {...input} type={type} placeholder={label} className="form-control" />
-      {touched && error && <span>{error}</span>}
-    </div>
-  </div>
-   );
-   const customer_type = ['employer','employee'];
-    const { handleSubmit} = this.props;
+    const { handleSubmit } = this.props;
     
     return (
       <Page>
@@ -70,63 +57,69 @@ class CustomerSignup extends Component {
       </Sidebar>
       <Content>
       <form  onSubmit={handleSubmit(this.submit)}>
-      
-      <Field
-        name="username"
-        type="text"
-        component={renderField}
-        label="Username"
-        className="input-group margin-bottom-xs"
-       />
-         
-        <Field
-        name="firstname"
-        type="text"
-        component={renderField}
-        label="Firstname"
-        className="input-group margin-bottom-xs"
-       />
-       <Field
-        name="lastname"
-        type="text"
-        component={renderField}
-        label="Lastname"
-        className="input-group margin-bottom-xs"
-       />
-       <div className="row">
-        <div className="col-xs-4">
-          <label>Customer Type</label>
-        </div>
-        <div className="col-xs-8">
-           <Field name='customer_type' component="select" className="form-control">
-            <option value="">Select customer type...</option>
-            {customer_type.map(customer_typeOption =>
-              <option value={customer_typeOption} key={customer_typeOption}>{customer_typeOption}</option>)}
-          </Field>
-        </div>
-       </div>
-        
-        <Field
-        name="address"
-        type="text"
-        component={renderField}
-        label="Street address"
-        className="input-group margin-bottom-xs"
-       />  
-       <Field
-        name="city"
-        type="text"
-        component={renderField}
-        label="City"
-        className="input-group margin-bottom-xs"
-       /> 
-        <Field
-        name="state"
-        type="text"
-        component={renderField}
-        label="State"
-        className="input-group margin-bottom-xs"
-       />
+      <fieldset className="form-group">
+        <Field name="username"
+                  component="input"
+                  type="text"
+                  placeholder="Username" 
+            />
+         </fieldset>
+         <fieldset className="form-group">
+        <Field name="firstname" 
+                  component="input"
+                  type="text" 
+                  placeholder="Firstname" 
+            />
+            </fieldset>
+            <fieldset className="form-group">
+            <Field name="lastname" 
+                  component="input"
+                  type="text" 
+                  placeholder="Lastname" 
+            />
+            </fieldset>
+        <fieldset className="form-group">
+        <Field name="customer_type"
+                  component="input"
+                  type="text"
+                  placeholder="Username" 
+            />
+         </fieldset>
+         <fieldset className="form-group">
+        <Field name="address" 
+                  component="input"
+                  type="text" 
+                  placeholder="Street address" 
+            />
+            </fieldset>
+            <fieldset className="form-group">
+            <Field name="city" 
+                  component="input"
+                  type="text" 
+                  placeholder="City" 
+            />
+            </fieldset> 
+          <fieldset className="form-group">
+            <Field name="state" 
+                  component="input"
+                  type="text" 
+                  placeholder="State" 
+            />
+            </fieldset>
+        <fieldset className="form-group">
+        <Field name="country"
+                  component="input"
+                  type="text"
+                  placeholder="Country" 
+            />
+         </fieldset>
+         <fieldset className="form-group">
+        <Field name="user_id" 
+                  component="input"
+                  type="text" 
+                  placeholder="Current User" 
+            />
+            </fieldset>
                
         {this.renderAlert()}
         <button action="submit" className="btn btn-primary">Create Your Profile!</button>

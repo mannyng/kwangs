@@ -16,12 +16,12 @@ const HomePage = () => {
      <article>
       <div className="col-xs-7">
        
-      <h1>React Slingshot</h1>
+      <h1>Unskilled Jobs</h1>
        
-      <h2>Get Started</h2>
+      <h2>For Nigerians</h2>
       <ol>
-        <li>Review the <Link to="/profile">demo app</Link></li>
-        <li>Remove the demo and start coding: npm run remove-demo</li>
+        <li>Register and sign in to <Link to="/profile">view app</Link></li>
+        <li>Working on UI/UX for this frontpage</li>
       </ol>
       </div>
       <aside className="col-xs-5">

@@ -62,7 +62,7 @@ export function saveJobOffer(employer_post) {
     return function (dispatch) {
         //dispatch(beginAjaxCall());
         //debugger;
-        return axios.post('https://fen-pi-kofian.c9users.io/employer_posts',{employer_post},
+        return axios.post(`${types.ROOT_URL}/employer_posts`,{employer_post},
          {headers: types.API_HEADERS }).then(jobOffer => {
             jobOffer.id ? dispatch(updateJobOfferSuccess(jobOffer)) :
             dispatch(createJobOfferSuccess)(jobOffer);
@@ -76,7 +76,7 @@ export function saveJobOffer(employer_post) {
 export function showJobOffer(jobId) {
     return function (dispatch) {
         dispatch(beginAjaxCall());
-        return axios.get(`http://fen-pi-kofian.c9users.io/employer_posts/${jobId}`, {headers: types.API_HEADERS }).then(job_offer => {
+        return axios.get(`${types.ROOT_URL}/employer_posts/${jobId}`, {headers: types.API_HEADERS }).then(job_offer => {
           dispatch(showJobOfferSuccess)(job_offer); 
         }).catch(error => {
             dispatch(ajaxCallError(error));

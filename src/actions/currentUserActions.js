@@ -13,7 +13,7 @@ export function currentUser(user) {
   return function(dispatch) {
   //currentUser = jwt_decode(localStorage.getItem('token'));
   //dispatch({ type: types.CURRENT_USER});
-  return axios.get(`http://fen-pi-kofian.c9users.io/customers/${user}`).then(profile => {
+  return axios.get(`${types.ROOT_URL}/customers/${user}`).then(profile => {
             dispatch(fetchProfilesSuccess(profile.data));
         }).catch(error => {
             throw(error);

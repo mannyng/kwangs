@@ -47,7 +47,7 @@ export function fetchCustomerProfiles(user) {
 export function customerSignup({ username, firstname, lastname, customer_type, address, city, 
 state}, user_id,history) {
   return function(dispatch,getState) {
-    debugger;
+    //debugger;
     axios.post(`${types.ROOT_URL}/users/${user_id}/customers`, { username, firstname, lastname, 
     customer_type, address, city, state, user_id })
       .then(response => {

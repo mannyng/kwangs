@@ -1,4 +1,4 @@
-/* eslint-disable import/default import/no-unresolved */
+/* eslint-disable import/default */
 
 import React from 'react';
 import { render } from 'react-dom';

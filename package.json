@@ -189,6 +189,7 @@
       "jquery": true,
       "jest": true
     },
+    "settings": { "import/resolver": { "node": { "paths": ["src"] } } },
     "rules": {
       "quotes": 0,
       "no-console": 1,

@@ -32,7 +32,7 @@ export class HomeContainer extends React.Component {
   }
 
   render() {
-    const {jobOffers} = this.props;
+    const {jobOffers,myPoint} = this.props;
     //debugger;
     return (
       <Page>
@@ -48,7 +48,7 @@ export class HomeContainer extends React.Component {
       <HomeHeader jobOffers={jobOffers}/>
       
       
-      <HomePage jobOffers={jobOffers}/>
+      <HomePage myPoint={myPoint}/>
       
       </MainContent>
       
@@ -76,14 +76,15 @@ HomeContainer.propTypes = {
   profile: PropTypes.object.isRequired,
   jobOffers: PropTypes.array.isRequired,
   history: PropTypes.object.isRequired,
- // createJobOffer: PropTypes.object.isRequired
+  myPoint: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
   //debugger;
   return {
     jobOffers: state.jobOffers,
-    profile: state.profile
+    profile: state.profile,
+    myPoint: state.myPoint
   };
 }
 

@@ -21,6 +21,9 @@ export function loadJobOffersSuccess(jobOffers) {
     };
 }
 
+export function  loadMyPointSuccess(myPoint) {
+    return { type: types.LOAD_MY_POINT_SUCCESS, myPoint};
+}
 export function showJobOfferSuccess(job_offer) {
     //debugger;
     return { type: types.SHOW_JOB_OFFER_SUCCESS, job_offer};
@@ -57,7 +60,17 @@ export function loadJobOfferings() {
         });
     };
 }
-
+export function loadMyPoint() {
+    return function(dispatch) {
+        //dispatch(beginAjaxCall());
+        return axios.get(`${types.ROOT_URL}/employer_posts/my_point/`)
+        .then(myPoint => {
+            dispatch(loadMyPointSuccess(myPoint.data));
+        }).catch(error => {
+            throw(error);
+        });
+    };
+}
 export function saveJobOffer(employer_post) {
     return function (dispatch) {
         //dispatch(beginAjaxCall());

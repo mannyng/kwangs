@@ -13,6 +13,11 @@ export function fetchCustomerConnectSuccess(customerConnect) {
     return { type: types.FETCH_CUSTOMER_CONNECT_SUCCESS, customerConnect};
 }
 
+export function fetchMyFriendsSuccess(myFriends) {
+    //debugger;
+    return { type: types.FETCH_MY_FRIENDS_SUCCESS, myFriends};
+}
+
 export function createCustomerConnectSuccess(customerConnect) {
     //debugger;
     return { type: types.CREATE_CUSTOMER_CONNECT_SUCCESS, customerConnect};
@@ -124,13 +129,14 @@ export function readMessagesSuccess(myMessages) {
     return { type: types.READ_MESSAGES_SUCCESS, myMessages};
 }
 
-export function sendMessage(sender,reciever,msg) {
+export function sendMessage(customer_id,reciever_id,msg) {
     return function (dispatch) {
          dispatch(beginAjaxCall());
         //debugger;
-        return axios.post(`${types.ROOT_URL}/customers/${sender}/messages`,{sender,reciever,msg},
+        return axios.post(`${types.ROOT_URL}/customers/${customer_id}/messages`,{customer_id,reciever_id,msg},
          {headers: types.API_HEADERS }).then(myMessage => {
-            dispatch(sendMessageSuccess(myMessage.data));
+             //debugger;
+            dispatch(sendMessageSuccess(myMessage.data.message));
         }).catch(error => {
             dispatch(ajaxCallError(error));
             throw(error.response);
@@ -148,6 +154,20 @@ export function readMessages(customer_id) {
         }).catch(error => {
             dispatch(ajaxCallError(error));
             throw(error.response);
+        });
+    };
+}
+
+export function fetchMyFriends(customer_id) {
+    //debugger;
+    return function(dispatch) {
+        dispatch(beginAjaxCall());
+        return axios.get(`${types.ROOT_URL}/customers/${customer_id}/my_friends`,
+        {headers: types.API_HEADERS }).then(myFriends => {
+            dispatch(fetchMyFriendsSuccess(myFriends.data));
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            throw(error);
         });
     };
 }

@@ -7,7 +7,7 @@ const IndexPage = (secureJobs) => {
   return (
       <article>
       {secureJobs.secureJobs && secureJobs.secureJobs.map((secureJob, index) => 
-       <div className="jumbotron" id="fronte" key={secureJob.job.id}>
+       (<div className="jumbotron" id="fronte" key={secureJob.job.id}>
        
          <div key={"1"} className="panel panel-default">
           <div key={"1"} className="panel-body">
@@ -28,6 +28,10 @@ const IndexPage = (secureJobs) => {
                <div>
                 <h5>{secureJob.location.location}</h5>
                 <h5>{secureJob.location.city}</h5>
+                
+                  <Link to={'/job/' + index} className="btn btn-info pull-right">VIew Job{' '}
+                  <i className="fa fa-taxi" aria-hidden="true"/>
+                  </Link>
                 <h3>Poster: <small>{secureJob.customer.username}</small></h3>
                </div>
           </div>
@@ -35,7 +39,7 @@ const IndexPage = (secureJobs) => {
        
         
       
-     </div>)}
+     </div>))}
      </article>
     
    );

@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Button} from 'react-elemental';
+import { Link } from 'react-router-dom';
 //import Modal from 'react-modal';
 //import AModal from 'react-modal';
 
 //isOpen  
 const MyConnection = ({myconnection,currentUser,actions}) => {
-  function toggleOpenModal(){
-    actions.messageModalOpen(); 
-  }
-  function atoggleOpenModal(){
-    actions.messageModalOpen(); 
-  }
+  //function toggleOpenModal(){
+  //  actions.messageModalOpen(); 
+  //}
   //function toggleCloseModal(){
    // actions.messageModalClose(); 
  // }
@@ -60,9 +58,10 @@ const MyConnection = ({myconnection,currentUser,actions}) => {
             <div className="col-md-5"><h3 className="bold">{myconnection.friend && myconnection.friend.username}</h3></div>
              <div className="col-md-1"/>
             <div className="col-md-6">
-            <Button onClick={toggleOpenModal}>
-                 Contact
-                <span className="fa fa-cut fa-lg fa-pull-right"/>
+            <Button>
+                <Link to={'/connect/' + myconnection.friend.username}>Contact{' '}
+                <span className="fa fa-envelope-o fa-lg fa-pull-right"/>
+                </Link>
               </Button> 
               OR
               <Button onClick={onClickAccept}>
@@ -80,14 +79,15 @@ const MyConnection = ({myconnection,currentUser,actions}) => {
             <div className="col-md-5"><h3 className="bold">{myconnection.customer && myconnection.customer.username}</h3></div>
              <div className="col-md-1"/>
             <div className="col-md-6">
-              <Button onClick={atoggleOpenModal}>
-                 Contact
-                <span className="fa fa-cut fa-lg fa-pull-right"></span>
+              <Button>
+                 <Link to={'/connect/' + myconnection.customer.username}>Contact{' '}
+                <span className="fa fa-envelope-o fa-lg fa-pull-right"/>
+                </Link>
               </Button> 
               OR
               <Button onClick={onClickAccept}>
                  Block
-                <span className="fa fa-cut fa-lg fa-pull-right"></span>
+                <span className="fa fa-cut fa-lg fa-pull-right"/>
               </Button>
             </div>
          </div>}
@@ -101,7 +101,7 @@ const MyConnection = ({myconnection,currentUser,actions}) => {
 MyConnection.propTypes = {
     myconnection: PropTypes.object.isRequired,
     currentUser: PropTypes.number.isRequired,
-    actions: PropTypes.func,
+    actions: PropTypes.object,
     //isOpen: PropTypes.bool,
     
 };

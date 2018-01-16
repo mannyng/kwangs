@@ -21,7 +21,7 @@ MyConnections.propTypes = {
     customerConnect: PropTypes.array,
     myconnection: PropTypes.object,
     currentUser: PropTypes.number.isRequired,
-    actions: PropTypes.func,
+    actions: PropTypes.object,
     isOpen: PropTypes.bool,
 };
 export default MyConnections;

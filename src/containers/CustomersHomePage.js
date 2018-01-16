@@ -79,7 +79,7 @@ CustomersPage.propTypes = {
   actions: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   secureJobs: PropTypes.array.isRequired,
-  currentUser: PropTypes.number.isRequired,
+  currentUser: PropTypes.number,
   loading: PropTypes.number,
   job_offer: PropTypes.array.isRequired,
   dispatch: PropTypes.func

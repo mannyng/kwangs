@@ -95,5 +95,17 @@ export default {
       status: '' 
     }},
   secureJobs: [],
-  isOpen: false 
+  isOpen: false ,
+  myFriends: [{
+    username: '', 
+    firstname: '', 
+    lastname: '',
+    customer_type: '', 
+    address: '', 
+    city: '', 
+    state: '', 
+    country: '', 
+    user_id: 0,
+    status: ''
+  }]
 };

@@ -98,7 +98,7 @@ class CustomerSignup extends Component {
           <label>Customer Type</label>
         </div>
         <div className="col-xs-8">
-           <Field name='customer_type' component="select" className="form-control">
+           <Field name="customer_type" component="select" className="form-control">
             <option value="">Select customer type...</option>
             {customer_type.map(customer_typeOption =>
               <option value={customer_typeOption} key={customer_typeOption}>{customer_typeOption}</option>)}

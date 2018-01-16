@@ -1,5 +1,5 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //import Page from '../layouts/Page';
 //import Main from '../layouts/Main';
 //import Content from '../layouts/Content';
@@ -14,7 +14,7 @@ const HomeHeader = (jobOffers) => {
    <div className="jumbotron" id="fronte">
        
        <article className="row">
-       {jobOffers.jobOffers && jobOffers.jobOffers.map(jobOffer => 
+       {jobOffers.jobOffers && jobOffers.jobOffers.map((jobOffer, index) => 
         (<section key={jobOffer.job.id} className="col-md-4 col-xs-12">
          <div key={"1"} className="panel panel-default">
           <div key={"1"} className="panel-body">
@@ -35,6 +35,9 @@ const HomeHeader = (jobOffers) => {
                 <h5>{jobOffer.location.location}</h5>
                 <h5>{jobOffer.location.city}</h5>
                 <h3>Poster: <small>{jobOffer.customer.username}</small></h3>
+                <Link to={'/job/' + index} className="btn btn-info">VIew Job{' '}
+                  <i className="fa fa-taxi" aria-hidden="true"/>
+                  </Link>
                </div>
           </div>
          </div>

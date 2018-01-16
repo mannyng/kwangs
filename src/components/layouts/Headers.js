@@ -1,7 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default ({children}) => (
+const Headers = ({children}) => (
     <footer className="row">
      {children}
     </footer>
 );
+
+Headers.propTypes = {
+    children: PropTypes.node
+};
+export default Headers;

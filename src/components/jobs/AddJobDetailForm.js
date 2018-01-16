@@ -16,7 +16,14 @@ import validate from './validate';
   </div>
 );
 
-
+renderField.propTypes = {
+  input: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }),
+  label: PropTypes.string.isRequired,
+  meta: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired
+};
         
 
    const payment_type = ['Cash','Cheque','Bitcoin'];
@@ -33,7 +40,7 @@ import validate from './validate';
        <h4>{myJobOffer.title}</h4>
     <form onSubmit={handleSubmit(submitJobInsight)}>
       <Field
-        name='employee_title' 
+        name="employee_title" 
         type="text"
         component={renderField}
         label="Open Position"
@@ -44,7 +51,7 @@ import validate from './validate';
           <label>Employee Category</label>
         </div>
         <div className="col-xs-8">
-           <Field name='employee_category' component="select" className="form-control">
+           <Field name="employee_category" component="select" className="form-control">
             <option value="">Select employee category...</option>
             {employee_category.map(employee_categoryOption =>
               <option value={employee_categoryOption} key={employee_categoryOption}>{employee_categoryOption}</option>)}
@@ -56,7 +63,7 @@ import validate from './validate';
           <label>Employee Type</label>
         </div>
         <div className="col-xs-8">
-           <Field name='employee_type' component="select" className="form-control">
+           <Field name="employee_type" component="select" className="form-control">
             <option value="">Select employee type...</option>
             {employee_type.map(employee_typeOption =>
               <option value={employee_typeOption} key={employee_typeOption}>{employee_typeOption}</option>)}
@@ -69,7 +76,7 @@ import validate from './validate';
           <label>Job Duration</label>
         </div>
         <div className="col-xs-8">
-           <Field name='job_duration' component="select" className="form-control">
+           <Field name="job_duration" component="select" className="form-control">
             <option value="">Select job duration...</option>
             {job_duration.map(job_durationOption =>
               <option value={job_durationOption} key={job_durationOption}>{job_durationOption}</option>)}
@@ -82,7 +89,7 @@ import validate from './validate';
           <label>Payment Type</label>
         </div>
         <div className="col-xs-8">
-           <Field name='pay_type' component="select" className="form-control">
+           <Field name="pay_type" component="select" className="form-control">
             <option value="">Select paymen type...</option>
             {payment_type.map(pay_typeOption =>
               <option value={pay_typeOption} key={pay_typeOption}>{pay_typeOption}</option>)}
@@ -95,7 +102,7 @@ import validate from './validate';
           <label>Job Category</label>
         </div>
         <div className="col-xs-8">
-           <Field name='job_category' component="select" className="form-control">
+           <Field name="job_category" component="select" className="form-control">
             <option value="">Select job category...</option>
             {jobCategories.map(job_categoryOption =>
               <option value={job_categoryOption.value} key={job_categoryOption.value}>{job_categoryOption.text}</option>)}
@@ -108,7 +115,7 @@ import validate from './validate';
           <label>Experience</label>
         </div>
         <div className="col-xs-8">
-           <Field name='employee_experience' component="select" className="form-control">
+           <Field name="employee_experience" component="select" className="form-control">
             <option value="">Select job duration...</option>
             {employee_experience.map(employee_experienceOption =>
               <option value={employee_experienceOption} key={employee_experienceOption}>{employee_experienceOption}</option>)}
@@ -117,8 +124,10 @@ import validate from './validate';
        </div>
       
       <div>
-        <button type="submit" disabled={submitting} >Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
+        <button type="submit" disabled={submitting} className="btn btn-info">
+        <i className="fa fa-plus" aria-hidden="true"/>Submit</button>
+        <button type="button" disabled={pristine || submitting} onClick={reset}className="btn btn-danger">
+          <i className="fa fa-bolt" aria-hidden="true"/>
           Clear Values
         </button>
       </div>
@@ -136,7 +145,10 @@ AddJobDetailForm.propTypes = {
   handleSubmit:PropTypes.func.isRequired,
   jobCategories: PropTypes.array.isRequired,
   myJobOffer: PropTypes.object.isRequired,
-  submitJobInsight: PropTypes.func
+  submitJobInsight: PropTypes.func,
+  pristine: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
+  submitting: PropTypes.func.isRequired,
 };
 
 

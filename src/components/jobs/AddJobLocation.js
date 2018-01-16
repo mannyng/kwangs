@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import validate from './validate';
-
+import PropTypes from 'prop-types';
 
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
   <div className="row">
@@ -15,6 +15,14 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
   </div>
 );
 
+renderField.propTypes = {
+  input: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }),
+  label: PropTypes.string.isRequired,
+  meta: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired
+};
 const AddJobLocation = props => {
   const { handleSubmit, pristine, reset, submitting, submitMyJobLocation } = props;
   //debugger
@@ -43,12 +51,19 @@ const AddJobLocation = props => {
       />  
       <div>
         <button type="submit" disabled={submitting} className="btn btn-info">
-         <i className="fa fa-location-arrow" aria-hidden="true"></i>Add Location</button>
+         <i className="fa fa-location-arrow" aria-hidden="true"/>Add Location</button>
         <button type="button" disabled={pristine || submitting} onClick={reset} className="btn btn-danger">
-          <i className="fa fa-bolt" aria-hidden="true"></i>Clear Values </button>
+          <i className="fa fa-bolt" aria-hidden="true"/>Clear Values </button>
       </div>
     </form>
   );
+};
+AddJobLocation.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
+  submitting: PropTypes.func.isRequired,
+  submitMyJobLocation: PropTypes.func.isRequired
 };
 
 export default reduxForm({

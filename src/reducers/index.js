@@ -17,7 +17,8 @@ import secureJobs from './loggedInUserSearchReducer';
 import myMessages from './myMessagesReducer';
 import myMessage from './myMessageReducer';
 import isOpen from './messageModalReducer';
-
+import myFriends from './myFriendsReducer';
+import myPoint from './myPointReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -35,6 +36,8 @@ const rootReducer = combineReducers({
   myJobs,
   myMessage,
   myMessages,
+  myFriends,
+  myPoint,
   routing: routerReducer,
   ajaxCallsInProgress,
   isOpen

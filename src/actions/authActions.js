@@ -2,7 +2,7 @@ import * as types from '../constants/actionTypes';
 import axios from 'axios';
 import localStorage from 'localStorage';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
-import {fetchCustomerConnect} from './customerProfilesActions';
+import {fetchCustomerConnect,fetchMyFriends} from './customerProfilesActions';
 import {showMyJobs} from './myJobOfferActions';
  
  export function fetchProfilesSuccess(profile) {
@@ -26,6 +26,7 @@ export function signinUser({ email, password },history ) {
         
         dispatch({ type: types.CURRENT_USER});
         dispatch(fetchCustomerProfiles(getState().currentUser.currentUser));
+        dispatch(fetchMyFriends(getState().currentUser.currentUser));
         dispatch(fetchCustomerConnect(getState().currentUser.currentUser));
         dispatch(showMyJobs(getState().currentUser.currentUser));
         dispatch(loadSecuredJobOfferings(MAPI_HEADERS));

@@ -6,9 +6,9 @@ import { AppContainer } from 'react-hot-loader';
 import localStorage from 'localStorage';
 import configureStore, { history } from './store/configureStore';
 import Root from './components/Root';
-import {loadJobOfferings} from './actions/jobOfferingsActions';
+import {loadJobOfferings,loadMyPoint} from './actions/jobOfferingsActions';
 import {loadSecuredJobOfferings} from './actions/loggedInUserSearchActions';
-import {fetchCustomerConnect} from './actions/customerProfilesActions';
+import {fetchCustomerConnect,fetchMyFriends} from './actions/customerProfilesActions';
 import { AUTH_USER, CURRENT_USER } from './constants/actionTypes';
 import {fetchCustomerProfiles} from './actions/authActions';
 import {showMyJobs} from './actions/myJobOfferActions';
@@ -37,6 +37,7 @@ bootstrap({
 });
 //debugger;
 store.dispatch(loadJobOfferings());
+store.dispatch(loadMyPoint());
 
 const token = localStorage.getItem('token');
 // If we have a token, consider the user to be signed in
@@ -51,6 +52,7 @@ if (token) {
   store.dispatch(loadSecuredJobOfferings());
   //debugger;
   store.dispatch(showMyJobs(store.getState().currentUser.currentUser));
+  store.dispatch(fetchMyFriends(store.getState().currentUser.currentUser));
   store.dispatch(fetchCustomerConnect(store.getState().currentUser.currentUser));
   
 }

@@ -1,28 +1,36 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+//import { Link } from 'react-router-dom';
 //import Page from './layouts/Page';
 //import Main from './layouts/Main';
 //import Content from './layouts/Content';
 //import Headers from './layouts/Headers';
 //import Sidebar from './layouts/Sidebar';
 //import Header from './universal/CustomerHeader';
+import MyMapComponent from './homepage/google-maps';
 
 import ASignup from './auth/Asignup';
 
-const HomePage = () => {
+const HomePage = (myPoint) => {
+  //debugger;
   return (
     
      
      <article>
       <div className="col-xs-7">
        
-      <h1>Unskilled Jobs</h1>
-       
-      <h2>For Nigerians</h2>
-      <ol>
-        <li>Register and sign in to <Link to="/profile">view app</Link></li>
-        <li>Working on UI/UX for this frontpage</li>
-      </ol>
+      <h2>Unskilled Jobs near you</h2>
+       {myPoint.myPoint.latitude && 
+          <MyMapComponent
+           lat={myPoint.myPoint.latitude}
+           lng={myPoint.myPoint.longitude}
+           isMarkerShown
+  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+  loadingElement={<div style={{ height: `100%` }} />}
+  containerElement={<div style={{ height: `400px` }} />}
+  mapElement={<div style={{ height: `100%` }} />}
+          />
+       }
       </div>
       <aside className="col-xs-5">
         <ASignup />
@@ -33,6 +41,10 @@ const HomePage = () => {
       
    
   );
+};
+HomePage.propTypes = {
+  lat: PropTypes.number,
+  lng: PropTypes.number
 };
 
 export default HomePage;

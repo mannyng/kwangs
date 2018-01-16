@@ -198,7 +198,6 @@
         1,
         "always"
       ],
-      "import/no-unresolved": "off",
       "no-trailing-spaces": 0,
       "eol-last": 0,
       "no-underscore-dangle": 0,

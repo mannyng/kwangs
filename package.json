@@ -189,7 +189,6 @@
       "jquery": true,
       "jest": true
     },
-    "settings": { "import/resolver": { "node": { "paths": ["src"] } } },
     "rules": {
       "quotes": 0,
       "no-console": 1,
@@ -199,6 +198,7 @@
         1,
         "always"
       ],
+      "import/no-unresolved": "off",
       "no-trailing-spaces": 0,
       "eol-last": 0,
       "no-underscore-dangle": 0,

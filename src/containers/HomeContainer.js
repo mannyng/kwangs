@@ -45,14 +45,16 @@ export class HomeContainer extends React.Component {
         <Controls />
       </Sidebar>
       <MainContent>
-      <HomeHeader jobOffers={jobOffers}/>
-      
-      
+      <div>      
       <HomePage myPoint={myPoint}/>
+      </div>
       
       </MainContent>
       
       <Footers>
+      <div>
+      <HomeHeader jobOffers={jobOffers}/>
+      </div>
       <Footer/>
       
         <div className="navbar navbar-default navbar-fixed-bottom">

@@ -48,8 +48,31 @@ td.fuel-savings-label { width: 175px; }
     padding-bottom: 18px;
   }
   
+  main {
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  #front_register {
+    padding-right: 20px;
+    padding-left: 40px;
+    padding-top: 80px;
+    padding-bottom: 18px;
+  }
+  
+  #front_map {
+    padding-top: 8px;
+    padding-bottom: 18px;
+  }
 @media screen and (min-width: 768px) {
  #fronte {
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  main {
     padding-right: 20px;
     padding-left: 20px;
     padding-top: 18px;

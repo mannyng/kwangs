@@ -19,6 +19,7 @@ import myMessage from './myMessageReducer';
 import isOpen from './messageModalReducer';
 import myFriends from './myFriendsReducer';
 import myPoint from './myPointReducer';
+import cnvtBtwn from './conversationBetweenReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
   myMessages,
   myFriends,
   myPoint,
+  cnvtBtwn,
   routing: routerReducer,
   ajaxCallsInProgress,
   isOpen

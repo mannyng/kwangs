@@ -24,6 +24,7 @@ const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onCh
           <p>Job Location: {secureJob.location.location}</p>
           <p>Job City: {secureJob.location.city}, {secureJob.location.state}</p>
           <p>Job Poster: {secureJob.customer.username}</p>
+          
           { customerConnect && <form>
           <input type="hidden"
               name="customer_id"

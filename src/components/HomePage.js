@@ -17,7 +17,7 @@ const HomePage = (myPoint) => {
     
      
      <article>
-      <div className="col-xs-7">
+      <div className="col-xs-7" id="front_map">
        
       <h2>Unskilled Jobs near you</h2>
        {myPoint.myPoint.latitude && 
@@ -32,7 +32,7 @@ const HomePage = (myPoint) => {
           />
        }
       </div>
-      <aside className="col-xs-5">
+      <aside className="col-xs-5" id="front_register">
         <ASignup />
       </aside> 
       </article>

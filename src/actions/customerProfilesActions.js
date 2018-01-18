@@ -128,15 +128,20 @@ export function readMessagesSuccess(myMessages) {
     //debugger;
     return { type: types.READ_MESSAGES_SUCCESS, myMessages};
 }
-
-export function sendMessage(customer_id,reciever_id,msg) {
+export function fetchConversationBetweenSuccess(cnvtBtwn) {
+    //debugger;
+    return { type: types.CONVERSATION_BETWEEN_SUCCESS, cnvtBtwn};
+}
+export function sendMessage(customer_id,conversation_id,msg) {
     return function (dispatch) {
          dispatch(beginAjaxCall());
         //debugger;
-        return axios.post(`${types.ROOT_URL}/customers/${customer_id}/messages`,{customer_id,reciever_id,msg},
+        return axios.post(`${types.ROOT_URL}/messages`,
+        {customer_id,conversation_id,msg},
          {headers: types.API_HEADERS }).then(myMessage => {
              //debugger;
-            dispatch(sendMessageSuccess(myMessage.data.message));
+            dispatch(sendMessageSuccess(myMessage.data));
+            dispatch(readMessages(conversation_id));
         }).catch(error => {
             dispatch(ajaxCallError(error));
             throw(error.response);
@@ -144,12 +149,13 @@ export function sendMessage(customer_id,reciever_id,msg) {
     };
 }
 
-export function readMessages(customer_id) {
+export function readMessages(conversation_id) {
     return function (dispatch) {
          dispatch(beginAjaxCall());
         //debugger;
-        return axios.get(`${types.ROOT_URL}/customers/${customer_id}/messages/my_messages`,
+        return axios.get(`${types.ROOT_URL}/conversations/${conversation_id}`,
          {headers: types.API_HEADERS }).then(myMessages => {
+             //debugger;
             dispatch(readMessagesSuccess(myMessages.data));
         }).catch(error => {
             dispatch(ajaxCallError(error));
@@ -170,4 +176,19 @@ export function fetchMyFriends(customer_id) {
             throw(error);
         });
     };
+}
+export function fetchConversationBetween(sender_id,recipient_id) {
+    return function(dispatch) {
+        dispatch(beginAjaxCall());
+        return axios.post(`${types.ROOT_URL}/conversations/`,
+        {sender_id,recipient_id},
+        {headers: types.API_HEADERS }).then(cnvtBtwn => {
+            //debugger;
+            dispatch(fetchConversationBetweenSuccess(cnvtBtwn.data));
+            dispatch(readMessages(cnvtBtwn.data.conversation_id));
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            throw(error);
+        });
+    };    
 }

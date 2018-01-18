@@ -29,14 +29,32 @@ class ContactConnection extends Component {
     };
     this.submitMessage = this.submitMessage.bind(this);
   }
+  componentDidMount() {
+    if (this.props.myFriend) {
+    //debugger;
+    this.props.dispatch(actions.fetchConversationBetween(this.props.profile.id,this.props.myFriend.id));
+    if (this.props.cnvtBtwn.conversation_id) {
+      //debugger;
+      this.props.dispatch(actions.readMessages(this.props.cnvtBtwn.conversation_id));
+    }
+    }
+  }
+   
+  shouldComponentUpdate(nextProps) {
+    //debugger;
+    const differentcnvtBtwn = this.props.cnvtBtwn.conversation_id !== nextProps.cnvtBtwn.conversation_id;
+    const differentmyMessages = this.props.myMessages.length !== nextProps.myMessages.length;
+    return differentcnvtBtwn || differentmyMessages;
+  }
  submitMessage(values){
      //debugger;
-    this.props.dispatch(actions.sendMessage(this.props.profile.id,this.props.myFriend.id,values.msg));
+    this.props.dispatch(actions.sendMessage(this.props.profile.id,this.props.cnvtBtwn.conversation_id,values.msg));
     this.props.dispatch(reset('sendMessageForm'));  // requires form name
   }
   
   render() {
-    const {profile, myFriend, myMessage} = this.props;
+    const {myFriend,cnvtBtwn,myMessages} = this.props;
+    //debugger;
     return (
       <Page>
        <Headers>
@@ -46,14 +64,28 @@ class ContactConnection extends Component {
         <Sidebar>
             <CustomerControls />
          </Sidebar>
+         {cnvtBtwn.conversation_id >= 1 &&
         <div className="col-xs-8">
         {myFriend &&
           <p>{myFriend.username}</p>
         }
-        <SendMessage profile={profile} myFriend={myFriend}
-        submitMessage={this.submitMessage} myMessage={myMessage}
+        
+        {myMessages.length >= 1 && myMessages.map((myMessage,index) =>
+        (<div className="row" key={index}>
+          <div className="col-xs-5">
+           <p className="h4">{myMessage.sender_name} {' '}:</p>
+          </div>
+          <div className="col-xs-2"/>
+          <div className="col-xs-5">
+           <p className="h5">{myMessage.msg}</p>
+          </div>
+          </div>)
+        )}
+        <SendMessage 
+        submitMessage={this.submitMessage} 
         />
         </div>
+         }
           <Footers>
            <Footer/>
           </Footers>
@@ -70,7 +102,9 @@ ContactConnection.propTypes = {
   profile: PropTypes.object.isRequired,
   loading: PropTypes.number.isRequired,
   dispatch: PropTypes.func,
-  myMessage: PropTypes.array.isRequired
+  myMessage: PropTypes.array.isRequired,
+  cnvtBtwn: PropTypes.object.isRequired,
+  myMessages: PropTypes.array.isRequired
 };
 function getMyFriendByUsername(myFriends, myFriendId) {
   //debugger;
@@ -93,7 +127,9 @@ function mapStateToProps(state,ownProps) {
     currentUser: state.currentUser.currentUser,
     loading: state.ajaxCallsInProgress,
     myFriend: myFriend,
-    myMessage: state.myMessage
+    myMessage: state.myMessage,
+    cnvtBtwn: state.cnvtBtwn,
+    myMessages: state.myMessages
   };
 }
 

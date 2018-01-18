@@ -2,7 +2,15 @@ import * as types from '../constants/actionTypes';
 import axios from 'axios';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 //import {loadSecuredJobOfferings} from './loggedInUserSearchActions';
+import localStorage from 'localStorage';
 
+
+const mytoke = localStorage.getItem('token');
+export const API_HEADERS = {
+     'Content-Type': 'application/json',
+     'Authorization': `Bearer ${mytoke}`
+  };
+  
 export function fetchProfilesSuccess(profile) {
     //debugger;
     return { type: types.FETCH_CUSTOMER_SUCCESS, profile};
@@ -133,12 +141,18 @@ export function fetchConversationBetweenSuccess(cnvtBtwn) {
     return { type: types.CONVERSATION_BETWEEN_SUCCESS, cnvtBtwn};
 }
 export function sendMessage(customer_id,conversation_id,msg) {
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
+        //debugger;
     return function (dispatch) {
          dispatch(beginAjaxCall());
         //debugger;
         return axios.post(`${types.ROOT_URL}/messages`,
         {customer_id,conversation_id,msg},
-         {headers: types.API_HEADERS }).then(myMessage => {
+         {headers: MAPI_HEADERS }).then(myMessage => {
              //debugger;
             dispatch(sendMessageSuccess(myMessage.data));
             dispatch(readMessages(conversation_id));
@@ -150,11 +164,17 @@ export function sendMessage(customer_id,conversation_id,msg) {
 }
 
 export function readMessages(conversation_id) {
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
+        //debugger;
     return function (dispatch) {
          dispatch(beginAjaxCall());
         //debugger;
         return axios.get(`${types.ROOT_URL}/conversations/${conversation_id}`,
-         {headers: types.API_HEADERS }).then(myMessages => {
+         {headers: MAPI_HEADERS }).then(myMessages => {
              //debugger;
             dispatch(readMessagesSuccess(myMessages.data));
         }).catch(error => {
@@ -165,11 +185,16 @@ export function readMessages(conversation_id) {
 }
 
 export function fetchMyFriends(customer_id) {
-    //debugger;
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
+        //debugger;
     return function(dispatch) {
         dispatch(beginAjaxCall());
         return axios.get(`${types.ROOT_URL}/customers/${customer_id}/my_friends`,
-        {headers: types.API_HEADERS }).then(myFriends => {
+        {headers: MAPI_HEADERS }).then(myFriends => {
             dispatch(fetchMyFriendsSuccess(myFriends.data));
         }).catch(error => {
             dispatch(ajaxCallError(error));
@@ -178,11 +203,17 @@ export function fetchMyFriends(customer_id) {
     };
 }
 export function fetchConversationBetween(sender_id,recipient_id) {
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
+        //debugger;
     return function(dispatch) {
         dispatch(beginAjaxCall());
         return axios.post(`${types.ROOT_URL}/conversations/`,
         {sender_id,recipient_id},
-        {headers: types.API_HEADERS }).then(cnvtBtwn => {
+        {headers: MAPI_HEADERS }).then(cnvtBtwn => {
             //debugger;
             dispatch(fetchConversationBetweenSuccess(cnvtBtwn.data));
             dispatch(readMessages(cnvtBtwn.data.conversation_id));

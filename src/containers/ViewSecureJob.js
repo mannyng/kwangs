@@ -37,7 +37,7 @@ export class ViewJobOfferPage extends React.Component {
     // }
    }
   shouldComponentUpdate(nextProps) {
-     debugger;
+     //debugger;
         const differentSecureJob = this.props.secureJob.job.id !== nextProps.secureJob.job.id;
         const differentfriend = this.props.myFriend !== nextProps.myFriend;
         return differentSecureJob || differentfriend;
@@ -110,7 +110,8 @@ ViewJobOfferPage.propTypes = {
   profile: PropTypes.object.isRequired,
   customerConnect: PropTypes.array,
   loading: PropTypes.number.isRequired,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  myFriend: PropTypes.object.isRequired
 };
 
 ViewJobOfferPage.contextTypes = {
@@ -148,7 +149,7 @@ function mapStateToProps(state, ownProps) {
     secureJob = getSecureJobById(state.secureJobs, secureJobId);
   }
   if (secureJob && state.myFriends.length > 0){
-    debugger;
+    //debugger;
     myFriend = getMyFriendById(state.myFriends, secureJob.customer.id);
   }
   return {

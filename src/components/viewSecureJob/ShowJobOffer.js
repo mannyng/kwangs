@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import JobOfferListRow from './JobOfferListRow';
+import { Link } from 'react-router-dom';
 import {Button} from 'react-elemental';
 //import { Field, reduxForm } from 'redux-form';
 
-const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onChange}) => {
+const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onChange,myFriend}) => {
     //debugger;
     const currentcustomer = secureJob.customer.id == profile.id;
   return(
@@ -24,7 +24,13 @@ const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onCh
           <p>Job Location: {secureJob.location.location}</p>
           <p>Job City: {secureJob.location.city}, {secureJob.location.state}</p>
           <p>Job Poster: {secureJob.customer.username}</p>
-          
+          {myFriend && myFriend.id == secureJob.customer.id &&
+            <Button className="pull-right">
+            <Link to={'/connect/' + myFriend.username}>
+             <span className="fa fa-check-square-o fa-lg fa-pull-right"/>{' '}Contact
+             </Link>
+            </Button>
+          }
           { customerConnect && <form>
           <input type="hidden"
               name="customer_id"
@@ -67,7 +73,7 @@ const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onCh
               value={customerConnect.msg} 
               error={errors.msg}/>
               </form>}
-         { !currentcustomer && <Button className="pull-right" onClick={onSave}>
+         { !currentcustomer && myFriend && myFriend.id !== secureJob.customer.id && <Button className="pull-right" onClick={onSave}>
           <span className="fa fa-check-square-o fa-lg fa-pull-right"/><b>Connect</b>
          </Button>}
          

@@ -15,6 +15,7 @@ import CustomerControls from '../components/controls/CustomerControls';
 import Footers from '../components/layouts/Footers';
 import Footer from '../components/universal/SecureFooter';
 import SendMessage from '../components/contactConnection/SendMessage';
+//import ReadMessage from '../components/contactConnection/ReadMessage';
 import {reset} from 'redux-form';
 
 class ContactConnection extends Component {
@@ -51,9 +52,32 @@ class ContactConnection extends Component {
     this.props.dispatch(actions.sendMessage(this.props.profile.id,this.props.cnvtBtwn.conversation_id,values.msg));
     this.props.dispatch(reset('sendMessageForm'));  // requires form name
   }
+   getConversations(messages){
+    if(messages == undefined){
+      return;
+    }
+
+    const listItems = messages.map((message, index) => {
+      let bubbleClass = 'me';
+      let bubbleDirection = '';
+
+      if(message.sender_name !== this.props.profile.username){
+        bubbleClass = 'you';
+        bubbleDirection = "bubble-direction-reverse";
+      }
+      return (
+              <div className={`bubble-container ${bubbleDirection}`} key={index}>
+                <h5 className={`img-circle`}>{message.sender_name} </h5>
+                <div className={`bubble ${bubbleClass}`}>{message.msg}</div>
+              </div>
+          );
+    });
+    return listItems;
+  }
   
   render() {
     const {myFriend,cnvtBtwn,myMessages} = this.props;
+    
     //debugger;
     return (
       <Page>
@@ -70,17 +94,9 @@ class ContactConnection extends Component {
           <p>{myFriend.username}</p>
         }
         
-        {myMessages.length >= 1 && myMessages.map((myMessage,index) =>
-        (<div className="row" key={index}>
-          <div className="col-xs-5">
-           <p className="h4">{myMessage.sender_name} {' '}:</p>
-          </div>
-          <div className="col-xs-2"/>
-          <div className="col-xs-5">
-           <p className="h5">{myMessage.msg}</p>
-          </div>
-          </div>)
-        )}
+        
+        {this.getConversations(myMessages)}
+        
         <SendMessage 
         submitMessage={this.submitMessage} 
         />

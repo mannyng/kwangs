@@ -37,9 +37,10 @@ export class ViewJobOfferPage extends React.Component {
     // }
    }
   shouldComponentUpdate(nextProps) {
-     //debugger;
+     debugger;
         const differentSecureJob = this.props.secureJob.job.id !== nextProps.secureJob.job.id;
-        return differentSecureJob;
+        const differentfriend = this.props.myFriend !== nextProps.myFriend;
+        return differentSecureJob || differentfriend;
     }
   
   showJobOfferState(event) {
@@ -70,7 +71,7 @@ export class ViewJobOfferPage extends React.Component {
   }
 
   render() {
-    const {profile, loading, customerConnect, secureJob} = this.props;
+    const {profile, loading, customerConnect, secureJob,myFriend} = this.props;
     //debugger;
     return (
       <Page>
@@ -86,7 +87,8 @@ export class ViewJobOfferPage extends React.Component {
             secureJob={secureJob}
             customerConnect={customerConnect}
              errors={this.state.errors}
-             onChange={this.showCustomerConnectState}/>
+             onChange={this.showCustomerConnectState}
+             myFriend={myFriend}/>
           
          </div>
           <Sidebar>
@@ -122,7 +124,13 @@ function getSecureJobById(secureJobs, id) {
   if (secureJob) return secureJob[0];
   return null;
 }
-
+function getMyFriendById(myFriends, id) {
+  //debugger;
+  const myFriend = myFriends.filter((myFriend) => myFriend.id == id);
+  //debugger;
+  if (myFriend) return myFriend[0];
+  return null;
+}
 function mapStateToProps(state, ownProps) {
   //debugger;
   const secureJobId = ownProps.match.params.id; // from the path `/jobOffer/:id`
@@ -133,14 +141,19 @@ function mapStateToProps(state, ownProps) {
                    location:{location: '', city: '', state: ''},
                    customer:{username: '', firstname: '',lastname: ''}
   };
-  
+  let myFriend = {username:'',firstname:''};
   
   if (secureJobId && state.secureJobs.length > 0 ) {
     //debugger;
     secureJob = getSecureJobById(state.secureJobs, secureJobId);
   }
+  if (secureJob && state.myFriends.length > 0){
+    debugger;
+    myFriend = getMyFriendById(state.myFriends, secureJob.customer.id);
+  }
   return {
    secureJob: secureJob,
+   myFriend: myFriend,
    profile: state.profile,
    customerConnect: state.customerConnect,
    loading: state.ajaxCallsInProgress

@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/authActions';
+import Header from '../universal/CustomerHeader';
+import Page from '../layouts/Page';
+import Main from '../layouts/Main';
+import Headers from '../layouts/Headers';
+import Sidebar from '../layouts/Sidebar';
+import Controls from '../controls/Controls';
+import Footers from '../layouts/Footers';
+import Footer from '../universal/SecureFooter';
 
 class Signin extends Component {
   submit = (values) => {
@@ -22,8 +30,15 @@ class Signin extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div className="form">
-        <div className="container">
+      <Page>
+       <Headers>
+         <Header />
+        </Headers>
+        <Main> 
+        <Sidebar>
+            <Controls />
+         </Sidebar>
+      
           <h2>Sign In</h2>
           <form onSubmit={handleSubmit(this.submit)}>
             <Field name="email"
@@ -38,8 +53,11 @@ class Signin extends Component {
             />
             <button type="submit" className="blue">Sign In</button>
           </form>
-        </div>
-      </div>
+        <Footers>
+           <Footer/>
+          </Footers>
+        </Main> 
+       </Page>
     );
   }
 }

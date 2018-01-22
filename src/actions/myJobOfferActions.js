@@ -115,3 +115,56 @@ export function saveJobLocation(location,city,state,employer_post_id) {
         });
     };
 }    
+
+export function createJobRequestSuccess(jobRequest) {
+    //debugger;
+    return { type: types.CREATE_JOB_REQUEST_SUCCESS, jobRequest};
+}
+
+export function loadJobRequestSuccess(jobRequests) {
+    //debugger;
+    return { type: types.LOAD_JOB_REQUEST_SUCCESS, jobRequests};
+}
+
+export function updateJobRequestSuccess(jobRequest) {
+    //debugger;
+    return { type: types.UPDATE_JOB_REQUEST_SUCCESS, jobRequest};
+}
+
+export function loadJobRequests() {
+    //const mytoke = localStorage.getItem('token');
+    //const MAPI_HEADERS = {
+     //    'Content-Type': 'application/json',
+     //    'Authorization': `Bearer ${mytoke}`
+     //   };
+    return function(dispatch) {
+        dispatch(beginAjaxCall());
+        return axios.get(`${types.ROOT_URL}/employee_posts/`,
+        {headers: types.API_HEADERS })
+        .then(jobRequests => {
+            debugger;
+            dispatch(loadJobRequestSuccess(jobRequests.data));
+        }).catch(error => {
+            dispatch(ajaxCallError());
+            throw(error);
+        });
+    };
+}
+
+export function saveJobRequest(job_category,employee_category,job_duration,pay_type,employee_type,
+    employee_title,employee_experience,description,customer_id) {
+    return function (dispatch) {
+        dispatch(beginAjaxCall());
+        debugger;
+        return axios.post(`${types.ROOT_URL}/employee_posts`,
+        {job_category,employee_category,job_duration,pay_type,employee_type,
+    employee_title,employee_experience,description,customer_id},
+         {headers: types.API_HEADERS }).then(jobRequest => {
+            jobRequest.id ? dispatch(updateJobRequestSuccess(jobRequest)) :
+            dispatch(createJobRequestSuccess(jobRequest));
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            throw(error);
+        });
+    };
+}

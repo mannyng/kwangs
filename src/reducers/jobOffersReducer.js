@@ -7,16 +7,7 @@ export default function jobOffersReducer(state = [], action) {
             //debugger;
             return action.jobOffers.data;
             
-            case types.CREATE_JOB_OFFER_SUCCESS:
-                return [
-                   ...state,
-                   Object.assign({}, action.course)
-                ];
-            case types.UPDATE_JOB_OFFER_SUCCESS:
-                return [
-                  ...state.filter(jobOffer => jobOffer.id !== action.jobOffer.id),
-                  Object.assign({}, action.jobOffer)
-                ];
+            
                 
             default:
               return state;

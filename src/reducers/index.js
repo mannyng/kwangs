@@ -14,12 +14,14 @@ import profile from './customerProfilesReducer';
 import currentUser from './currentUserReducer';
 import customerConnect from './customerConnectReducer';
 import secureJobs from './loggedInUserSearchReducer';
+import secureRequests from './secureJobRequestsReducer';
 import myMessages from './myMessagesReducer';
 import myMessage from './myMessageReducer';
 import isOpen from './messageModalReducer';
 import myFriends from './myFriendsReducer';
 import myPoint from './myPointReducer';
 import cnvtBtwn from './conversationBetweenReducer';
+import visibilityFilter from './visibilityFilterReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -40,6 +42,8 @@ const rootReducer = combineReducers({
   myFriends,
   myPoint,
   cnvtBtwn,
+  visibilityFilter,
+  secureRequests,
   routing: routerReducer,
   ajaxCallsInProgress,
   isOpen

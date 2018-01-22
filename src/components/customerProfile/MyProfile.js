@@ -10,10 +10,10 @@ const MyProfile = ({profile}) => {
       <header className="panel-heading">
         <div className="row">
          <div className="col-xs-6">
-         <h2 className="h4">Welcome {profile.username}</h2> 
+         <h2 className="h4">Welcome {profile.myprofile.username}</h2> 
          </div>
          <div className="col-xs-6">
-         <h2 className="h4">Type:  {profile.customer_type}</h2> 
+         <h2 className="h4">Type:  {profile.myprofile.customer_type}</h2> 
          </div>
         </div> 
         </header>
@@ -21,13 +21,13 @@ const MyProfile = ({profile}) => {
                  <div className="col-xs-6">
                  <p className="h4">
                   <span className="label label-info">Firstname :</span>
-                {profile.firstname}
+                {profile.myprofile.firstname}
                 </p>
                 </div>
                 <div className="col-xs-6">
                 <p className="h4">
               <span className="label label-info">Lastname :</span>
-                {profile.lastname}
+                {profile.myprofile.lastname}
                 </p>
                 </div>
                 </div>
@@ -35,19 +35,19 @@ const MyProfile = ({profile}) => {
                  <div className="col-xs-6">
                  <p className="h4">
                   <span className="label label-info">Address :</span>
-                {profile.address}
+                {profile.myprofile.address}
                 </p>
                 </div>
                 <div className="col-xs-6">
                 <p className="h4">
               <span className="label label-info">City :</span>
-                {profile.city}
+                {profile.myprofile.city}
                 </p>
                 </div>
                 </div>
                  <p className="h4">
               <span className="label label-info">State :</span>
-                {profile.state}
+                {profile.myprofile.state}
                 </p>
         
         </article>

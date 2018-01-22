@@ -7,7 +7,7 @@ class WidgeHeader extends Component {
     super(props, context);
     
     this.state = {
-      loading: false
+      loading: 0
     };
   }
   
@@ -23,7 +23,7 @@ class WidgeHeader extends Component {
 } 
 WidgeHeader.propTypes = {
     children: PropTypes.string,
-    loading: PropTypes.bool
+    loading: PropTypes.number
 };
 
 export default WidgeHeader;

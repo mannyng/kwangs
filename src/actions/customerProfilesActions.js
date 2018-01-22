@@ -59,10 +59,16 @@ export function fetchCustomerProfiles(user) {
 
 export function customerSignup({ username, firstname, lastname, customer_type, address, city, 
 state}, user_id,history) {
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
   return function(dispatch,getState) {
     //debugger;
     axios.post(`${types.ROOT_URL}/users/${user_id}/customers`, { username, firstname, lastname, 
-    customer_type, address, city, state, user_id })
+    customer_type, address, city, state, user_id },
+     {headers: MAPI_HEADERS })
       .then(response => {
         dispatch({ type: types.CREATE_CUSTOMER_SUCCESS, response });
         dispatch(fetchCustomerProfiles(getState().currentUser.currentUser));

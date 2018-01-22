@@ -36,7 +36,7 @@ class Header extends React.Component {
         const differentUser = this.props.currentUser !== nextProps.currentUser;
         const differenSecureJob = this.props.secureJobs.length !== nextProps.secureJobs.length;
         const differenConnect = this.props.customerConnect.length !== nextProps.customerConnect.length;        
-        const differentProfile = this.props.profile.id !== nextProps.profile.id;
+        const differentProfile = this.props.profile.myprofile.id !== nextProps.profile.myprofile.id;
         return differentUser || differenConnect || differentProfile || differenSecureJob;
     }
  
@@ -50,7 +50,7 @@ class Header extends React.Component {
  return (
   <div>
     
-   <NavLink to="/profile" activeStyle={activeStyle} key={1}>{profile.username}</NavLink>
+   <NavLink to="/profile" activeStyle={activeStyle} key={1}>{profile.myprofile.username}</NavLink>
     {" | "}
    <NavLink to="/jobs" activeStyle={activeStyle} key={2}>Available Jobs</NavLink>
    {' | '}

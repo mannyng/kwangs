@@ -16,28 +16,43 @@ class CustomerControls extends Component {
       errors: {}
     };
     
-    this.redirectToAddJobOfferPage = this.redirectToAddJobOfferPage.bind(this);
-    this.redirectToAddJobInsight = this.redirectToAddJobInsight.bind(this);
-    this.redirectToAddJobLocation = this.redirectToAddJobLocation.bind(this);
+    //this.redirectToAddJobOfferPage = this.redirectToAddJobOfferPage.bind(this);
+    //this.redirectToAddJobInsight = this.redirectToAddJobInsight.bind(this);
+    this.redirectToAddRequest = this.redirectToAddRequest.bind(this);
     this.redirectToAddJob = this.redirectToAddJob.bind(this);
+    this.redirectToActiveEmployer = this.redirectToActiveEmployer.bind(this);
+    this.redirectToLatestJob = this.redirectToLatestJob.bind(this);
+    this.redirectToNewestEmployers = this.redirectToNewestEmployers.bind(this);
   }
   
-  redirectToAddJobOfferPage() {
-     // debugger;
-    this.context.router.history.push('/customerSignup');
-  }
-  redirectToAddJobInsight() {
+  
+  redirectToAddRequest() {
       //debugger;
-    this.context.router.history.push('/manageJobInsight');
-  }
-  redirectToAddJobLocation() {
-      //debugger;
-    this.context.router.history.push('/manageJobLocation');
+    this.props.actions.setVisibilityFilter('add_job_request');
+    this.context.router.history.push('/create_job');
   }
   redirectToAddJob() {
      // debugger;
+    this.props.actions.setVisibilityFilter('add_job_form');
     this.context.router.history.push('/create_job');
   }
+   redirectToActiveEmployer() {
+      //debugger;
+    this.props.actions.setVisibilityFilter('active_employers');
+    this.context.router.history.push('/search_jobs');
+  }
+  redirectToLatestJob() {
+      //debugger;
+    this.props.actions.setVisibilityFilter('latest_jobs');
+    this.context.router.history.push('/search_jobs');
+    
+  }
+  redirectToNewestEmployers() {
+     // debugger;
+    this.props.actions.setVisibilityFilter('newest_employers');
+    this.context.router.history.push('/search_jobs');
+  }
+  
   
   render(){
       const {profile,loading} = this.props;
@@ -45,10 +60,24 @@ class CustomerControls extends Component {
        <BaseWidget type="info">
          <WidgetHeader loading={loading}>Control Center</WidgetHeader>
          {profile.customer_type == 'employer' &&
-         <Button onClick={this.redirectToAddJob}>Create Job
+         <Button onClick={this.redirectToAddJob}>Create Job Offer
           <span className="fa fa-cog fa-lg fa-pull-right"/>
          </Button>
           } 
+          {profile.customer_type == 'employee' &&
+         <Button onClick={this.redirectToAddRequest}>Create Job Request
+          <span className="fa fa-cog fa-lg fa-pull-right"/>
+         </Button>
+          }
+           
+         <hr />
+         <Button onClick={this.redirectToLatestJob}>Latest Jobs
+          <span className="fa fa-cog fa-lg fa-pull-right"/>
+         </Button>
+         <hr />
+         <Button onClick={this.redirectToNewestEmployers}>Newest Employers
+          <span className="fa fa-cogs fa-lg fa-pull-right"/>
+         </Button>
        </BaseWidget>
       );
   }

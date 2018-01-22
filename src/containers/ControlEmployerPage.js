@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/customerProfilesActions';
-import * as jobofferactions from '../actions/jobOfferActions';
 import {loadSecuredJobOfferings} from '../actions/loggedInUserSearchActions';
-import ShowJobOffer from '../components/viewSecureJob/ShowJobOffer';
+import {loadJobRequests} from '../actions/myJobOfferActions';
+import IndexPage from '../components/customersHomePage/IndexPage';
+import LatestCustomerPage from '../components/customersHomePage/LatestCustomerPage';
+import LatestEmployeePage from '../components/customersHomePage/LatestEmployeePage';
 //import {NavLink} from 'react-router-dom';
 import Header from '../components/universal/CustomerHeader';
 import Page from '../components/layouts/Page';
@@ -15,8 +17,9 @@ import Sidebar from '../components/layouts/Sidebar';
 import Controls from '../components/controls/Controls';
 import Footers from '../components/layouts/Footers';
 import Footer from '../components/universal/SecureFooter';
+import { getVisibleSecureJobs,getVisibleSecureRequests } from '../selectors';
 
-export class ViewJobOfferPage extends React.Component {
+export class ControlEmployerPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     
@@ -34,13 +37,14 @@ export class ViewJobOfferPage extends React.Component {
      //if (!this.props.job_offer.id) {
        //debugger;
        this.props.dispatch(loadSecuredJobOfferings());
+       this.props.dispatch(loadJobRequests());
     // }
    }
   shouldComponentUpdate(nextProps) {
      //debugger;
-        const differentSecureJob = this.props.secureJob.job.id !== nextProps.secureJob.job.id;
-        const differentfriend = this.props.myFriend !== nextProps.myFriend;
-        return differentSecureJob || differentfriend;
+        const differentSecureJob = this.props.secureJob !== nextProps.secureJob;
+        const differentSecurerequest = this.props.secureRequest !== nextProps.secureRequest;
+        return differentSecureJob || differentSecurerequest;
     }
   
   showJobOfferState(event) {
@@ -71,26 +75,29 @@ export class ViewJobOfferPage extends React.Component {
   }
 
   render() {
-    const {profile, loading, customerConnect, secureJob,myFriend} = this.props;
+    const {secureJob,newest_employees} = this.props;
     //debugger;
     return (
       <Page>
        <Headers>
-         <Header profile={profile} loading={loading}/>
+         <Header/>
         </Headers>
         <Main> 
+        {this.props.visibilityFilter == 'latest_jobs' &&
         <div className="col-xs-8">
-          
-            <ShowJobOffer key={'1'}  
-            onSave={this.saveCustomerConnect}
-            profile={profile}
-            secureJob={secureJob}
-            customerConnect={customerConnect}
-             errors={this.state.errors}
-             onChange={this.showCustomerConnectState}
-             myFriend={myFriend}/>
-          
-         </div>
+          <IndexPage secureJobs={secureJob}/>
+        </div>
+        }
+        {this.props.visibilityFilter == 'active_employers' &&
+        <div className="col-xs-8">
+          <LatestCustomerPage secureJobs={secureJob}/>
+        </div>
+        }
+        {this.props.visibilityFilter == 'newest_employers' &&
+        <div className="col-xs-8">
+          <LatestEmployeePage secureJobs={newest_employees}/>
+        </div>
+        }
           <Sidebar>
             <Controls actions={this.actions} />
           </Sidebar>
@@ -103,72 +110,39 @@ export class ViewJobOfferPage extends React.Component {
   }
 }
 
-ViewJobOfferPage.propTypes = {
+ControlEmployerPage.propTypes = {
   actions: PropTypes.object.isRequired,
-  jobofferactions: PropTypes.object.isRequired,
-  secureJob: PropTypes.object.isRequired,
+  secureJob: PropTypes.array,
+  newest_employees: PropTypes.array,
   profile: PropTypes.object.isRequired,
-  customerConnect: PropTypes.array,
   loading: PropTypes.number.isRequired,
   dispatch: PropTypes.func,
-  myFriend: PropTypes.object
+  visibilityFilter: PropTypes.string.isRequired
 };
 
-ViewJobOfferPage.contextTypes = {
+ControlEmployerPage.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-function getSecureJobById(secureJobs, id) {
+function mapStateToProps(state) {
   //debugger;
-  const secureJob = secureJobs.filter((secureJob,index) => index == id);
-  //debugger;
-  if (secureJob) return secureJob[0];
-  return null;
-}
-function getMyFriendById(myFriends, id) {
-  //debugger;
-  const myFriend = myFriends.filter((myFriend) => myFriend.id == id);
-  //debugger;
-  if (myFriend) return myFriend[0];
-  return null;
-}
-function mapStateToProps(state, ownProps) {
-  //debugger;
-  const secureJobId = ownProps.match.params.id; // from the path `/jobOffer/:id`
-  //const jobOfferId = ownProps.location.key;
-  //debugger;
-  let secureJob = { job:{id: '', title: '', description: ''}, 
-                   insight:{id: '', job_category: ''}, 
-                   location:{location: '', city: '', state: ''},
-                   customer:{username: '', firstname: '',lastname: ''}
-  };
-  let myFriend = {username:'',firstname:''};
-  
-  if (secureJobId && state.secureJobs.length > 0 ) {
-    //debugger;
-    secureJob = getSecureJobById(state.secureJobs, secureJobId);
-  }
-  if (secureJob && state.myFriends.length > 0){
-    //debugger;
-    myFriend = getMyFriendById(state.myFriends, secureJob.customer.id);
-  }
+
   return {
-   secureJob: secureJob,
-   myFriend: myFriend,
+   secureJob: getVisibleSecureJobs(state),
    profile: state.profile,
-   customerConnect: state.customerConnect,
-   loading: state.ajaxCallsInProgress
+   loading: state.ajaxCallsInProgress,
+   visibilityFilter: state.visibilityFilter,
+   newest_employees: getVisibleSecureRequests(state)
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(actions, dispatch),
-    jobofferactions: bindActionCreators(jobofferactions, dispatch)
   };
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ViewJobOfferPage);
+)(ControlEmployerPage);

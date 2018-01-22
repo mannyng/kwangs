@@ -12,6 +12,12 @@ import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 //     'Authorization': `Bearer ${mytoke}`
 //  };
   
+export const setVisibilityFilter = filter => {
+  return {
+    type: types.SET_VISIBILITY_FILTER,
+    filter
+  };
+};
 
 export function showJobOfferSuccess(job_offer) {
     //debugger;

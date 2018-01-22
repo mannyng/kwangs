@@ -1,5 +1,4 @@
 import * as types from '../constants/actionTypes';
-//import courseApi from '../api/mockCourseApi';
 import axios from 'axios';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 //import localStorage from 'localStorage';
@@ -39,6 +38,8 @@ export function createJobOfferSuccess(jobOffer) {
     return { type: types.CREATE_JOB_OFFER_SUCCESS, jobOffer};
 }
 
+
+
 export function updateJobOfferSuccess(jobOffer) {
     //debugger;
     return { type: types.UPDATE_JOB_OFFER_SUCCESS, jobOffer};
@@ -60,6 +61,7 @@ export function loadJobOfferings() {
         });
     };
 }
+
 export function loadMyPoint() {
     return function(dispatch) {
         //dispatch(beginAjaxCall());

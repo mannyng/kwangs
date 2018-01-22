@@ -11,7 +11,7 @@ import {loadSecuredJobOfferings} from './actions/loggedInUserSearchActions';
 import {fetchCustomerConnect,fetchMyFriends} from './actions/customerProfilesActions';
 import { AUTH_USER, CURRENT_USER } from './constants/actionTypes';
 import {fetchCustomerProfiles} from './actions/authActions';
-import {showMyJobs} from './actions/myJobOfferActions';
+import {showMyJobs,loadJobRequests} from './actions/myJobOfferActions';
 import './styles/styles.scss'; // Yep, that's right. You can import SASS/CSS files too! Webpack will run the associated loader and plug this into the page.
 //import './styles/font-awesome.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
@@ -50,6 +50,7 @@ if (token) {
   //console.log(store.getState().currentUser.currentUser);
   store.dispatch(fetchCustomerProfiles(store.getState().currentUser.currentUser));
   store.dispatch(loadSecuredJobOfferings());
+  store.dispatch(loadJobRequests());
   //debugger;
   store.dispatch(showMyJobs(store.getState().currentUser.currentUser));
   store.dispatch(fetchMyFriends(store.getState().currentUser.currentUser));

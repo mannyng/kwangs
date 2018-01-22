@@ -9,6 +9,7 @@ import ViewSecureJob from '../containers/ViewSecureJob';
 import ContactConnection from '../containers/ContactConnectionPage';
 import Profiles from '../containers/CustomerProfile';
 import CreateJob from '../containers/CreateJobPage';
+import ControlEmployerPage from '../containers/ControlEmployerPage';
 import AddJobDetails from './jobs/AddJobDetailForm';
 //import CreateJob from './jobs/AddJobDetailForm';
 import AboutPage from './AboutPage';
@@ -40,6 +41,7 @@ class App extends React.Component {
           <Route path="/job" component={requireAuth(ViewSecureJob)} />
           <Route path="/connect/:id" component={requireAuth(ContactConnection)} />
           <Route path="/connect" component={requireAuth(ContactConnection)} />
+          <Route path="/search_jobs" component={requireAuth(ControlEmployerPage)} />
           <Route path="/create_job" component={requireAuth(CreateJob)} />
           <Route path="/add_job_details" component={requireAuth(AddJobDetails)} />
           <Route path="/profile" component={requireAuth(Profiles)} />

@@ -5,6 +5,7 @@ import BaseWidget from '../widgets/BaseWidget';
 import WidgetHeader from '../widgets/WidgetHeader';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/jobOfferActions';
+//import {setVisibilityFilter} from '../../actions/ajaxStatusActions';
 import {connect} from 'react-redux';
 
 class Controls extends Component {
@@ -16,23 +17,27 @@ class Controls extends Component {
       errors: {}
     };
     
-    this.redirectToAddJobOfferPage = this.redirectToAddJobOfferPage.bind(this);
-    this.redirectToAddJobInsight = this.redirectToAddJobInsight.bind(this);
-    this.redirectToAddJobLocation = this.redirectToAddJobLocation.bind(this);
+    this.redirectToActiveEmployer = this.redirectToActiveEmployer.bind(this);
+    this.redirectToLatestJob = this.redirectToLatestJob.bind(this);
+    this.redirectToNewestEmployers = this.redirectToNewestEmployers.bind(this);
   }
   
   
-  redirectToAddJobOfferPage() {
+  redirectToActiveEmployer() {
       //debugger;
-    this.context.router.history.push('/customerSignup');
+    this.props.actions.setVisibilityFilter('active_employers');
+    this.context.router.history.push('/search_jobs');
   }
-  redirectToAddJobInsight() {
+  redirectToLatestJob() {
       //debugger;
-    this.context.router.history.push('/manageJobInsight');
+    this.props.actions.setVisibilityFilter('latest_jobs');
+    this.context.router.history.push('/search_jobs');
+    
   }
-  redirectToAddJobLocation() {
+  redirectToNewestEmployers() {
      // debugger;
-    this.context.router.history.push('/manageJobLocation');
+    this.props.actions.setVisibilityFilter('newest_employers');
+    this.context.router.history.push('/search_jobs');
   }
   
   render(){
@@ -40,15 +45,12 @@ class Controls extends Component {
       return (
        <BaseWidget type="info">
          <WidgetHeader  loading={loading}>Control Center</WidgetHeader>
-         <Button onClick={this.redirectToAddJobOfferPage}>View Active Employers
-          <span className="fa fa-cogs fa-lg fa-pull-right"/>
-         </Button>
-         <hr />
-         <Button onClick={this.redirectToAddJobInsight}>Latest Jobs
+         
+         <Button onClick={this.redirectToLatestJob}>Latest Jobs
           <span className="fa fa-cog fa-lg fa-pull-right"/>
          </Button>
          <hr />
-         <Button onClick={this.redirectToAddJobLocation}>Newest Employers
+         <Button onClick={this.redirectToNewestEmployers}>Newest Employees
           <span className="fa fa-cogs fa-lg fa-pull-right"/>
          </Button>
        </BaseWidget>

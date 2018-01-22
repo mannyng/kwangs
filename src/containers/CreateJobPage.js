@@ -10,11 +10,13 @@ import Sidebar from '../components/layouts/Sidebar';
 import CreateJobForm from '../components/jobs/CreateJobForm';
 import AddJobLocation from '../components/jobs/AddJobLocation';
 import AddJobDetailForm from '../components/jobs/AddJobDetailForm';
-import showResults from '../components/jobs/showResults';
+import AddJobRequestForm from '../components/jobs/CreateRequestForm';
+import ShowResults from '../components/jobs/showResults';
 //import SimpleHeader from '../components/universal/SimpleHeader';
 import Header from '../components/universal/CustomerHeader';
 import {loadJobCategories} from '../actions/jobCategoryActions';
 import * as actions from '../actions/myJobOfferActions';
+
 
 class CreateJobPage extends Component {
     
@@ -30,6 +32,7 @@ class CreateJobPage extends Component {
     this.submitMyJobOffer = this.submitMyJobOffer.bind(this);
     this.submitJobInsight = this.submitJobInsight.bind(this);
     this.submitMyJobLocation = this.submitMyJobLocation.bind(this);
+    this.submitJobRequest = this.submitJobRequest.bind(this);
   }
    componentDidMount() {
      //if (!this.props.job_offer.id) {
@@ -70,7 +73,14 @@ class CreateJobPage extends Component {
     this.props.dispatch(actions.saveJobLocation(values.location,values.city,values.state,this.props.myJobOffer.id));
     //this.context.router.history.push('/add_job_details');
   }
-
+  submitJobRequest(values){
+    debugger;
+    this.props.dispatch(actions.saveJobRequest(values.job_category,values.employee_category,
+    values.job_duration,
+    values.pay_type,values.employee_type,
+    values.employee_title,values.employee_experience,
+    values.description,this.props.profile.id));
+  }
   errorMessage() {
     if (this.props.errorMessage) {
       return (
@@ -102,9 +112,10 @@ class CreateJobPage extends Component {
       <Sidebar>
       Janks
       </Sidebar>
+      {this.props.visibilityFilter == 'add_job_form' &&
       <Content>
       {myJobOffer.id == '' &&
-       <CreateJobForm submitMyJobOffer={this.submitMyJobOffer} onSubmit={showResults}/>
+       <CreateJobForm submitMyJobOffer={this.submitMyJobOffer} />
       }
        {this.props.myJobOffer.id && myJobInsight.id == '' &&
        <div>
@@ -118,94 +129,18 @@ class CreateJobPage extends Component {
         <AddJobLocation submitMyJobLocation={this.submitMyJobLocation}/>
        }
        {myJobOffer.id && myJobInsight.id && myJobLocation.id &&
-       <article className="panel panel-info">
-        <header className="panel-heading">
-         <h2 className="h4">Job Title: {myJobOffer.title}</h2> 
-         </header>
-         
-           <p className="h5"><span className="label label-success">Job Description :</span>
-           {myJobOffer.description}
-           </p>
-           <hr />
-           <section className="panel panel-default">
-             <header className="panel-heading">
-               <h2 className="h4">Job Isights</h2>
-              </header>
-              <p className="h5">
-               <div className="row">
-                 <div className="col-xs-6">
-              <span className="label label-success">Open Position :</span>
-                {myJobInsight.employee_title}
-                </div>
-                <div className="col-xs-6">
-              <span className="label label-success">Job Category :</span>
-                {myJobInsight.job_category}
-                </div>
-                </div>
-                </p>
-                <p className="h5">
-                <div className="row">
-                 <div className="col-xs-6">
-                <span className="label label-success">Employee Category :</span>
-                {myJobInsight.employee_category}
-                </div>
-                <div className="col-xs-6">
-              <span className="label label-success">Employee Type :</span>
-                {myJobInsight.employee_type}
-                </div>
-                </div>
-                </p>
-                <p className="h5">
-                <div className="row">
-                 <div className="col-xs-6">
-                <span className="label label-success">Job Duration :</span>
-                {myJobInsight.job_duration}
-                </div>
-                <div className="col-xs-6">
-              <span className="label label-success">Available Date :</span>
-                {myJobInsight.available_date}
-                </div>
-                </div>
-                </p>
-                <p className="h5">
-                <div className="row">
-                 <div className="col-xs-6">
-                <span className="label label-success">Payment Type :</span>
-                {myJobInsight.pay_type}
-                </div>
-                <div className="col-xs-6">
-              <span className="label label-success">Experience :</span>
-                {myJobInsight.employee_experience}
-                </div>
-                </div>
-                </p>
-              </section>
-              <hr />
-           <section className="panel panel-default">
-             <header className="panel-heading">
-               <h2 className="h4">Job Location</h2>
-              </header>
-              <p className="h5">
-              <span className="label label-success">Address :</span>
-                {myJobLocation.location}
-                </p>
-                <p className="5">
-                <div className="row">
-                 <div className="col-xs-6">
-              <span className="label label-success">City :</span>
-                {myJobLocation.city}
-                  </div>
-                  <div className="col-xs-6">
-              <span className="label label-success">State :</span>
-                {myJobLocation.state}
-                  </div>
-                </div>  
-                </p>
-              </section>
-           
-        </article>
+       <ShowResults myJobOffer={myJobOffer}
+       myJobInsight={myJobInsight} 
+       myJobLocation={myJobLocation} />
        }
       </Content>
+      }
+      {this.props.visibilityFilter == 'add_job_request' &&
+       <Content>
+        <AddJobRequestForm submitJobRequest={this.submitJobRequest}
+        jobCategories={jobCategories}/>
+       </Content>
+      }
       </Main>
       </Page>
     );
@@ -224,7 +159,8 @@ CreateJobPage.propTypes = {
   myJobInsight: PropTypes.object.isRequired,
   myJobLocation: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  visibilityFilter: PropTypes.string.isRequired
 };
 
 function getJobOfferById(jobOffers, id) {
@@ -259,7 +195,8 @@ function mapStateToProps(state, ownProps) {
       jobCategories: jobCategoriesFormattedForDropDown,
       myJobOffer: state.myJobOffer.myJobOffer,
       myJobInsight: state.myJobInsight.myJobInsight,
-      myJobLocation: state.myJobLocation.myJobLocation
+      myJobLocation: state.myJobLocation.myJobLocation,
+      visibilityFilter: state.visibilityFilter,
   };
 }
 function mapDispatchToProps(dispatch) {

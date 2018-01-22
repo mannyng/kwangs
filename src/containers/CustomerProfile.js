@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/customerProfilesActions';
-import MyProfile from '../components/customerProfile/MyProfile';
-import MyJobs from '../components/customerProfile/MyJobs';
-import MyConnections from '../components/customerProfile/MyConnections';
+import  MyEmployerTab from '../components/customerProfile/MyEmployerTab';
+import  MyEmployeeTab from '../components/customerProfile/MyEmployeeTab';
 import Header from '../components/universal/CustomerHeader';
 import Headers from '../components/layouts/Headers';
 import Page from '../components/layouts/Page';
@@ -14,7 +13,7 @@ import Footers from '../components/layouts/Footers';
 import Footer from '../components/universal/SecureFooter';
 import Sidebar from '../components/layouts/Sidebar';
 import CustomerControls from '../components/controls/CustomerControls';
-import { Tab, Tabs } from 'react-bootstrap-tabs';
+
 import {messageModalOpen,messageModalClose} from '../actions/modalStatusActions';
 //import Modal from 'react-modal';
 
@@ -50,7 +49,7 @@ export class CustomerProfile extends React.Component {
         const differentUser = this.props.currentUser !== nextProps.currentUser;
         const differenJobsLength = this.props.myJobs.length !== nextProps.myJobs.length;
         const differenConnect = this.props.customerConnect.length !== nextProps.customerConnect.length;
-        const differenProfile = this.props.profile.id !== nextProps.profile.id;
+        const differenProfile = this.props.profile.myprofile.id !== nextProps.profile.myprofile.id;
         const differenModalStatus = this.props.isOpen !== nextProps.isOpen;
         
         return differentUser  || differenConnect || differenProfile || differenJobsLength || differenModalStatus;
@@ -78,7 +77,7 @@ export class CustomerProfile extends React.Component {
   }
   onClickSave() {
     this.props.actions.createProfile(this.state.profile);
-    alert(`Saving ${this.state.profile.userId}`);
+    alert(`Saving ${this.state.profile.myprofile.userId}`);
   }
   onClickAccept() {
     //debugger;
@@ -95,6 +94,7 @@ export class CustomerProfile extends React.Component {
   render() {
     //debugger;
     const {profile, customerConnect, actions, currentUser, myJobs, isOpen} = this.props;
+    debugger;
     return (
       <Page>
         <Headers>
@@ -106,21 +106,14 @@ export class CustomerProfile extends React.Component {
           </Sidebar>
           
           <div className="col-xs-7">
-          {profile.id &&
-           <Tabs>
-           
-           <Tab label="Connections"><MyConnections actions={actions} customerConnect={customerConnect}
-            currentUser={currentUser}  isOpen={isOpen} /></Tab>
-            
-            {profile.customer_type == 'employer' &&
-            <Tab label="My Jobs"><MyJobs myJobs={myJobs}/></Tab>
-            }
-            
-            <Tab label="Profile"><MyProfile profile={profile}/></Tab>
-            
-           </Tabs>
+          {profile.myprofile.id && profile.myprofile.customer_type == 'employer' &&
+           <MyEmployerTab actions={actions} customerConnect={customerConnect}
+            currentUser={currentUser} myJobs={myJobs} isOpen={isOpen} profile={profile} />
           }
-           
+           {profile.myprofile.id && profile.myprofile.customer_type == 'employee' &&
+           <MyEmployeeTab actions={actions} customerConnect={customerConnect}
+            currentUser={currentUser} profile={profile} isOpen={isOpen} />
+          }
           </div>  
           <Footers>
            <Footer/>

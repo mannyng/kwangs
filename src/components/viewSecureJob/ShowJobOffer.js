@@ -91,7 +91,7 @@ ShowJobOffer.propTypes = {
     errors: PropTypes.object.isRequired,
     onSave: PropTypes.func,
     onChange: PropTypes.func,
-    myFriend: PropTypes.object.isRequired
+    myFriend: PropTypes.object
 };
 
 export default ShowJobOffer;

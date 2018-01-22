@@ -5,6 +5,12 @@ import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 import {fetchCustomerConnect,fetchMyFriends} from './customerProfilesActions';
 import {showMyJobs} from './myJobOfferActions';
  
+ const mytoken = localStorage.getItem('token');
+    const GAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoken}`
+     };
+     
  export function fetchProfilesSuccess(profile) {
  //   //debugger;
     return { type: types.FETCH_CUSTOMER_SUCCESS, profile};
@@ -107,7 +113,9 @@ export function fetchCustomerProfiles(user) {
     //debugger;
     return function(dispatch) {
         //dispatch(beginAjaxCall());
-        return axios.get(`${types.ROOT_URL}/customers/${user}`).then(profile => {
+        return axios.get(`${types.ROOT_URL}/customers/${user}`,
+        {headers: GAPI_HEADERS }).then(profile => {
+            debugger;
             dispatch(fetchProfilesSuccess(profile.data));
         }).catch(error => {
          // dispatch(ajaxCallError(error));

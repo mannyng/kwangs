@@ -20,7 +20,8 @@ export default {
   jobCategories: [],
   ajaxCallsInProgress: 0,
   profile: {
-    username: '', 
+    myprofile: 
+    {username: '', 
     firstname: '', 
     lastname: '',
     customer_type: '', 
@@ -29,7 +30,17 @@ export default {
     state: '', 
     country: '', 
     user_id: 0,
-    status: ''
+    status: '',
+    id: ''
+  },
+  myconvos: 
+  [{
+    id: '',
+    sender_id: '',
+    recipient_id: '',
+    created_at: '',
+    updated_at: ''
+  }]
   },
     customerConnect:[{
       customer_connect:{
@@ -107,5 +118,20 @@ export default {
     country: '', 
     user_id: 0,
     status: ''
+  }],
+  secureRequests: [{
+    id: '', 
+    job_category: '', 
+    employee_category: '', 
+    job_duration: '', 
+    pay_type: '', 
+    employee_type: '', 
+    employee_title: '', 
+    employee_experience: '', 
+    customer_id: '', 
+    description: '', 
+    status: '', 
+    created_at: '', 
+    updated_at: ''
   }]
 };

@@ -117,7 +117,8 @@ ControlEmployerPage.propTypes = {
   profile: PropTypes.object.isRequired,
   loading: PropTypes.number.isRequired,
   dispatch: PropTypes.func,
-  visibilityFilter: PropTypes.string.isRequired
+  visibilityFilter: PropTypes.string.isRequired,
+  secureRequest: PropTypes.object.isRequired
 };
 
 ControlEmployerPage.contextTypes = {

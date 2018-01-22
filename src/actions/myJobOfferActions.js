@@ -142,7 +142,7 @@ export function loadJobRequests() {
         return axios.get(`${types.ROOT_URL}/employee_posts/`,
         {headers: types.API_HEADERS })
         .then(jobRequests => {
-            debugger;
+            //debugger;
             dispatch(loadJobRequestSuccess(jobRequests.data));
         }).catch(error => {
             dispatch(ajaxCallError());
@@ -155,7 +155,7 @@ export function saveJobRequest(job_category,employee_category,job_duration,pay_t
     employee_title,employee_experience,description,customer_id) {
     return function (dispatch) {
         dispatch(beginAjaxCall());
-        debugger;
+        //debugger;
         return axios.post(`${types.ROOT_URL}/employee_posts`,
         {job_category,employee_category,job_duration,pay_type,employee_type,
     employee_title,employee_experience,description,customer_id},

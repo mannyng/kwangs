@@ -115,7 +115,7 @@ export function fetchCustomerProfiles(user) {
         //dispatch(beginAjaxCall());
         return axios.get(`${types.ROOT_URL}/customers/${user}`,
         {headers: GAPI_HEADERS }).then(profile => {
-            debugger;
+            //debugger;
             dispatch(fetchProfilesSuccess(profile.data));
         }).catch(error => {
          // dispatch(ajaxCallError(error));

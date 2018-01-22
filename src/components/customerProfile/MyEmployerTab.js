@@ -7,7 +7,7 @@ import MyConnections from './MyConnections';
 
 
 const MyEmployerTab = ({actions,customerConnect,profile,myJobs,isOpen,currentUser}) => {
-    debugger;
+    //debugger;
     return (
         <Tabs>
            <Tab label="Connections"><MyConnections actions={actions} customerConnect={customerConnect}

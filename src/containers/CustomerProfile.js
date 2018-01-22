@@ -94,7 +94,7 @@ export class CustomerProfile extends React.Component {
   render() {
     //debugger;
     const {profile, customerConnect, actions, currentUser, myJobs, isOpen} = this.props;
-    debugger;
+    //debugger;
     return (
       <Page>
         <Headers>

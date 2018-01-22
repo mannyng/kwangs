@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 const getVisibilityFilter = (state) => state.visibilityFilter;
 const getSecureJobs = (state) => state.secureJobs;
 const getSecureRequests = (state) => state.secureRequests;
-var myDate = new Date();
+const myDate = new Date();
 const myfilter = myDate.setDate(myDate.getDate() - 21);
 
 export const getVisibleSecureJobs = createSelector(

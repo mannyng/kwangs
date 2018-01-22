@@ -74,7 +74,7 @@ class CreateJobPage extends Component {
     //this.context.router.history.push('/add_job_details');
   }
   submitJobRequest(values){
-    debugger;
+    //debugger;
     this.props.dispatch(actions.saveJobRequest(values.job_category,values.employee_category,
     values.job_duration,
     values.pay_type,values.employee_type,

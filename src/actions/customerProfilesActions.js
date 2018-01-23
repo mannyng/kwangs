@@ -39,10 +39,16 @@ export function messageModalClose(){
 }
 
 export function fetchCustomerProfiles(user) {
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
     //debugger;
     return function(dispatch) {
         //dispatch(beginAjaxCall());
-        return axios.get(`${types.ROOT_URL}/customers/${user}`).then(profile => {
+        return axios.get(`${types.ROOT_URL}/customers/${user}`,
+        {headers: MAPI_HEADERS }).then(profile => {
             dispatch(fetchProfilesSuccess(profile.data));
         }).catch(error => {
             //dispatch(ajaxCallError(error));

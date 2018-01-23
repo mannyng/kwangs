@@ -10,14 +10,25 @@ import Headers from '../layouts/Headers';
 import Sidebar from '../layouts/Sidebar';
 import SimpleHeader from '../universal/SimpleHeader';
 import * as actions from '../../actions/customerProfilesActions';
+import {loadStateLists} from '../../actions/naijaStateActions';
 
 class CustomerSignup extends Component {
-   submit = (values) => {
+   
+  componentDidMount() {
+       this.props.dispatch(loadStateLists());
+   }
+   
+   shouldComponentUpdate(nextProps) {
+     //debugger;
+        const differentstateList = this.props.stateLists.length !== nextProps.stateLists.length;
+        return differentstateList;
+    }
+    
+    submit = (values) => {
     this.props.customerSignup(values,this.props.currentUser, this.context.router.history);
      //this.props.dispatch(actions.customerSignup(values, this.props.history));
      //this.context.router.history.push('/profile');
   }
-
   errorMessage() {
     if (this.props.errorMessage) {
       return (
@@ -57,7 +68,7 @@ class CustomerSignup extends Component {
   </div>
    );
    const customer_type = ['employer','employee'];
-    const { handleSubmit} = this.props;
+    const { handleSubmit, stateLists} = this.props;
     
     return (
       <Page>
@@ -120,13 +131,18 @@ class CustomerSignup extends Component {
         label="City"
         className="input-group margin-bottom-xs"
        /> 
-        <Field
-        name="state"
-        type="text"
-        component={renderField}
-        label="State"
-        className="input-group margin-bottom-xs"
-       />
+        <div className="row">
+        <div className="col-xs-4">
+          <label>State</label>
+        </div>
+        <div className="col-xs-8">
+           <Field name="state" component="select" className="form-control">
+            <option value="">Select your state...</option>
+            {stateLists.map(state_listOption =>
+              <option value={state_listOption.value} key={state_listOption.value}>{state_listOption.text}</option>)}
+          </Field>
+        </div>
+       </div>
                
         {this.renderAlert()}
         <button action="submit" className="btn btn-primary">Create Your Profile!</button>
@@ -146,11 +162,20 @@ CustomerSignup.propTypes = {
   history: PropTypes.object,
   errorMessage: PropTypes.string,
   handleSubmit:PropTypes.func.isRequired,
-  currentUser: PropTypes.number
+  currentUser: PropTypes.number,
+  dispatch: PropTypes.func,
+  stateLists: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
+const stateListsFormattedForDropDown = state.stateLists.map(stateList => {
+     return {
+         value: stateList.id,
+         text: stateList.name
+     };
+    });
   return { 
+    stateLists: stateListsFormattedForDropDown,
     errorMessage: state.auth.error,
     currentUser: state.currentUser.currentUser
   };

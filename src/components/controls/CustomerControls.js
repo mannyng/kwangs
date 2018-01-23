@@ -59,12 +59,12 @@ class CustomerControls extends Component {
       return (
        <BaseWidget type="info">
          <WidgetHeader loading={loading}>Control Center</WidgetHeader>
-         {profile.customer_type == 'employer' &&
+         {profile.myprofile.customer_type == 'employer' &&
          <Button onClick={this.redirectToAddJob}>Create Job Offer
           <span className="fa fa-cog fa-lg fa-pull-right"/>
          </Button>
           } 
-          {profile.customer_type == 'employee' &&
+          {profile.myprofile.customer_type == 'employee' &&
          <Button onClick={this.redirectToAddRequest}>Create Job Request
           <span className="fa fa-cog fa-lg fa-pull-right"/>
          </Button>

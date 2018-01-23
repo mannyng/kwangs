@@ -18,6 +18,7 @@ export default {
   currentUser: 0,
   jobOffers: [],
   jobCategories: [],
+  stateLists: [],
   ajaxCallsInProgress: 0,
   profile: {
     myprofile: 

@@ -65,7 +65,7 @@ export class ViewJobOfferPage extends React.Component {
     //debugger;
     event.preventDefault();
     if(this.props.profile && this.props.secureJob){
-    this.props.actions.saveCustomerConnect(this.props.profile.id,this.props.secureJob.job.customer_id);
+    this.props.actions.saveCustomerConnect(this.props.profile.myprofile.id,this.props.secureJob.job.customer_id);
     this.context.router.history.push('/jobs');
     }
   }

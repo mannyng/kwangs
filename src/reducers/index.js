@@ -22,6 +22,7 @@ import myFriends from './myFriendsReducer';
 import myPoint from './myPointReducer';
 import cnvtBtwn from './conversationBetweenReducer';
 import visibilityFilter from './visibilityFilterReducer';
+import stateLists from './stateListReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   currentUser,
   secureJobs,
   jobCategories,
+  stateLists,
   myJobOffer,
   myJobInsight,
   myJobLocation,

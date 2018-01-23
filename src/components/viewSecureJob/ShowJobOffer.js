@@ -6,7 +6,7 @@ import {Button} from 'react-elemental';
 
 const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onChange,myFriend}) => {
     //debugger;
-    const currentcustomer = secureJob.customer.id == profile.id;
+    const currentcustomer = secureJob.customer.id == profile.myprofile.id;
   return(
       <div>
          <h1>Job Details</h1>
@@ -38,7 +38,7 @@ const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onCh
               placeholder="Customer id"
               onChange={onChange}
               value={customerConnect.customer_id} 
-              defaultValue={profile.id} 
+              defaultValue={profile.myprofile.id} 
               error={errors.customer_id}/>
               <input type="hidden"
               name="friend_id"

@@ -33,7 +33,7 @@ class ContactConnection extends Component {
   componentDidMount() {
     if (this.props.myFriend) {
     //debugger;
-    this.props.dispatch(actions.fetchConversationBetween(this.props.profile.id,this.props.myFriend.id));
+    this.props.dispatch(actions.fetchConversationBetween(this.props.profile.myprofile.id,this.props.myFriend.id));
     if (this.props.cnvtBtwn.conversation_id) {
       //debugger;
       this.props.dispatch(actions.readMessages(this.props.cnvtBtwn.conversation_id));
@@ -49,7 +49,7 @@ class ContactConnection extends Component {
   }
  submitMessage(values){
      //debugger;
-    this.props.dispatch(actions.sendMessage(this.props.profile.id,this.props.cnvtBtwn.conversation_id,values.msg));
+    this.props.dispatch(actions.sendMessage(this.props.profile.myprofile.id,this.props.cnvtBtwn.conversation_id,values.msg));
     this.props.dispatch(reset('sendMessageForm'));  // requires form name
   }
    getConversations(messages){
@@ -61,7 +61,7 @@ class ContactConnection extends Component {
       let bubbleClass = 'me';
       let bubbleDirection = '';
 
-      if(message.sender_name !== this.props.profile.username){
+      if(message.sender_name !== this.props.profile.myprofile.username){
         bubbleClass = 'you';
         bubbleDirection = "bubble-direction-reverse";
       }

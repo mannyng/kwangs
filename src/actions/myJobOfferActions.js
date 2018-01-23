@@ -2,7 +2,7 @@ import * as types from '../constants/actionTypes';
 import axios from 'axios';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 import localStorage from 'localStorage';
-
+import toastr from 'toastr';
 
 export function showMyJobsSuccess(myJobs) {
    // debugger;
@@ -185,10 +185,13 @@ export function saveJobRequest(job_category,employee_category,job_duration,pay_t
         {job_category,employee_category,job_duration,pay_type,employee_type,
     employee_title,employee_experience,description,customer_id},
          {headers: MAPI_HEADERS }).then(jobRequest => {
+            toastr.success('Save successfully');
+            //debugger;
             jobRequest.id ? dispatch(updateJobRequestSuccess(jobRequest)) :
             dispatch(createJobRequestSuccess(jobRequest));
         }).catch(error => {
             dispatch(ajaxCallError(error));
+            toastr.error(error);
             throw(error);
         });
     };

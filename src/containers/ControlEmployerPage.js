@@ -14,7 +14,7 @@ import Page from '../components/layouts/Page';
 import Main from '../components/layouts/Main';
 import Headers from '../components/layouts/Headers';
 import Sidebar from '../components/layouts/Sidebar';
-import Controls from '../components/controls/Controls';
+import CustomerControls from '../components/controls/CustomerControls';
 import Footers from '../components/layouts/Footers';
 import Footer from '../components/universal/SecureFooter';
 import { getVisibleSecureJobs,getVisibleSecureRequests } from '../selectors';
@@ -69,7 +69,7 @@ export class ControlEmployerPage extends React.Component {
     //debugger;
     event.preventDefault();
     if(this.props.profile && this.props.secureJob){
-    this.props.actions.saveCustomerConnect(this.props.profile.id,this.props.secureJob.job.customer_id);
+    this.props.actions.saveCustomerConnect(this.props.profile.myprofile.id,this.props.secureJob.job.customer_id);
     this.context.router.history.push('/jobs');
     }
   }
@@ -99,7 +99,7 @@ export class ControlEmployerPage extends React.Component {
         </div>
         }
           <Sidebar>
-            <Controls actions={this.actions} />
+            <CustomerControls />
           </Sidebar>
           <Footers>
            <Footer/>

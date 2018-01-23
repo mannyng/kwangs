@@ -12,7 +12,7 @@ import Page from '../components/layouts/Page';
 import Main from '../components/layouts/Main';
 import Headers from '../components/layouts/Headers';
 import Sidebar from '../components/layouts/Sidebar';
-import Controls from '../components/controls/Controls';
+import CustomerControls from '../components/controls/CustomerControls';
 import Footers from '../components/layouts/Footers';
 import Footer from '../components/universal/SecureFooter';
 
@@ -92,7 +92,7 @@ export class ViewJobOfferPage extends React.Component {
           
          </div>
           <Sidebar>
-            <Controls actions={this.actions} />
+            <CustomerControls />
           </Sidebar>
           <Footers>
            <Footer/>

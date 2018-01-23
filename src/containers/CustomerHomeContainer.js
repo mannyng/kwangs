@@ -15,7 +15,7 @@ import Footers from '../components/layouts/Footers';
 import Sidebar from '../components/layouts/Sidebar';
 import HomeHeader from '../components/homepage/HomeHeader';
 import HomePage from '../components/homepage/CustomerHomePage';
-import Controls from '../components/controls/Controls';
+import CustomerControls from '../components/controls/CustomerControls';
 //import Header from './universal/CustomerHeader';
 
 export class CustomerHomeContainer extends React.Component {
@@ -49,7 +49,7 @@ shouldComponentUpdate(nextProps) {
         
       <Main>
       <Sidebar>
-        <Controls />
+        <CustomerControls />
       </Sidebar>
       <MainContent>
       <div>      

@@ -154,9 +154,9 @@ AddJobRequestForm.propTypes = {
   handleSubmit:PropTypes.func.isRequired,
   jobCategories: PropTypes.array.isRequired,
   submitJobRequest: PropTypes.func,
-  pristine: PropTypes.func.isRequired,
+  pristine: PropTypes.bool,
   reset: PropTypes.func.isRequired,
-  submitting: PropTypes.func.isRequired,
+  submitting: PropTypes.bool,
 };
 
 

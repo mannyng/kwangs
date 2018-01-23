@@ -12,10 +12,11 @@ import AddJobLocation from '../components/jobs/AddJobLocation';
 import AddJobDetailForm from '../components/jobs/AddJobDetailForm';
 import AddJobRequestForm from '../components/jobs/CreateRequestForm';
 import ShowResults from '../components/jobs/showResults';
-//import SimpleHeader from '../components/universal/SimpleHeader';
+import CustomerControls from '../components/controls/CustomerControls';
 import Header from '../components/universal/CustomerHeader';
 import {loadJobCategories} from '../actions/jobCategoryActions';
 import * as actions from '../actions/myJobOfferActions';
+import {reset} from 'redux-form';
 
 
 class CreateJobPage extends Component {
@@ -79,7 +80,8 @@ class CreateJobPage extends Component {
     values.job_duration,
     values.pay_type,values.employee_type,
     values.employee_title,values.employee_experience,
-    values.description,this.props.profile.id));
+    values.description,this.props.profile.myprofile.id));
+    this.props.dispatch(reset('addJobRequestForm'));  // requires form name
   }
   errorMessage() {
     if (this.props.errorMessage) {
@@ -110,7 +112,7 @@ class CreateJobPage extends Component {
       </Headers>  
       <Main>
       <Sidebar>
-      Janks
+      <CustomerControls />
       </Sidebar>
       {this.props.visibilityFilter == 'add_job_form' &&
       <Content>

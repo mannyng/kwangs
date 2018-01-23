@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from '../containers/HomeContainer';
+import CustomerHomePage from '../containers/CustomerHomeContainer';
 //import ManageJobOfferPage from '../containers/ManageJobOfferPage';
 import CustomersHomePage from '../containers/CustomersHomePage';
 import ViewSecureJob from '../containers/ViewSecureJob';
@@ -35,6 +36,7 @@ class App extends React.Component {
          
         <Switch>
           <Route exact path="/" component={noRequireAuth(HomePage)} />
+          <Route path="/home" component={requireAuth(CustomerHomePage)} />
           <Route path="/about" component={AboutPage} />
           <Route path="/jobs" component={requireAuth(CustomersHomePage)} />
           <Route path="/job/:id" component={requireAuth(ViewSecureJob)} />

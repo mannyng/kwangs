@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes';
 import axios from 'axios';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
-
+import localStorage from 'localStorage';
 
 
 export function showMyJobsSuccess(myJobs) {
@@ -31,11 +31,16 @@ export function updateMyJobOfferSuccess(myJobOffer) {
 
 
 export function saveMyJobOffer(title,description,customer_id) {
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
     return function (dispatch) {
         //dispatch(beginAjaxCall());
        // debugger;
         return axios.post(`${types.ROOT_URL}/employer_posts`,{title,description,customer_id},
-         {headers: types.API_HEADERS }).then(myJobOffer => {
+         {headers: MAPI_HEADERS }).then(myJobOffer => {
             myJobOffer.id ? dispatch(updateMyJobOfferSuccess(myJobOffer)) :
             dispatch(createMyJobOfferSuccess(myJobOffer.data.employer_post));
         }).catch(error => {
@@ -46,11 +51,16 @@ export function saveMyJobOffer(title,description,customer_id) {
 }
 
 export function showMyJobs(user_id) {
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
     return function (dispatch) {
         dispatch(beginAjaxCall());
         //debugger;
         return axios.get(`${types.ROOT_URL}/customers/${user_id}/myposts`, 
-        {headers: types.API_HEADERS }).then(myJobs=> {
+        {headers: MAPI_HEADERS }).then(myJobs=> {
           dispatch(showMyJobsSuccess(myJobs.data)); 
         }).catch(error => {
             dispatch(ajaxCallError(error));
@@ -83,13 +93,18 @@ export function updateLocationSuccess(myJobLocation) {
 
 export function saveJobInsight(job_category,employee_category,job_duration,pay_type,employee_type,
     employee_title,employee_experience,employer_post_id) {
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };    
     return function (dispatch) {
         dispatch(beginAjaxCall());
         //debugger;
         return axios.post(`${types.ROOT_URL}/employer_posts/${employer_post_id}/insights`,
         {job_category,employee_category,job_duration,pay_type,employee_type,
     employee_title,employee_experience,employer_post_id},
-        {headers: types.API_HEADERS }).then(myJobInsight => {
+        {headers: MAPI_HEADERS }).then(myJobInsight => {
             myJobInsight.id ? dispatch(updateInsightSuccess(myJobInsight)) :
             dispatch(createInsightSuccess(myJobInsight.data.insight));
         }).catch(error => {
@@ -101,12 +116,17 @@ export function saveJobInsight(job_category,employee_category,job_duration,pay_t
 
 
 export function saveJobLocation(location,city,state,employer_post_id) {
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
     return function (dispatch) {
         dispatch(beginAjaxCall());
         //debugger;
         return axios.post(`${types.ROOT_URL}/employer_posts/${employer_post_id}/job_locations`,
         {location,city,state,employer_post_id},
-        {headers: types.API_HEADERS }).then(myJobLocation => {
+        {headers: MAPI_HEADERS }).then(myJobLocation => {
             myJobLocation.id ? dispatch(updateLocationSuccess(myJobLocation)) :
             dispatch(createLocationSuccess(myJobLocation.data.job_location));
         }).catch(error => {
@@ -132,15 +152,15 @@ export function updateJobRequestSuccess(jobRequest) {
 }
 
 export function loadJobRequests() {
-    //const mytoke = localStorage.getItem('token');
-    //const MAPI_HEADERS = {
-     //    'Content-Type': 'application/json',
-     //    'Authorization': `Bearer ${mytoke}`
-     //   };
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
     return function(dispatch) {
         dispatch(beginAjaxCall());
         return axios.get(`${types.ROOT_URL}/employee_posts/`,
-        {headers: types.API_HEADERS })
+        {headers: MAPI_HEADERS })
         .then(jobRequests => {
             //debugger;
             dispatch(loadJobRequestSuccess(jobRequests.data));
@@ -153,13 +173,18 @@ export function loadJobRequests() {
 
 export function saveJobRequest(job_category,employee_category,job_duration,pay_type,employee_type,
     employee_title,employee_experience,description,customer_id) {
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
     return function (dispatch) {
         dispatch(beginAjaxCall());
         //debugger;
         return axios.post(`${types.ROOT_URL}/employee_posts`,
         {job_category,employee_category,job_duration,pay_type,employee_type,
     employee_title,employee_experience,description,customer_id},
-         {headers: types.API_HEADERS }).then(jobRequest => {
+         {headers: MAPI_HEADERS }).then(jobRequest => {
             jobRequest.id ? dispatch(updateJobRequestSuccess(jobRequest)) :
             dispatch(createJobRequestSuccess(jobRequest));
         }).catch(error => {

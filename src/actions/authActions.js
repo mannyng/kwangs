@@ -5,11 +5,6 @@ import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 import {fetchCustomerConnect,fetchMyFriends} from './customerProfilesActions';
 import {showMyJobs} from './myJobOfferActions';
  
- const mytoken = localStorage.getItem('token');
-    const GAPI_HEADERS = {
-         'Content-Type': 'application/json',
-         'Authorization': `Bearer ${mytoken}`
-     };
      
  export function fetchProfilesSuccess(profile) {
  //   //debugger;
@@ -46,7 +41,7 @@ export function signinUser({ email, password },history ) {
 }
 
 export function signupUser({ email, password, password_confirmation }, history) {
-  return function(dispatch) {
+  return function(dispatch, getState) {
     
     axios.post(`${types.ROOT_URL}/users`, { email, password, password_confirmation })
       .then(response => { 
@@ -60,7 +55,7 @@ export function signupUser({ email, password, password_confirmation }, history) 
         };
         
         dispatch({ type: types.CURRENT_USER});
-        
+        dispatch(fetchCustomerProfiles(getState().currentUser.currentUser));
         dispatch(loadSecuredJobOfferings(MAPI_HEADERS));
         history.push('/customerSignup');
       })
@@ -110,6 +105,11 @@ export function currentUser() {
 }
 
 export function fetchCustomerProfiles(user) {
+    const mytoken = localStorage.getItem('token');
+    const GAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoken}`
+     };
     //debugger;
     return function(dispatch) {
         //dispatch(beginAjaxCall());

@@ -26,10 +26,7 @@ class GeneralFooter extends Component {
   <div className="pull-right">
    <NavLink to="/" activeStyle={activeStyle} key={1}>Home</NavLink>
     {" | "}
-   <NavLink to="/job-offerings" activeStyle={activeStyle} key={2}>Job Offering App</NavLink>
-   {" | "}
-   <NavLink to="/about" activeStyle={activeStyle} key={3}>About</NavLink>
-    {" | "}
+   <NavLink to="/about" activeStyle={activeStyle} key={2}>About the App</NavLink>
    </div>
    <hr/>
    <h3>Kwangs Work Network </h3>

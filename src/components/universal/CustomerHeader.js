@@ -58,7 +58,7 @@ class Header extends React.Component {
     {" | "}
    <NavLink to="/signout" activeStyle={activeStyle} key={4}>Sign Out</NavLink>
    {" | "}
-   <NavLink to="/job-offerings" activeStyle={activeStyle} key={5}>Home page</NavLink>
+   <NavLink to="/home" activeStyle={activeStyle} key={5}>Home page</NavLink>
    
    <h2 className="pull-right">Kwangs Work Network </h2>
           <p className="lead">
@@ -74,8 +74,6 @@ class Header extends React.Component {
     <div className="col-md-6 col-xs-6">
    <NavLink to="/" activeStyle={activeStyle} key={1}>Home</NavLink>
     {" | "}
-   <NavLink to="/job-offerings" activeStyle={activeStyle} key={2}>Job Offering App</NavLink>
-   {" | "}
    <NavLink to="/about" activeStyle={activeStyle} key={3}>About</NavLink>
     {" | "}
    <NavLink to="/signin" activeStyle={activeStyle} key={4}>Sign In</NavLink>

@@ -3,17 +3,39 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/authActions';
+import toastr from 'toastr';
 
 class ASignin extends Component {
-  submit = (values) => {
-    this.props.signinUser(values, this.props.history);
+  constructor(props, context){
+    super(props, context);
+    this.state = {
+      errors: {},
+      saving: false
+    };
   }
-
-  errorMessage() {
-    if (this.props.errorMessage) {
+  submit = (values) => {
+    this.setState({saving: true});
+    //debugger;
+    this.props.signinUser(values,this.context.router.history);
+    
+    //.then(() => this.redirect())
+    //.catch(error => {
+    //  toastr.error(error);
+    //  this.setState({saving: false});
+   // });
+    
+  }
+  redirect() {
+    //debugger;
+    this.setState({saving: false});
+      toastr.success('Logged In');
+    this.context.router.push('/jobs');
+  }
+  sirenderAlert() {
+    if (this.props.myerrorMessage) {
       return (
-        <div className="info-red">
-          {this.props.errorMessage}
+        <div className="alert alert-danger">
+          <strong>Oops!</strong> {this.props.myerrorMessage}
         </div>
       );
     }
@@ -21,6 +43,7 @@ class ASignin extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    //debugger;
     return (
      
         <div className="form">  
@@ -29,18 +52,26 @@ class ASignin extends Component {
                   component="input"
                   type="text"
                   placeholder="Email" 
+                  error={this.state.errors}
             />
             <Field name="password" 
                   component="input"
                   type="password" 
                   placeholder="Password" 
+                  error={this.state.errors}
             />
+            
             <button type="submit" className="blue">Sign In</button>
           </form>
+          {this.sirenderAlert()}
         </div>
     );
   }
 }
+
+ASignin.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 ASignin.propTypes = {
   signinUser: PropTypes.func.isRequired,
@@ -50,7 +81,12 @@ ASignin.propTypes = {
 };
 
 function mapStateToProps(state) {
-  return { errorMessage: state.auth.error };
+  //debugger;
+  return { 
+    myerrorMessage: state.auth.error,
+    errors: state.auth.error
+    
+  };
 }
 
 const reduxFormASignin = reduxForm({

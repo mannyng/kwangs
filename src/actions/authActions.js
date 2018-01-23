@@ -4,6 +4,7 @@ import localStorage from 'localStorage';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 import {fetchCustomerConnect,fetchMyFriends} from './customerProfilesActions';
 import {showMyJobs} from './myJobOfferActions';
+import toastr from 'toastr';
  
      
  export function fetchProfilesSuccess(profile) {
@@ -12,7 +13,7 @@ import {showMyJobs} from './myJobOfferActions';
  }
 
 
-export function signinUser({ email, password },history ) {
+export function signinUser({ email, password }, history ) {
   return function(dispatch, getState) {
     // Submit email/password to the server
     axios.post(`${types.ROOT_URL}/users/login`, { email, password })
@@ -26,6 +27,8 @@ export function signinUser({ email, password },history ) {
         };
         
         dispatch({ type: types.CURRENT_USER});
+        //toastr.remove();
+        toastr.success('Logged In');
         dispatch(fetchCustomerProfiles(getState().currentUser.currentUser));
         dispatch(fetchMyFriends(getState().currentUser.currentUser));
         dispatch(fetchCustomerConnect(getState().currentUser.currentUser));
@@ -34,8 +37,11 @@ export function signinUser({ email, password },history ) {
         //console.log(getState().currentUser.currentUser);
         history.push('/jobs');
       })
-      .catch(() => {
-        dispatch(authError('Bad Login Info'));
+      .catch(error => {
+        //debugger;
+        toastr.error('Bad Login Info, Make sure you are signing with correct Email and Password');
+        throw(error);
+        //dispatch(authError('Bad Login Info'));
       });
   };
 }
@@ -55,12 +61,15 @@ export function signupUser({ email, password, password_confirmation }, history) 
         };
         
         dispatch({ type: types.CURRENT_USER});
+        toastr.success('Signed Up');
         dispatch(fetchCustomerProfiles(getState().currentUser.currentUser));
         dispatch(loadSecuredJobOfferings(MAPI_HEADERS));
         history.push('/customerSignup');
       })
-      .catch(() => {
-        dispatch(authError('Sign up Info'));
+      .catch(error => {
+        //dispatch(authError('Sign up Info'));
+        toastr.error('Bad Sign up Info, Make sure you are using Email address');
+        throw(error);
       });
   };
 }

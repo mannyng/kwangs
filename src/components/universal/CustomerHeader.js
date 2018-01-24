@@ -36,7 +36,8 @@ class Header extends React.Component {
         const differentUser = this.props.currentUser !== nextProps.currentUser;
         const differenSecureJob = this.props.secureJobs.length !== nextProps.secureJobs.length;
         const differenConnect = this.props.customerConnect.length !== nextProps.customerConnect.length;        
-        const differentProfile = this.props.profile.myprofile.id !== nextProps.profile.myprofile.id;
+        //const differentProfile = this.props.profile.myprofile.id !== nextProps.profile.myprofile.id;
+        const differentProfile = this.props.profile.status !== nextProps.profile.status;
         return differentUser || differenConnect || differentProfile || differenSecureJob;
     }
  
@@ -44,9 +45,10 @@ class Header extends React.Component {
   const profile = this.props.profile;
   //debugger;
  const activeStyle = { color: 'blue' };
- const mytoken = localStorage.getItem('token');
+ //const mytoken = localStorage.getItem('token');
  //debugger;
- if (mytoken){
+ if (profile.status == 'ok'){
+  debugger;
  return (
   <div>
     

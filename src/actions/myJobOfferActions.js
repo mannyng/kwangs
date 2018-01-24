@@ -37,14 +37,16 @@ export function saveMyJobOffer(title,description,customer_id) {
          'Authorization': `Bearer ${mytoke}`
         };
     return function (dispatch) {
-        //dispatch(beginAjaxCall());
+        dispatch(beginAjaxCall());
        // debugger;
         return axios.post(`${types.ROOT_URL}/employer_posts`,{title,description,customer_id},
          {headers: MAPI_HEADERS }).then(myJobOffer => {
+             toastr.success('Job saved successfully');
             myJobOffer.id ? dispatch(updateMyJobOfferSuccess(myJobOffer)) :
             dispatch(createMyJobOfferSuccess(myJobOffer.data.employer_post));
         }).catch(error => {
-            //dispatch(ajaxCallError(error));
+            dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with your submitted information');
             throw(error.response);
         });
     };
@@ -64,6 +66,7 @@ export function showMyJobs(user_id) {
           dispatch(showMyJobsSuccess(myJobs.data)); 
         }).catch(error => {
             dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with the page');
             throw(error);
         });   
     };
@@ -105,10 +108,12 @@ export function saveJobInsight(job_category,employee_category,job_duration,pay_t
         {job_category,employee_category,job_duration,pay_type,employee_type,
     employee_title,employee_experience,employer_post_id},
         {headers: MAPI_HEADERS }).then(myJobInsight => {
+            toastr.success('Job insight saved successfully');
             myJobInsight.id ? dispatch(updateInsightSuccess(myJobInsight)) :
             dispatch(createInsightSuccess(myJobInsight.data.insight));
         }).catch(error => {
             dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with your submitted information');
             throw(error);
         });
     };
@@ -127,10 +132,13 @@ export function saveJobLocation(location,city,state,employer_post_id) {
         return axios.post(`${types.ROOT_URL}/employer_posts/${employer_post_id}/job_locations`,
         {location,city,state,employer_post_id},
         {headers: MAPI_HEADERS }).then(myJobLocation => {
+            toastr.success('Job location saved successfully');
             myJobLocation.id ? dispatch(updateLocationSuccess(myJobLocation)) :
             dispatch(createLocationSuccess(myJobLocation.data.job_location));
+            dispatch(loadSecuredJobOfferings());
         }).catch(error => {
             dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with your submitted information');
             throw(error);
         });
     };
@@ -166,6 +174,7 @@ export function loadJobRequests() {
             dispatch(loadJobRequestSuccess(jobRequests.data));
         }).catch(error => {
             dispatch(ajaxCallError());
+            toastr.error('There are some error/s with the page');
             throw(error);
         });
     };
@@ -185,13 +194,42 @@ export function saveJobRequest(job_category,employee_category,job_duration,pay_t
         {job_category,employee_category,job_duration,pay_type,employee_type,
     employee_title,employee_experience,description,customer_id},
          {headers: MAPI_HEADERS }).then(jobRequest => {
-            toastr.success('Save successfully');
+            toastr.success('Job request saved successfully');
             //debugger;
             jobRequest.id ? dispatch(updateJobRequestSuccess(jobRequest)) :
             dispatch(createJobRequestSuccess(jobRequest));
+            dispatch(loadJobRequests());
         }).catch(error => {
             dispatch(ajaxCallError(error));
-            toastr.error(error);
+            toastr.error('There are some error/s with your submitted information');
+            throw(error);
+        });
+    };
+}
+
+export function loadSecuredJobOffersSuccess(secureJobs) {
+    //debugger;
+    return { type: types.LOAD_SECURED_JOB_OFFERS_SUCCESS,
+             secureJobs,
+             receivedAt: Date.now()
+    };
+}
+
+export function loadSecuredJobOfferings() {
+    const mytoke = localStorage.getItem('token');
+    const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
+    return function(dispatch) {
+        dispatch(beginAjaxCall());
+        //debugger;
+        return axios.get(`${types.ROOT_URL}/employer_posts/private_jobs/`, {headers: MAPI_HEADERS })
+        .then(secureJobs => {
+            dispatch(loadSecuredJobOffersSuccess(secureJobs));
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with the page');
             throw(error);
         });
     };

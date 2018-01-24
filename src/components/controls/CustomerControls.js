@@ -25,7 +25,11 @@ class CustomerControls extends Component {
     this.redirectToNewestEmployers = this.redirectToNewestEmployers.bind(this);
   }
   
-  
+  shouldComponentUpdate(nextProps) {
+      debugger;
+      const differentProfile = this.props.profile.status !== nextProps.profile.status;
+      return differentProfile;
+  }
   redirectToAddRequest() {
       //debugger;
     this.props.actions.setVisibilityFilter('add_job_request');
@@ -59,12 +63,12 @@ class CustomerControls extends Component {
       return (
        <BaseWidget type="info">
          <WidgetHeader loading={loading}>Control Center</WidgetHeader>
-         {profile.myprofile.customer_type == 'employer' &&
+         {profile.myprofile && profile.myprofile.customer_type == 'employer' &&
          <Button onClick={this.redirectToAddJob}>Create Job Offer
           <span className="fa fa-cog fa-lg fa-pull-right"/>
          </Button>
           } 
-          {profile.myprofile.customer_type == 'employee' &&
+          {profile.myprofile && profile.myprofile.customer_type == 'employee' &&
          <Button onClick={this.redirectToAddRequest}>Create Job Request
           <span className="fa fa-cog fa-lg fa-pull-right"/>
          </Button>
@@ -75,7 +79,7 @@ class CustomerControls extends Component {
           <span className="fa fa-cog fa-lg fa-pull-right"/>
          </Button>
          <hr />
-         <Button onClick={this.redirectToNewestEmployers}>Newest Employers
+         <Button onClick={this.redirectToNewestEmployers}>Newest Employees
           <span className="fa fa-cogs fa-lg fa-pull-right"/>
          </Button>
        </BaseWidget>

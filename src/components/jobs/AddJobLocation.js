@@ -60,9 +60,9 @@ const AddJobLocation = props => {
 };
 AddJobLocation.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  pristine: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
   reset: PropTypes.func.isRequired,
-  submitting: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired,
   submitMyJobLocation: PropTypes.func.isRequired
 };
 

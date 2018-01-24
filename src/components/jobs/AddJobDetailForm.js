@@ -146,9 +146,9 @@ AddJobDetailForm.propTypes = {
   jobCategories: PropTypes.array.isRequired,
   myJobOffer: PropTypes.object.isRequired,
   submitJobInsight: PropTypes.func,
-  pristine: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
   reset: PropTypes.func.isRequired,
-  submitting: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired,
 };
 
 

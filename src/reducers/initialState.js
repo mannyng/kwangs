@@ -41,7 +41,8 @@ export default {
     recipient_id: '',
     created_at: '',
     updated_at: ''
-  }]
+  }],
+  status: ''
   },
     customerConnect:[{
       customer_connect:{

@@ -25,7 +25,7 @@ renderField.propTypes = {
 };
 
 const CreateJobForm = props => {
-  const { handleSubmit, pristine, reset, submitting, submitMyJobOffer, profile } = props;
+  const { handleSubmit, pristine, reset, submitting, submitMyJobOffer } = props;
   //debugger
   return (
     <form onSubmit={handleSubmit(submitMyJobOffer)}>
@@ -44,7 +44,7 @@ const CreateJobForm = props => {
            <Field name="description" component="textarea" className="form-control" rows="5" placeholder="Description"/>
         </div>
        </div>
-        <Field name="customer_id" component="input" type="hidden"  value={profile}/>
+        
       <div>
         <button type="submit" disabled={submitting} className="btn btn-info">
          <i className="fa fa-plus" aria-hidden="true"/>Create Job</button>
@@ -57,11 +57,11 @@ const CreateJobForm = props => {
 
 CreateJobForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  pristine: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
   reset: PropTypes.func.isRequired,
-  submitting: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired,
   submitMyJobOffer: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  //profile: PropTypes.object.isRequired
 };
 export default reduxForm({
   form: 'createJobForm', // a unique identifier for this form

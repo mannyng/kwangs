@@ -60,7 +60,7 @@ class CreateJobPage extends Component {
   
    submitMyJobOffer(values){
      //debugger;
-    this.props.dispatch(actions.saveMyJobOffer(values.title,values.description,this.props.profile.id));
+    this.props.dispatch(actions.saveMyJobOffer(values.title,values.description,this.props.profile.myprofile.id));
     //this.context.router.history.push('/add_job_details');
   }
   submitJobInsight(values){
@@ -82,6 +82,7 @@ class CreateJobPage extends Component {
     values.employee_title,values.employee_experience,
     values.description,this.props.profile.myprofile.id));
     this.props.dispatch(reset('addJobRequestForm'));  // requires form name
+    this.context.router.history.push('/profile');
   }
   errorMessage() {
     if (this.props.errorMessage) {

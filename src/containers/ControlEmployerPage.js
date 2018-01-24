@@ -43,7 +43,8 @@ export class ControlEmployerPage extends React.Component {
   shouldComponentUpdate(nextProps) {
      //debugger;
         const differentSecureJob = this.props.secureJob !== nextProps.secureJob;
-        const differentSecurerequest = this.props.secureRequest !== nextProps.secureRequest;
+        //const differentSecurerequest = this.props.secureRequest !== nextProps.secureRequest;
+        const differentSecurerequest = this.props.newest_employees !== nextProps.newest_employees;
         return differentSecureJob || differentSecurerequest;
     }
   
@@ -118,7 +119,7 @@ ControlEmployerPage.propTypes = {
   loading: PropTypes.number.isRequired,
   dispatch: PropTypes.func,
   visibilityFilter: PropTypes.string.isRequired,
-  secureRequest: PropTypes.object.isRequired
+  //secureRequest: PropTypes.object.isRequired
 };
 
 ControlEmployerPage.contextTypes = {

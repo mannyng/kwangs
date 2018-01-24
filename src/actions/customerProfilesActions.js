@@ -3,6 +3,7 @@ import axios from 'axios';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 //import {loadSecuredJobOfferings} from './loggedInUserSearchActions';
 import localStorage from 'localStorage';
+import toastr from 'toastr';
 
   
 export function fetchProfilesSuccess(profile) {
@@ -46,13 +47,15 @@ export function fetchCustomerProfiles(user) {
         };
     //debugger;
     return function(dispatch) {
-        //dispatch(beginAjaxCall());
+        dispatch(beginAjaxCall());
         return axios.get(`${types.ROOT_URL}/customers/${user}`,
         {headers: MAPI_HEADERS }).then(profile => {
+            //debugger;
             dispatch(fetchProfilesSuccess(profile.data));
         }).catch(error => {
-            //dispatch(ajaxCallError(error));
-            throw(error);
+         dispatch(ajaxCallError(error));
+         toastr.error('There are some error/s with the page');
+         throw(error);
         });
     };
 }
@@ -70,13 +73,18 @@ state}, user_id,history) {
     customer_type, address, city, state, user_id },
      {headers: MAPI_HEADERS })
       .then(response => {
+    //debugger;
         dispatch({ type: types.CREATE_CUSTOMER_SUCCESS, response });
+        toastr.success('Your profile created successfully');
         dispatch(fetchCustomerProfiles(getState().currentUser.currentUser));
         
        // debugger;
         history.push('/jobs');
       })
-      .catch(response => dispatch(authError(response.data.errors)));
+      .catch(response => {
+        toastr.error('Bad profile setup info, please check your info and try again');
+        //dispatch(authError(response.data.errors));
+        });
   };
 }
 
@@ -101,10 +109,12 @@ export function saveCustomerConnect(customer_id,friend_id) {
           friend_id
         },
         {headers: MAPI_HEADERS }).then(customerConnect => {
+            toastr.success('Your connectrequest sent successfully')
             customer_id ? dispatch(updateCustomerConnectSuccess(customerConnect)) :
             dispatch(createCustomerConnectSuccess)(customerConnect);
         }).catch(error => {
             dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with the page');
             throw(error);
         });
     };
@@ -124,6 +134,7 @@ export function fetchCustomerConnect(customer_id) {
             dispatch(fetchCustomerConnectSuccess(customerConnect.data));
         }).catch(error => {
             dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with the page');
             throw(error);
         });
     };
@@ -143,6 +154,7 @@ export function acceptCustomerConnect(id,customer_id) {
             dispatch(fetchCustomerConnectSuccess(customerConnect.data));
         }).catch(error => {
             dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with the page');
             throw(error);
         });
     }; 
@@ -200,6 +212,7 @@ export function readMessages(conversation_id) {
             dispatch(readMessagesSuccess(myMessages.data));
         }).catch(error => {
             dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with the page');
             throw(error.response);
         });
     };
@@ -219,6 +232,7 @@ export function fetchMyFriends(customer_id) {
             dispatch(fetchMyFriendsSuccess(myFriends.data));
         }).catch(error => {
             dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with the page');
             throw(error);
         });
     };
@@ -240,6 +254,7 @@ export function fetchConversationBetween(sender_id,recipient_id) {
             dispatch(readMessages(cnvtBtwn.data.conversation_id));
         }).catch(error => {
             dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with the page');
             throw(error);
         });
     };    

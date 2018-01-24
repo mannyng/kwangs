@@ -76,7 +76,7 @@ ASignin.contextTypes = {
 ASignin.propTypes = {
   signinUser: PropTypes.func.isRequired,
   history: PropTypes.object,
-  errorMessage: PropTypes.string,
+  myerrorMessage: PropTypes.string,
   handleSubmit:PropTypes.func.isRequired,
 };
 

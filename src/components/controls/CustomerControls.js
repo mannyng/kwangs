@@ -26,7 +26,7 @@ class CustomerControls extends Component {
   }
   
   shouldComponentUpdate(nextProps) {
-      debugger;
+      //debugger;
       const differentProfile = this.props.profile.status !== nextProps.profile.status;
       return differentProfile;
   }

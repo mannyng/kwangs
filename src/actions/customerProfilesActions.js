@@ -83,6 +83,7 @@ state}, user_id,history) {
       })
       .catch(response => {
         toastr.error('Bad profile setup info, please check your info and try again');
+        throw(response);
         //dispatch(authError(response.data.errors));
         });
   };
@@ -109,7 +110,7 @@ export function saveCustomerConnect(customer_id,friend_id) {
           friend_id
         },
         {headers: MAPI_HEADERS }).then(customerConnect => {
-            toastr.success('Your connectrequest sent successfully')
+            toastr.success('Your connectrequest sent successfully');
             customer_id ? dispatch(updateCustomerConnectSuccess(customerConnect)) :
             dispatch(createCustomerConnectSuccess)(customerConnect);
         }).catch(error => {

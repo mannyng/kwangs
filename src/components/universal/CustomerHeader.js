@@ -48,7 +48,7 @@ class Header extends React.Component {
  //const mytoken = localStorage.getItem('token');
  //debugger;
  if (profile.status == 'ok'){
-  debugger;
+  //debugger;
  return (
   <div>
     

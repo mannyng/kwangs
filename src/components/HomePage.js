@@ -18,8 +18,15 @@ const HomePage = (myPoint) => {
      
      <article>
       <div className="col-xs-7" id="front_map">
-       
-      <h2>Unskilled Jobs near you</h2>
+       {myPoint.myPoint.country_name !== "Nigeria" &&
+       <div>
+       <h4>You are not in Nigeria</h4>
+       <h5>Unskilled Jobs near {myPoint.myPoint.region_name}{' '}{myPoint.myPoint.country_name}</h5>
+       </div>
+       }
+      {myPoint.myPoint.country_name == "Nigeria" &&
+      <h5>Unskilled Jobs near {' '}{myPoint.myPoint.region_name}{' '} </h5>
+      }
        {myPoint.myPoint.latitude && 
           <MyMapComponent
            lat={myPoint.myPoint.latitude}

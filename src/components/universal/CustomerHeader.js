@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import { Link, IndexLink } from 'react-router';
+import { Text } from 'react-elemental';
 import { NavLink } from 'react-router-dom';
 //import localStorage from 'localStorage';
 //import LoadingDots from './LoadingDots';
@@ -17,7 +17,7 @@ class Header extends React.Component {
     this.state = {
       profile: {user_id: '', username:'', firstname:'', lastname:''},
       currentUser: { currentUser: 0},
-      loading: 'false',
+      loading: 0,
       customerConnect: { customer_connect:  {}, friend: {}, customer:{} }
     };
     //this.onClickAccept = this.onClickAccept.bind(this);
@@ -61,11 +61,14 @@ class Header extends React.Component {
    <NavLink to="/signout" activeStyle={activeStyle} key={4}>Sign Out</NavLink>
    {" | "}
    <NavLink to="/home" activeStyle={activeStyle} key={5}>Home page</NavLink>
-   
-   <h2 className="pull-right">Kwangs Work Network </h2>
-          <p className="lead">
+   <Text className="pull-right" size="epsilon" bold color="rgb(62, 184, 240)">
+   Kwangs Work Network 
+   </Text>
+        
+          <Text bold color="rgb(62, 184, 240)">
             Your one step to find daily pay job and workers
-          </p>
+          </Text>
+         
           <hr />
   </div>
  );
@@ -89,11 +92,13 @@ class Header extends React.Component {
     
   </div>  
    
-   <h3 className="pull-right">Kwangs Work Network </h3>
+   <Text className="pull-right" size="epsilon" bold color="rgb(62, 184, 240)">
+     Kwangs Work Network 
+   </Text>
    
-          <p className="lead">
-            Your one step to find daily pay job and workers
-          </p>
+   <Text bold color="rgb(62, 184, 240)">
+      Your one step to find daily pay job and workers
+   </Text>
  
      
         

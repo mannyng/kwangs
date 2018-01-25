@@ -15,7 +15,6 @@ import Sidebar from '../components/layouts/Sidebar';
 import CustomerControls from '../components/controls/CustomerControls';
 
 import {messageModalOpen,messageModalClose} from '../actions/modalStatusActions';
-//import Modal from 'react-modal';
 
 
 //import localStorage from 'localStorage';
@@ -96,6 +95,7 @@ export class CustomerProfile extends React.Component {
     const {profile, customerConnect, actions, currentUser, myJobs, isOpen} = this.props;
     //debugger;
     return (
+      
       <Page>
         <Headers>
          <Header />
@@ -120,6 +120,7 @@ export class CustomerProfile extends React.Component {
           </Footers>
         </Main>  
       </Page>
+      
     );
   }
 

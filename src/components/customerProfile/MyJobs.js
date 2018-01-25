@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Text } from 'react-elemental';
 
 const MyJobs =  ({myJobs}) => {
     //debugger;
@@ -11,84 +12,102 @@ const MyJobs =  ({myJobs}) => {
          <h2 className="h4">Job Title: {myJob.mypost.title}</h2> 
          </header>
          
-           <p className="h5"><span className="label label-success">Job Description :</span>
+           <Text bold>
+           <span className="label label-success">Job Description :</span>
            {myJob.mypost.description}
-           </p>
+           </Text>
            <hr />
            <section className="panel panel-default">
              <header className="panel-heading">
-               <h2 className="h4">Job Isights</h2>
+               <h2 className="h4">Job Insights</h2>
               </header>
-              <p className="h5">
+              
                <div className="row">
                  <div className="col-xs-6">
-              <span className="label label-success">Open Position :</span>
+                 <Text bold>
+                <span className="label label-success">Open Position :</span>
                 {myJob.insight.employee_title}
+                </Text>
                 </div>
                 <div className="col-xs-6">
-              <span className="label label-success">Job Category :</span>
+                <Text bold>
+                <span className="label label-success">Job Category :</span>
                 {myJob.insight.job_category}
+                </Text>
                 </div>
                 </div>
-                </p>
-                <p className="h5">
+                
                 <div className="row">
                  <div className="col-xs-6">
+                <Text bold>
                 <span className="label label-success">Employee Category :</span>
                 {myJob.insight.employee_category}
+                </Text>
                 </div>
                 <div className="col-xs-6">
-              <span className="label label-success">Employee Type :</span>
+                <Text bold>
+               <span className="label label-success">Employee Type :</span>
                 {myJob.insight.employee_type}
+                </Text>
                 </div>
                 </div>
-                </p>
-                <p className="h5">
+               
                 <div className="row">
                  <div className="col-xs-6">
+                 <Text bold>
                 <span className="label label-success">Job Duration :</span>
                 {myJob.insight.job_duration}
+                </Text>
                 </div>
                 <div className="col-xs-6">
-              <span className="label label-success">Available Date :</span>
+                <Text bold>
+                 <span className="label label-success">Available Date :</span>
                 {myJob.insight.available_date}
+                </Text>
                 </div>
                 </div>
-                </p>
-                <p className="h5">
+                
                 <div className="row">
                  <div className="col-xs-6">
+                 <Text bold>
                 <span className="label label-success">Payment Type :</span>
                 {myJob.insight.pay_type}
+                </Text>
                 </div>
                 <div className="col-xs-6">
-              <span className="label label-success">Experience :</span>
+                <Text bold>
+                 <span className="label label-success">Experience :</span>
                 {myJob.insight.employee_experience}
+                </Text>
                 </div>
                 </div>
-                </p>
+                
               </section>
               <hr />
            <section className="panel panel-default">
              <header className="panel-heading">
                <h2 className="h4">Job Location</h2>
               </header>
-              <p className="h5">
+              <Text bold>
               <span className="label label-success">Address :</span>
                 {myJob.location.location}
-                </p>
-                <p className="5">
+                </Text>
+                
                 <div className="row">
                  <div className="col-xs-6">
-              <span className="label label-success">City :</span>
+                 <Text bold>
+                 <span className="label label-success">City :</span>
                 {myJob.location.city}
+                </Text>
                   </div>
                   <div className="col-xs-6">
-              <span className="label label-success">State :</span>
-                {myJob.location.state}
+                <Text bold> 
+                 <span className="label label-success">State :</span>
+                 {myJob.location.state}
+                </Text>
                   </div>
                 </div>  
-                </p>
+                
               </section>
            
          </article>)

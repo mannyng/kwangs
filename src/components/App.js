@@ -21,13 +21,10 @@ import Signin from './auth/signin';
 import Signout from './auth/signout';
 import Signup from './auth/signup';
 import CustomerSignup from './auth/customerSignup';
-//import ManageJobInsight from './jobs/ManageJobInsight'; 
-//import ManageJobLocation from './jobs/ManageJobLocation'; 
 
 
 class App extends React.Component {
  
-
   
   render() {
     return (
@@ -55,8 +52,10 @@ class App extends React.Component {
         </Switch>
         
       </div>
+      
     );
   }
+  
 }
 
 App.propTypes = {

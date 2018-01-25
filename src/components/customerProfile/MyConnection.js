@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button} from 'react-elemental';
+import {Button,Text} from 'react-elemental';
 import { Link } from 'react-router-dom';
 //import Modal from 'react-modal';
 //import AModal from 'react-modal';
@@ -29,21 +29,21 @@ const MyConnection = ({myconnection,currentUser,actions}) => {
          
          
          {myconnection.customer_connect.state == "pending" &&
-         <div className="col-md-8">
+         <div className="col-xs-8">
          <div className="row">
-         <div className="col-md-2">{myconnection.friend && myconnection.friend.username}</div>
-         <div className="col-md-8">{myconnection.customer_connect.msg} </div>
+         <div className="col-xs-2">{myconnection.friend && myconnection.friend.username}</div>
+         <div className="col-xs-8">{myconnection.customer_connect.msg} </div>
          </div>
           <div className="row">
-          <div className="col-md-5">
+          <div className="col-xs-5">
            <Button onClick={onClickAccept}>
            Accept Connection
            <span className="fa fa-handshake-o fa-lg fa-pull-right"/>
          </Button>
          </div>
-         <div className="col-md-2"/>
+         <div className="col-xs-2"/>
          
-         <div className="col-md-5">
+         <div className="col-xs-5">
          <Button onClick={onClickAccept}>
            Reject Connection
            <span className="fa fa-battery-empty fa-lg fa-pull-right"/>
@@ -55,9 +55,9 @@ const MyConnection = ({myconnection,currentUser,actions}) => {
          <div>
          {!friend &&
            <div className="row">
-            <div className="col-md-5"><h3 className="bold">{myconnection.friend && myconnection.friend.username}</h3></div>
-             <div className="col-md-1"/>
-            <div className="col-md-6">
+            <div className="col-xs-5"><Text size="large" bold>{myconnection.friend && myconnection.friend.username}</Text></div>
+             <div className="col-xs-1"/>
+            <div className="col-xs-6">
             <Button>
                 <Link to={'/connect/' + myconnection.friend.username}>Contact{' '}
                 <span className="fa fa-envelope-o fa-lg fa-pull-right"/>
@@ -69,16 +69,16 @@ const MyConnection = ({myconnection,currentUser,actions}) => {
                 <span className="fa fa-cut fa-lg fa-pull-right"/>
               </Button>
              
-            </div>
+            </div><hr />
          </div>}
          </div>}
          {myconnection.customer_connect.state == "accepted" &&
          <div>
          {!notcustomer &&
            <div className="row">
-            <div className="col-md-5"><h3 className="bold">{myconnection.customer && myconnection.customer.username}</h3></div>
-             <div className="col-md-1"/>
-            <div className="col-md-6">
+            <div className="col-xs-5"><Text size="large" bold>{myconnection.customer && myconnection.customer.username}</Text></div>
+             <div className="col-xs-1"/>
+            <div className="col-xs-6">
               <Button>
                  <Link to={'/connect/' + myconnection.customer.username}>Contact{' '}
                 <span className="fa fa-envelope-o fa-lg fa-pull-right"/>
@@ -89,7 +89,7 @@ const MyConnection = ({myconnection,currentUser,actions}) => {
                  Block
                 <span className="fa fa-cut fa-lg fa-pull-right"/>
               </Button>
-            </div>
+            </div><hr />
          </div>}
          </div>}
          

@@ -21,12 +21,32 @@ const jobCategories = [
       name: 'Security'
   },
   {
-      id: 'farmer',
+      id: 'farm-work',
       name: 'Farm Work'
   },
   {
       id: 'driver',
       name: 'Driver'
+  },
+  {
+     id: 'computer',
+     name: 'Computer'
+  },
+  {
+    id: 'electrician',
+    name: 'Electrician'
+  },
+  {
+    id: 'electronics',
+    name: 'Electronics'
+  },
+  {
+    id: 'mechanic',
+    name: 'Mechanic'
+  },
+  {
+    id: 'factory',
+    name: 'Factory'
   }
 ];
 

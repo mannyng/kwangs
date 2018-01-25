@@ -61,7 +61,7 @@ if (token) {
 
 render(
   <AppContainer>
-    <Root store={store} history={history} />
+    <Root store={store} history={history} {...bootstrap}/>
   </AppContainer>,
   document.getElementById('app')
 );

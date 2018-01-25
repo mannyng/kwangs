@@ -66,8 +66,8 @@ export const SAVE_AVAILABLE_JOBS ='SAVE_AVAILABLE_JOBS';
 export const AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';
 export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';
 
-//export const ROOT_URL = 'http://fen-pi-kofian.c9users.io';
-export const ROOT_URL = 'http://moijer.ml';
+export const ROOT_URL = 'http://fen-pi-kofian.c9users.io';
+//export const ROOT_URL = 'http://moijer.ml';
 const mytoke = localStorage.getItem('token');
 export const API_HEADERS = {
      'Content-Type': 'application/json',

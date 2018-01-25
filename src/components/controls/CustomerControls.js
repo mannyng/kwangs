@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button} from 'react-elemental';
+import {Button,Text} from 'react-elemental';
 import BaseWidget from '../widgets/BaseWidget';
 import WidgetHeader from '../widgets/WidgetHeader';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/jobOfferActions';
 import {connect} from 'react-redux';
 
+
 class CustomerControls extends Component {
   constructor(props, context) {
     super(props, context);
     
     this.state = {
-      //loading: 'false',
+      loading: 0,
       errors: {}
     };
     
@@ -62,7 +63,7 @@ class CustomerControls extends Component {
       const {profile,loading} = this.props;
       return (
        <BaseWidget type="info">
-         <WidgetHeader loading={loading}>Control Center</WidgetHeader>
+         <WidgetHeader loading={loading}><Text size="epilson" bold>Control Center</Text></WidgetHeader>
          {profile.myprofile && profile.myprofile.customer_type == 'employer' &&
          <Button onClick={this.redirectToAddJob}>Create Job Offer
           <span className="fa fa-cog fa-lg fa-pull-right"/>

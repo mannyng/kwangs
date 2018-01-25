@@ -4,7 +4,7 @@ import { Tab, Tabs } from 'react-bootstrap-tabs';
 import MyProfile from './MyProfile';
 import MyJobs from './MyJobs';
 import MyConnections from './MyConnections';
-
+import MyFriends from './MyFriends';
 
 const MyEmployerTab = ({actions,customerConnect,profile,myJobs,isOpen,currentUser}) => {
     //debugger;
@@ -18,7 +18,7 @@ const MyEmployerTab = ({actions,customerConnect,profile,myJobs,isOpen,currentUse
             }
             
             <Tab label="Profile"><MyProfile profile={profile}/></Tab>
-            
+            <Tab label="Messages"><MyFriends profile={profile}/></Tab>
         </Tabs>
         
     );

@@ -42,6 +42,7 @@ class Controls extends Component {
   
   render(){
       const {loading} = this.props;
+      const fstpic = "https://s9.postimg.org/feennujj3/boota.jpg";
       return (
        <BaseWidget type="info">
          <WidgetHeader  loading={loading}>Control Center</WidgetHeader>
@@ -53,6 +54,9 @@ class Controls extends Component {
          <Button onClick={this.redirectToNewestEmployers}>Newest Employees
           <span className="fa fa-cogs fa-lg fa-pull-right"/>
          </Button>
+         <div className="imgContPrv">
+         <img src={fstpic} />
+         </div>
        </BaseWidget>
       );
   }

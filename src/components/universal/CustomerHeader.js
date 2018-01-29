@@ -61,6 +61,7 @@ class Header extends React.Component {
    <NavLink to="/signout" activeStyle={activeStyle} key={4}>Sign Out</NavLink>
    {" | "}
    <NavLink to="/home" activeStyle={activeStyle} key={5}>Home page</NavLink>
+  
    <Text className="pull-right" size="epsilon" bold color="rgb(62, 184, 240)">
    Kwangs Work Network 
    </Text>

@@ -27,7 +27,7 @@ const HomeHeader = (jobOffers) => {
                   line={1}
                   truncateText="…"
                   text={jobOffer.job.description}
-                  textTruncateChild={<a href="#">Read on</a>}
+                  textTruncateChild={<a href={'/public_job/' + index} >Read on</a>}
                  />
                </div>
                
@@ -35,7 +35,7 @@ const HomeHeader = (jobOffers) => {
                 <h5>{jobOffer.location.location}</h5>
                 <h5>{jobOffer.location.city}</h5>
                 <h3>Poster: <small>{jobOffer.customer.username}</small></h3>
-                <Link to={'/job/' + index} className="btn btn-info">VIew Job{' '}
+                <Link to={'/public_job/' + index} className="btn btn-info">VIew Job{' '}
                   <i className="fa fa-taxi" aria-hidden="true"/>
                   </Link>
                </div>

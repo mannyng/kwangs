@@ -12,6 +12,7 @@ import MyMapComponent from './homepage/google-maps';
 import ASignup from './auth/Asignup';
 
 const HomePage = (myPoint) => {
+    const fstpic = "https://s9.postimg.org/q67mp9mhb/unnamed.jpg";
   //debugger;
   return (
     
@@ -41,6 +42,9 @@ const HomePage = (myPoint) => {
       </div>
       <aside className="col-xs-5" id="front_register">
         <ASignup />
+        <div className="imgContPrv">
+         <img src={fstpic} />
+         </div>
       </aside> 
       </article>
       

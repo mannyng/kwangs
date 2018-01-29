@@ -10,6 +10,7 @@ import Main from './layouts/Main';
 
 // Since this component is simple and static, there's no parent container for it.
 const AboutPage = () => {
+  const imagePreviewUrl = "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/icbh6TKXXL6Q/v1/800x-1.jpg";
   return (
     <Page>
         <Headers>
@@ -19,12 +20,13 @@ const AboutPage = () => {
         <div>
       <h2 className="alt-header">About</h2>
       <p>
-        This is our response to the ongoing  call <a href="http://www.nassnig.org/">
-        by every hero to contribute what we can </a>.
+        Kwangala Job Network is here helping Nigerians navigate through and <a href="http://www.nassnig.org/">
+        connecting </a> people to instant job and workers across the nation.
       </p>
       <p>
         <Link to="http://www.tonyelumelufoundation.org/">Click this this link read more </Link> about Federal grant.
       </p>
+      <img src={imagePreviewUrl} />
     </div>
     <Footers>
       <Footer/>

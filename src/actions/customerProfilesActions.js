@@ -112,7 +112,7 @@ export function saveCustomerConnect(customer_id,friend_id) {
         {headers: MAPI_HEADERS }).then(customerConnect => {
             toastr.success('Your connectrequest sent successfully');
             customer_id ? dispatch(updateCustomerConnectSuccess(customerConnect)) :
-            dispatch(createCustomerConnectSuccess)(customerConnect);
+            dispatch(createCustomerConnectSuccess(customerConnect));
         }).catch(error => {
             dispatch(ajaxCallError(error));
             toastr.error('There are some error/s with the page');
@@ -259,4 +259,35 @@ export function fetchConversationBetween(sender_id,recipient_id) {
             throw(error);
         });
     };    
+}
+export function saveCampaign(pictures) {
+        const mytoke = localStorage.getItem('token');
+        const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
+    return function (dispatch) {
+        dispatch(beginAjaxCall());
+        //debugger;
+        return axios.post(`${types.ROOT_URL}/campaigns/`,
+        {
+          pictures
+        },
+        {headers: MAPI_HEADERS }).then(myCampaign => {
+            toastr.success('Your connect request sent successfully');
+            dispatch(createCampaignSuccess(myCampaign));
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with the page');
+            throw(error);
+        });
+    };
+}
+export function createCampaignSuccess(myCampaign) {
+    //debugger;
+    return { type: types.CREATE_MY_CAMPAIGN_SUCCESS, myCampaign};
+}
+export function updateCampaignSuccess(myCampaign) {
+    //debugger;
+    return { type: types.UPDATE_MY_CAMPAIGN_SUCCESS, myCampaign};
 }

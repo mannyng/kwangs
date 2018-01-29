@@ -7,6 +7,7 @@ import CustomerHomePage from '../containers/CustomerHomeContainer';
 //import ManageJobOfferPage from '../containers/ManageJobOfferPage';
 import CustomersHomePage from '../containers/CustomersHomePage';
 import ViewSecureJob from '../containers/ViewSecureJob';
+import ViewUnsecureJobPage from '../containers/ViewUnsecureJob';
 import ContactConnection from '../containers/ContactConnectionPage';
 import Profiles from '../containers/CustomerProfile';
 import CreateJob from '../containers/CreateJobPage';
@@ -21,7 +22,7 @@ import Signin from './auth/signin';
 import Signout from './auth/signout';
 import Signup from './auth/signup';
 import CustomerSignup from './auth/customerSignup';
-
+import AdminDashboard from '../containers/AdminDashboard';
 
 class App extends React.Component {
  
@@ -35,6 +36,8 @@ class App extends React.Component {
           <Route exact path="/" component={noRequireAuth(HomePage)} />
           <Route path="/home" component={requireAuth(CustomerHomePage)} />
           <Route path="/about" component={AboutPage} />
+          <Route path="/public_job/:id" component={noRequireAuth(ViewUnsecureJobPage)} />
+          <Route path="/public_job" component={noRequireAuth(ViewUnsecureJobPage)} />
           <Route path="/jobs" component={requireAuth(CustomersHomePage)} />
           <Route path="/job/:id" component={requireAuth(ViewSecureJob)} />
           <Route path="/job" component={requireAuth(ViewSecureJob)} />
@@ -44,6 +47,7 @@ class App extends React.Component {
           <Route path="/create_job" component={requireAuth(CreateJob)} />
           <Route path="/add_job_details" component={requireAuth(AddJobDetails)} />
           <Route path="/profile" component={requireAuth(Profiles)} />
+          <Route path="/admin_dashboard" component={requireAuth(AdminDashboard)} />
           <Route path="/signin" component={noRequireAuth(Signin)} />
           <Route path="/signup" component={noRequireAuth(Signup)} />
           <Route path="/customerSignup" component={CustomerSignup} />

@@ -65,7 +65,7 @@ class Controls extends Component {
 Controls.propTypes = {
     history: PropTypes.object,
     actions: PropTypes.object,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.number
 };
 
 Controls.contextTypes = {
@@ -73,7 +73,7 @@ Controls.contextTypes = {
 };
 function mapStateToProps(state) {
 return {
-   loading: state.ajaxCallsInProgress > 0
+   loading: state.ajaxCallsInProgress
   };    
 }    
 function mapDispatchToProps(dispatch) {

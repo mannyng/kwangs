@@ -14,6 +14,7 @@ import Sidebar from '../components/layouts/Sidebar';
 import CustomerControls from '../components/controls/CustomerControls';
 import MainContent from '../components//layouts/MainContent';
 import Footers from '../components/layouts/Footers';
+import SearchContainer from './SearchContainer';
 
 export class CustomersPage extends React.Component {
   constructor(props, context) {
@@ -53,6 +54,7 @@ export class CustomersPage extends React.Component {
        <Headers>
          <Header/>
          </Headers>
+         <SearchContainer />
         <Main> 
           <Sidebar>
            <CustomerControls/>

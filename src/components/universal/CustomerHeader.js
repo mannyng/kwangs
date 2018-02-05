@@ -10,6 +10,7 @@ import * as actions from '../../actions/authActions';
 import {fetchCustomerConnect} from '../../actions/customerProfilesActions';
 import ASignin from '../auth/Asignin';
 
+
 class Header extends React.Component {
  constructor(props, context) {
     super(props, context);
@@ -18,7 +19,9 @@ class Header extends React.Component {
       profile: {user_id: '', username:'', firstname:'', lastname:''},
       currentUser: { currentUser: 0},
       loading: 0,
-      customerConnect: { customer_connect:  {}, friend: {}, customer:{} }
+      customerConnect: { customer_connect:  {}, friend: {}, customer:{} },
+      searchTerm: "lagos",
+      selectedValues:[]
     };
     //this.onClickAccept = this.onClickAccept.bind(this);
   }
@@ -27,8 +30,7 @@ class Header extends React.Component {
     //debugger;
     if (this.props.currentUser) {
      this.props.dispatch(fetchCustomerConnect(this.props.currentUser));
-    this.props.dispatch(actions.fetchCustomerProfiles(this.props.currentUser));
-    
+     this.props.dispatch(actions.fetchCustomerProfiles(this.props.currentUser));
     }
   }
   shouldComponentUpdate(nextProps) {
@@ -40,9 +42,11 @@ class Header extends React.Component {
         const differentProfile = this.props.profile.status !== nextProps.profile.status;
         return differentUser || differenConnect || differentProfile || differenSecureJob;
     }
- 
+
+  
  render() {
-  const profile = this.props.profile;
+  //const profile = this.props.profile;
+  const {profile} = this.props;
   //debugger;
  const activeStyle = { color: 'blue' };
  //const mytoken = localStorage.getItem('token');
@@ -76,34 +80,31 @@ class Header extends React.Component {
  }else{
   return (
   <div>
-    <div className="row">
+  
+   <div className="row">
     <div className="col-md-6 col-xs-6">
-   <NavLink to="/" activeStyle={activeStyle} key={1}>Home</NavLink>
-    {" | "}
-   <NavLink to="/about" activeStyle={activeStyle} key={3}>About</NavLink>
-    {" | "}
-   <NavLink to="/signin" activeStyle={activeStyle} key={4}>Sign In</NavLink>
-   {" | "}
-   <NavLink to="/signup" activeStyle={activeStyle} key={5}>Sign Up</NavLink>
-   </div>
-   
+     <NavLink to="/" activeStyle={activeStyle} key={1}>Home</NavLink>
+      {" | "}
+     <NavLink to="/about" activeStyle={activeStyle} key={3}>About</NavLink>
+      {" | "}
+     <NavLink to="/signin" activeStyle={activeStyle} key={4}>Sign In</NavLink>
+      {" | "}
+     <NavLink to="/signup" activeStyle={activeStyle} key={5}>Sign Up</NavLink>
+    </div>
     <div className="col-md-6 col-xs-6">
        <small> <ASignin /></small>
     </div>
-    
-  </div>  
-   
-   <Text className="pull-right" size="epsilon" bold color="rgb(62, 184, 240)">
-     Kwangs Work Network 
-   </Text>
-   
-   <Text bold color="rgb(62, 184, 240)">
+   </div>  
+   <div>
+     <Text className="pull-right" size="epsilon" bold color="rgb(62, 184, 240)">
+      Kwangs Work Network 
+     </Text>
+     <Text bold color="rgb(62, 184, 240)">
       Your one step to find daily pay job and workers
-   </Text>
- 
-     
-        
-          <hr />
+     </Text>
+    <hr />
+  </div>
+
   </div>
  );
  }
@@ -122,6 +123,7 @@ Header.propTypes = {
   myJobs: PropTypes.array.isRequired
 };
 function mapStateToProps(state) {
+
   //debugger;
   return {
    secureJobs: state.secureJobs,

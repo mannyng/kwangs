@@ -16,7 +16,7 @@ import Sidebar from '../components/layouts/Sidebar';
 import HomeHeader from '../components/homepage/HomeHeader';
 import HomePage from '../components/homepage/CustomerHomePage';
 import CustomerControls from '../components/controls/CustomerControls';
-//import Header from './universal/CustomerHeader';
+import SearchContainer from './SearchContainer';
 
 export class CustomerHomeContainer extends React.Component {
   constructor(props, context) {
@@ -45,6 +45,7 @@ shouldComponentUpdate(nextProps) {
       <Page>
        <Headers>
         <Header />
+        <SearchContainer />
        </Headers> 
         
       <Main>

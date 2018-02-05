@@ -16,6 +16,7 @@ import Sidebar from '../components/layouts/Sidebar';
 import HomeHeader from '../components/homepage/HomeHeader';
 import HomePage from '../components/HomePage';
 import Controls from '../components/controls/Controls';
+import SearchContainer from './SearchContainer';
 //import Header from './universal/CustomerHeader';
 
 export class HomeContainer extends React.Component {
@@ -38,6 +39,7 @@ export class HomeContainer extends React.Component {
       <Page>
        <Headers>
         <Header />
+        <SearchContainer />
        </Headers> 
         
       <Main>

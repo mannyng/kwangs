@@ -1,8 +1,17 @@
 import { createSelector } from 'reselect';
 
 const getVisibilityFilter = (state) => state.visibilityFilter;
+const getVisibilityStateFilter = (state) => state.visibilityStateFilter;
+const getVisibilityCategoryFilter = (state) => state.visibilityCategoryFilter;
+
 const getSecureJobs = (state) => state.secureJobs;
 const getSecureRequests = (state) => state.secureRequests;
+
+const getSearchJobs = (state) => state.searchJobs;
+const getSearchRequests = (state) => state.searchRequests;
+
+const getStateFilter = (state) => state.searchTermFilter.state;
+const getJobCategoryFilter = (state) => state.searchTermFilter.job_category;
 const myDate = new Date();
 const myfilter = myDate.setDate(myDate.getDate() - 21);
 
@@ -31,4 +40,64 @@ export const getVisibleSecureRequests = createSelector(
       
     }
   }
+);
+
+export const getJobByState = createSelector(
+  [ getVisibilityStateFilter, getSearchJobs, getStateFilter],
+  (visibilityStateFilter, searchJobs, stateFilter) => {
+    //debugger;
+    switch (visibilityStateFilter) {
+      case 'SHOW_ALL':
+        return searchJobs;
+      case 'job_by_state':
+        return searchJobs.filter(t => t.location.state == stateFilter);
+      default:
+       return searchJobs;
+    }
+  }
+);
+
+export const getVisibleJobOffers = createSelector(
+  [ getVisibilityCategoryFilter, getJobByState, getJobCategoryFilter ],
+  (visibilityCategoryFilter,visibleJobs, job_category) => {
+   //debugger;
+    switch (visibilityCategoryFilter) {
+      case 'SHOW_ALL':
+        return visibleJobs;
+      case 'job_by_category':
+       return  visibleJobs.filter(job => job.insight.job_category == job_category);
+      default:
+       return visibleJobs;
+    }
+  }  
+);
+
+export const getRequestByState = createSelector(
+  [ getVisibilityStateFilter, getSearchRequests, getStateFilter],
+  (visibilityStateFilter, searchRequests, stateFilter) => {
+    //debugger;
+    switch (visibilityStateFilter) {
+      case 'SHOW_ALL':
+        return searchRequests;
+      case 'request_by_state':
+        return searchRequests.filter(t => t.customer.state == stateFilter);
+      default:
+       return searchRequests;
+    }
+  }
+);
+
+export const getVisibleJobRequests = createSelector(
+  [ getVisibilityCategoryFilter, getRequestByState, getJobCategoryFilter ],
+  (visibilityCategoryFilter,visibleRequests, job_category) => {
+   //debugger;
+    switch (visibilityCategoryFilter) {
+      case 'SHOW_ALL':
+        return visibleRequests;
+      case 'request_by_category':
+       return  visibleRequests.filter(job => job.job_request.job_category == job_category);
+      default:
+       return visibleRequests;
+    }
+  }  
 );

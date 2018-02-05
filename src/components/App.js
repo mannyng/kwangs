@@ -23,6 +23,7 @@ import Signout from './auth/signout';
 import Signup from './auth/signup';
 import CustomerSignup from './auth/customerSignup';
 import AdminDashboard from '../containers/AdminDashboard';
+import SearchResultContainer from '../containers/SearchResultContainer';
 
 class App extends React.Component {
  
@@ -36,6 +37,7 @@ class App extends React.Component {
           <Route exact path="/" component={noRequireAuth(HomePage)} />
           <Route path="/home" component={requireAuth(CustomerHomePage)} />
           <Route path="/about" component={AboutPage} />
+          <Route path="/search_results" component={SearchResultContainer} />
           <Route path="/public_job/:id" component={noRequireAuth(ViewUnsecureJobPage)} />
           <Route path="/public_job" component={noRequireAuth(ViewUnsecureJobPage)} />
           <Route path="/jobs" component={requireAuth(CustomersHomePage)} />

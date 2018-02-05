@@ -1,12 +1,7 @@
 import React,{Component} from 'react';
 //import PropTypes from 'prop-types';
-//import { Link, IndexLink } from 'react-router';
+import { Text } from 'react-elemental';
 import { NavLink } from 'react-router-dom';
-//import localStorage from 'localStorage';
-//import LoadingDots from './LoadingDots';
-//{loading && <LoadingDots interval={100} dots={20}/>}
-//import { connect } from 'react-redux';
-//import * as actions from '../../actions/customerProfilesActions';
 
 class GeneralFooter extends Component {
  
@@ -29,11 +24,16 @@ class GeneralFooter extends Component {
    <NavLink to="/about" activeStyle={activeStyle} key={2}>About the App</NavLink>
    </div>
    <hr/>
-   <h3>Kwangs Work Network </h3>
-          <p className="lead">
-            Your one step to find daily pay job and workers
-          </p>
+   <div>
+     <Text className="pull-right" size="epsilon" bold color="rgb(62, 184, 240)">
+       Kwangs Work Network 
+     </Text>   
+     <Text bold color="rgb(62, 184, 240)">
+       Your one step to find daily pay job and workers
+     </Text>
           <hr />
+    </div>
+    
   </div>
  );
 }

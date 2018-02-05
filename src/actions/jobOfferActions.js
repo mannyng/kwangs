@@ -19,6 +19,40 @@ export const setVisibilityFilter = filter => {
   };
 };
 
+export function setSearchTermFilter(search_term) {
+    return {
+        type: types.SET_SEARCH_TERM_FILTER,
+        search_term
+    };
+}
+
+export const setStateVisibilityFilter = filter => {
+  return {
+    type: types.SET_STATE_VISIBILITY_FILTER,
+    filter
+  };
+};
+
+export const setCategoryVisibilityFilter = filter => {
+  return {
+    type: types.SET_CATEGORY_VISIBILITY_FILTER,
+    filter
+  };
+};
+export function searchAllJobsSuccess(allJobs) {
+    //debugger;
+    return { 
+        type: types.SEARCH_ALL_JOBS_SUCCESS, 
+        allJobs
+    };
+}
+export function searchAllRequestsSuccess(allRequests) {
+    //debugger;
+    return { 
+        type: types.SEARCH_ALL_REQUESTS_SUCCESS, 
+        allRequests
+    };
+}
 export function showJobOfferSuccess(job_offer) {
     //debugger;
     return { type: types.SHOW_JOB_OFFER_SUCCESS, job_offer};
@@ -47,6 +81,32 @@ export function createLocationSuccess(location) {
 export function updateLocationSuccess(location) {
     //debugger;
     return { type: types.UPDATE_JOB_LOCATION_SUCCESS, location};
+}
+
+export function searchAllJobs(history) {
+    return function (dispatch) {
+        //debugger;
+        return axios.get(`${types.ROOT_URL}/employer_posts/`).then(allJobs => {
+            //debugger;
+          dispatch(searchAllJobsSuccess(allJobs)); 
+          history.push('/search_results');
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+        });   
+    };
+}
+
+export function searchAllRequests(history) {
+    return function (dispatch) {
+        //debugger;
+        return axios.get(`${types.ROOT_URL}/employee_posts/public_requests`).then(allRequests => {
+            //debugger;
+          dispatch(searchAllRequestsSuccess(allRequests)); 
+          history.push('/search_results');
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+        });   
+    };
 }
 
 export function showJobOffer(jobId) {

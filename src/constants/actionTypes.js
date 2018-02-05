@@ -58,6 +58,11 @@ export const MESSAGE_MODAL_OPEN = 'MESSAGE_MODAL_OPEN';
 export const MESSAGE_MODAL_CLOSE = 'MESSAGE_MODAL_CLOSE';
 
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
+export const SET_SEARCH_TERM_FILTER = 'SET_SEARCH_TERM_FILTER';
+export const SET_STATE_VISIBILITY_FILTER = 'SET_STATE_VISIBILITY_FILTER';
+export const SET_CATEGORY_VISIBILITY_FILTER = 'SET_CATEGORY_VISIBILITY_FILTER';
+export const SEARCH_ALL_JOBS_SUCCESS = 'SEARCH_ALL_JOBS_SUCCESS';
+export const SEARCH_ALL_REQUESTS_SUCCESS = 'SEARCH_ALL_REQUESTS_SUCCESS';
 export const CALCULATE_JOB_AVAILABILITY = 'CALCULATE_JOB_AVAILABILITY';
 export const SAVE_AVAILABLE_JOBS ='SAVE_AVAILABLE_JOBS';
 
@@ -67,8 +72,8 @@ export const UPDATE_MY_CAMPAIGN_SUCCESS = 'UPDATE_MY_CAMPAIGN_SUCCESS';
 export const AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';
 export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';
 
-//export const ROOT_URL = 'http://fen-pi-kofian.c9users.io';
-export const ROOT_URL = 'http://kwanga.ml:8080';
+export const ROOT_URL = 'http://fen-pi-kofian.c9users.io';
+//export const ROOT_URL = 'http://kwanga.ml:8080';
 const mytoke = localStorage.getItem('token');
 export const API_HEADERS = {
      'Content-Type': 'application/json',

@@ -22,7 +22,7 @@ class WidgeHeader extends Component {
   }
 } 
 WidgeHeader.propTypes = {
-    children: PropTypes.object,
+    children: PropTypes.string,
     loading: PropTypes.number
 };
 

@@ -1,44 +1,50 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import TextTruncate from 'react-text-truncate';
+import {Button} from 'react-elemental';
+//import TextTruncate from 'react-text-truncate';
 
 const JobsSearchPage = (jobOffers) => {
     //debugger;
   return (
-   <div className="jumbotron" id="fronte">
+   
        
        <article className="row">
-       {jobOffers.jobOffers && jobOffers.jobOffers.map((jobOffer, index) => 
-        (<section key={jobOffer.job.id} className="col-md-4 col-xs-12">
-         <div key={"1"} className="panel panel-default">
-          <div key={"1"} className="panel-body">
-           
-              <div className="col-md-8 col-xs-8">{jobOffer.job.title}</div>
-               
-               <div>
-                <p><small>{jobOffer.insight.job_category}</small></p>
-                <TextTruncate
-                  line={1}
-                  truncateText="…"
-                  text={jobOffer.job.description}
-                  textTruncateChild={<a href={'/public_job/' + index} >Read on</a>}
-                 />
-               </div>
-               
-               <div>
-                <h5>{jobOffer.location.location}</h5>
-                <h5>{jobOffer.location.city}</h5>
-                <h3>Poster: <small>{jobOffer.customer.username}</small></h3>
-                <Link to={'/public_job/' + index} className="btn btn-info">VIew Job{' '}
-                  <i className="fa fa-taxi" aria-hidden="true"/>
-                  </Link>
-               </div>
+       {jobOffers.jobOffers && jobOffers.jobOffers.map((secureJob) => 
+        (<section key={secureJob.job.id} className="col-xs-12">
+         <div>
+         <h1>Job Details</h1>
+         <div className="row">
+          <div className="col-xs-8">
+          <p>Job Category: {secureJob.insight.job_category} </p>
+          <p>Employee Category: {secureJob.insight.employee_category}</p>
+          <p>Available Date: {secureJob.insight.available_date}</p>
+          <p>Payment Type: {secureJob.insight.pay_type}</p>
+          <p>Employee Type: {secureJob.insight.employee_type}</p>
+          <p>Job Title: {secureJob.insight.employee_title}</p>
+          <p>Job Duration: {secureJob.insight.job_duration}</p>
+          <p>Employee Experience: {secureJob.insight.employee_experience}</p>
+          <p>Job Description: {secureJob.job.description}</p>
+          {secureJob.location &&
+          <div>
+          <p>Job Location: {secureJob.location.location}</p>
+          <p>Job City: {secureJob.location.city}, {secureJob.location.state}</p>
           </div>
-         </div>
+          }
+          <p>Job Poster: {secureJob.customer.username}</p>
+          
+            <Button className="pull-right">
+            <Link to={'/connect/' + secureJob.customer.username}>
+             <span className="fa fa-check-square-o fa-lg fa-pull-right"/>{' '}Contact
+             </Link>
+            </Button>
+          </div>
+          </div>
+        
+      </div>
         </section>)
         )}
       </article>
-     </div>
+     
     
    );
 };

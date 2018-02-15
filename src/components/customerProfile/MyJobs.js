@@ -84,6 +84,7 @@ const MyJobs =  ({myJobs}) => {
                 
               </section>
               <hr />
+              {myJob.location &&
            <section className="panel panel-default">
              <header className="panel-heading">
                <h2 className="h4">Job Location</h2>
@@ -109,7 +110,7 @@ const MyJobs =  ({myJobs}) => {
                 </div>  
                 
               </section>
-           
+              }
          </article>)
          )}
      </div>  

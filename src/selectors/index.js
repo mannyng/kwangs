@@ -8,7 +8,6 @@ const getSecureJobs = (state) => state.secureJobs;
 const getSecureRequests = (state) => state.secureRequests;
 
 const getSearchJobs = (state) => state.searchJobs;
-const getSearchOffers = (state) => state.jobOffers;
 const getSearchRequests = (state) => state.searchRequests;
 
 const getStateFilter = (state) => state.searchTermFilter.state;

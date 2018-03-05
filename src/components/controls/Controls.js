@@ -31,6 +31,7 @@ class Controls extends Component {
   }
   redirectToLatestJob() {
     debugger;
+    this.props.actions.searchAllJobs();
     this.props.actions.setVisibilityFilter('latest_jobs');
     this.context.router.history.push('/search_results');
     

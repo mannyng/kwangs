@@ -45,16 +45,16 @@ export const getVisibleSecureRequests = createSelector(
 );
 
 export const getVisibleUnSecureJobs = createSelector(
-  [ getVisibilityFilter, getSearchOffers ],
-  (visibilityFilter, jobOffers) => {
+  [ getVisibilityFilter, getSearchJobs ],
+  (visibilityFilter, searchJobs) => {
     //debugger;
     switch (visibilityFilter) {
       case 'SHOW_ALL':
-        return jobOffers;
+        return searchJobs;
       case 'latest_jobs':
-        return jobOffers.filter(t => new Date(t.job.created_at) > myfilter);
+        return searchJobs.filter(t => new Date(t.job.created_at) > myfilter);
       case 'active_employers':
-        return jobOffers.filter(t => new Date(t.customer.created_at) > myfilter);
+        return searchJobs.filter(t => new Date(t.customer.created_at) > myfilter);
     }
   }
 );

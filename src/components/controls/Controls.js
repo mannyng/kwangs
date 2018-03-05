@@ -20,24 +20,30 @@ class Controls extends Component {
     this.redirectToActiveEmployer = this.redirectToActiveEmployer.bind(this);
     this.redirectToLatestJob = this.redirectToLatestJob.bind(this);
     this.redirectToNewestEmployers = this.redirectToNewestEmployers.bind(this);
+    this.redirectToNewestEmployees = this.redirectToNewestEmployees.bind(this);
   }
   
   
   redirectToActiveEmployer() {
       //debugger;
     this.props.actions.setVisibilityFilter('active_employers');
-    this.context.router.history.push('/search_jobs');
+    this.context.router.history.push('/search_results');
   }
   redirectToLatestJob() {
-      //debugger;
+    debugger;
     this.props.actions.setVisibilityFilter('latest_jobs');
-    this.context.router.history.push('/search_jobs');
+    this.context.router.history.push('/search_results');
     
   }
   redirectToNewestEmployers() {
      // debugger;
     this.props.actions.setVisibilityFilter('newest_employers');
-    this.context.router.history.push('/search_jobs');
+    this.context.router.history.push('/search_results');
+  }
+  redirectToNewestEmployees() {
+    debugger;
+    this.props.actions.setVisibilityFilter('newest_employees');
+    this.context.router.history.push('/search_results');
   }
   
   render(){
@@ -51,7 +57,7 @@ class Controls extends Component {
           <span className="fa fa-cog fa-lg fa-pull-right"/>
          </Button>
          <hr />
-         <Button onClick={this.redirectToNewestEmployers}>Newest Employees
+         <Button onClick={this.redirectToNewestEmployees}>Newest Employees
           <span className="fa fa-cogs fa-lg fa-pull-right"/>
          </Button>
          <div className="imgContPrv">

@@ -14,7 +14,8 @@ import Sidebar from '../components/layouts/Sidebar';
 import Controls from '../components/controls/Controls';
 import Footers from '../components/layouts/Footers';
 import Footer from '../components/universal/SecureFooter';
-import { getVisibleJobOffers,getVisibleJobRequests } from '../selectors';//
+import { getVisibleJobOffers,getVisibleJobRequests,
+getVisibleUnsecureRequests,getVisibleUnSecureJobs } from '../selectors'; //Selector functions
 
 export class SearchResultContainer extends Component {
   constructor(props, context) {
@@ -33,37 +34,49 @@ export class SearchResultContainer extends Component {
   
   shouldComponentUpdate(nextProps) {
      //debugger;
-        const differentvisibleJobOffers = this.props.visibleJobOffers !== nextProps.visibleJobOffers;
-        const differentvisibleJobRequests = this.props.visibleJobRequests !== nextProps.visibleJobRequests;
-        return differentvisibleJobOffers || differentvisibleJobRequests;
+    const differentvisibleJobOffers = this.props.visibleJobOffers !== nextProps.visibleJobOffers;
+    const differentvisibleJobRequests = this.props.visibleJobRequests !== nextProps.visibleJobRequests;
+    const differentnewestJobRequests = this.props.newestJobRequests !== nextProps.newestJobRequests;
+    const differentlatestJobOffers = this.props.latestJobOffers !== nextProps.latestJobOffers;
+    return differentvisibleJobOffers || differentvisibleJobRequests || differentnewestJobRequests || differentlatestJobOffers;
     }
   
 
   render() {
-    const {visibleJobOffers,visibleJobRequests} = this.props;
-    //debugger;
+    const {visibilityFilter, visibleJobOffers,visibleJobRequests, newestJobRequests, latestJobOffers} = this.props;
+    debugger;
     return (
       <Page>
        <Headers>
          <Header/>
         </Headers>
         <Main> 
-        {this.props.visibilityFilter == 'search_jobs' &&
+        <Sidebar>
+          <Controls />
+        </Sidebar>
+        {visibilityFilter == 'search_jobs' &&
         <div className="col-xs-8">
           <JobsSearchPage jobOffers={visibleJobOffers}/>
         </div>
         }
-        {this.props.visibilityFilter == 'search_requests' &&
+        {visibilityFilter == 'latest_jobs' &&
+        <div className="col-xs-8">
+          <JobsSearchPage jobOffers={latestJobOffers}/>
+        </div>
+        }
+        {visibilityFilter == 'search_requests' &&
         <div className="col-xs-8">
           <RequestsSearchPage secureJobs={visibleJobRequests}/>
         </div>
         }
-          <Sidebar>
-            <Controls />
-          </Sidebar>
-          <Footers>
-           <Footer/>
-          </Footers>
+        {visibilityFilter == 'newest_employees' &&
+        <div className="col-xs-8">
+          <RequestsSearchPage secureJobs={newestJobRequests}/>
+        </div>
+        }
+        <Footers>
+          <Footer/>
+        </Footers>
         </Main> 
        </Page>
     );
@@ -74,6 +87,8 @@ SearchResultContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   visibleJobOffers: PropTypes.array,
   visibleJobRequests: PropTypes.array,
+  latestJobOffers: PropTypes.array,
+  newestJobRequests: PropTypes.array,
   loading: PropTypes.number.isRequired,
   dispatch: PropTypes.func,
   searchTerm: PropTypes.object.isRequired,
@@ -89,11 +104,13 @@ function mapStateToProps(state) {
 
   return {
    visibleJobOffers: getVisibleJobOffers(state),
+   latestJobOffers: getVisibleUnSecureJobs(state),
    profile: state.profile,
    loading: state.ajaxCallsInProgress,
    searchTerm: state.searchTermFilter,
    visibilityFilter: state.visibilityFilter,
-   visibleJobRequests: getVisibleJobRequests(state)
+   visibleJobRequests: getVisibleJobRequests(state),
+   newestJobRequests: getVisibleUnsecureRequests(state)
   };
 }
 

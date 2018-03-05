@@ -7,6 +7,7 @@ import localStorage from 'localStorage';
 import configureStore, { history } from './store/configureStore';
 import Root from './components/Root';
 import {loadJobOfferings,loadMyPoint} from './actions/jobOfferingsActions';
+import {searchAllRequests} from './actions/jobOfferActions';
 import {loadSecuredJobOfferings} from './actions/loggedInUserSearchActions';
 import {fetchCustomerConnect,fetchMyFriends} from './actions/customerProfilesActions';
 import { AUTH_USER, CURRENT_USER } from './constants/actionTypes';
@@ -38,6 +39,8 @@ bootstrap({
 });
 //debugger;
 store.dispatch(loadJobOfferings());
+store.dispatch(searchAllRequests());
+debugger;
 store.dispatch(loadMyPoint());
 
 const token = localStorage.getItem('token');

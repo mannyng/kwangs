@@ -8,12 +8,13 @@ const getSecureJobs = (state) => state.secureJobs;
 const getSecureRequests = (state) => state.secureRequests;
 
 const getSearchJobs = (state) => state.searchJobs;
+const getSearchOffers = (state) => state.jobOffers;
 const getSearchRequests = (state) => state.searchRequests;
 
 const getStateFilter = (state) => state.searchTermFilter.state;
 const getJobCategoryFilter = (state) => state.searchTermFilter.job_category;
 const myDate = new Date();
-const myfilter = myDate.setDate(myDate.getDate() - 21);
+const myfilter = myDate.setDate(myDate.getDate() - 201);
 
 export const getVisibleSecureJobs = createSelector(
   [ getVisibilityFilter, getSecureJobs ],
@@ -32,11 +33,41 @@ export const getVisibleSecureJobs = createSelector(
 export const getVisibleSecureRequests = createSelector(
   [ getVisibilityFilter, getSecureRequests ],
   (visibilityFilter, secureRequests) => {
+    debugger;
     switch (visibilityFilter) {
       case 'SHOW_ALL':
         return secureRequests;
-      case 'newest_employers':
+      case 'newest_employees':
         return secureRequests.filter(t => new Date(t.job_request.created_at) > myfilter);
+      
+    }
+  }
+);
+
+export const getVisibleUnSecureJobs = createSelector(
+  [ getVisibilityFilter, getSearchOffers ],
+  (visibilityFilter, jobOffers) => {
+    //debugger;
+    switch (visibilityFilter) {
+      case 'SHOW_ALL':
+        return jobOffers;
+      case 'latest_jobs':
+        return jobOffers.filter(t => new Date(t.job.created_at) > myfilter);
+      case 'active_employers':
+        return jobOffers.filter(t => new Date(t.customer.created_at) > myfilter);
+    }
+  }
+);
+
+export const getVisibleUnsecureRequests = createSelector(
+  [ getVisibilityFilter, getSearchRequests ],
+  (visibilityFilter, searchRequests) => {
+    debugger;
+    switch (visibilityFilter) {
+      case 'SHOW_ALL':
+        return searchRequests;
+      case 'newest_employees':
+        return searchRequests.filter(t => new Date(t.job_request.created_at) > myfilter);
       
     }
   }
@@ -75,7 +106,7 @@ export const getVisibleJobOffers = createSelector(
 export const getRequestByState = createSelector(
   [ getVisibilityStateFilter, getSearchRequests, getStateFilter],
   (visibilityStateFilter, searchRequests, stateFilter) => {
-    debugger;
+    //debugger;
     switch (visibilityStateFilter) {
       case 'SHOW_ALL':
         return searchRequests;

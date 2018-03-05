@@ -23,7 +23,7 @@ class CustomerControls extends Component {
     this.redirectToAddJob = this.redirectToAddJob.bind(this);
     this.redirectToActiveEmployer = this.redirectToActiveEmployer.bind(this);
     this.redirectToLatestJob = this.redirectToLatestJob.bind(this);
-    this.redirectToNewestEmployers = this.redirectToNewestEmployers.bind(this);
+    this.redirectToNewestEmployees = this.redirectToNewestEmployees.bind(this);
   }
   
   shouldComponentUpdate(nextProps) {
@@ -52,9 +52,9 @@ class CustomerControls extends Component {
     this.context.router.history.push('/search_jobs');
     
   }
-  redirectToNewestEmployers() {
+  redirectToNewestEmployees() {
      // debugger;
-    this.props.actions.setVisibilityFilter('newest_employers');
+    this.props.actions.setVisibilityFilter('newest_employees');
     this.context.router.history.push('/search_jobs');
   }
   
@@ -80,7 +80,7 @@ class CustomerControls extends Component {
           <span className="fa fa-cog fa-lg fa-pull-right"/>
          </Button>
          <hr />
-         <Button onClick={this.redirectToNewestEmployers}>Newest Employees
+         <Button onClick={this.redirectToNewestEmployees}>Newest Employees
           <span className="fa fa-cogs fa-lg fa-pull-right"/>
          </Button>
        </BaseWidget>

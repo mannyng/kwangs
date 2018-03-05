@@ -5,7 +5,7 @@ import {Button} from 'react-elemental';
 //import { Field, reduxForm } from 'redux-form';
 
 const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onChange,myFriend}) => {
-    //debugger;
+    debugger;
     const currentcustomer = secureJob.customer.id == profile.myprofile.id;
   return(
       <div>
@@ -73,7 +73,7 @@ const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onCh
               value={customerConnect.msg} 
               error={errors.msg}/>
               </form>}
-         { !currentcustomer && myFriend && myFriend.id !== secureJob.customer.id && <Button className="pull-right" onClick={onSave}>
+         { !currentcustomer && !myFriend && <Button className="pull-right" onClick={onSave}>
           <span className="fa fa-check-square-o fa-lg fa-pull-right"/><b>Connect</b>
          </Button>}
          

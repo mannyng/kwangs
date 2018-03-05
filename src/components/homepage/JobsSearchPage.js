@@ -4,7 +4,7 @@ import {Button} from 'react-elemental';
 //import TextTruncate from 'react-text-truncate';
 
 const JobsSearchPage = (jobOffers) => {
-    //debugger;
+  //debugger;
   return (
    
        

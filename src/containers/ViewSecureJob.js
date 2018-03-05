@@ -72,7 +72,7 @@ export class ViewJobOfferPage extends React.Component {
 
   render() {
     const {profile, loading, customerConnect, secureJob,myFriend} = this.props;
-    //debugger;
+    debugger;
     return (
       <Page>
        <Headers>
@@ -142,14 +142,14 @@ function mapStateToProps(state, ownProps) {
                    location:{location: '', city: '', state: ''},
                    customer:{username: '', firstname: '',lastname: ''}
   };
-  let myFriend = {username:'',firstname:''};
+  let myFriend = {id: '', username:'',firstname:'',lastname: ''};
   
   if (secureJobId && state.secureJobs.length > 0 ) {
     //debugger;
     secureJob = getSecureJobById(state.secureJobs, secureJobId);
   }
   if (secureJob && state.myFriends.length > 0){
-    //debugger;
+    debugger;
     myFriend = getMyFriendById(state.myFriends, secureJob.customer.id);
   }
   return {

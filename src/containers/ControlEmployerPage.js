@@ -94,7 +94,7 @@ export class ControlEmployerPage extends React.Component {
           <LatestCustomerPage secureJobs={secureJob}/>
         </div>
         }
-        {this.props.visibilityFilter == 'newest_employers' &&
+        {this.props.visibilityFilter == 'newest_employees' &&
         <div className="col-xs-8">
           <LatestEmployeePage secureJobs={newest_employees}/>
         </div>
@@ -128,13 +128,13 @@ ControlEmployerPage.contextTypes = {
 
 function mapStateToProps(state) {
   //debugger;
-
   return {
    secureJob: getVisibleSecureJobs(state),
    profile: state.profile,
    loading: state.ajaxCallsInProgress,
    visibilityFilter: state.visibilityFilter,
    newest_employees: getVisibleSecureRequests(state)
+   //newest_employees: getVisibleUnsecureRequests(state)
   };
 }
 

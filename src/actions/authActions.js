@@ -34,6 +34,7 @@ export function signinUser({ email, password }, history ) {
         dispatch(fetchCustomerConnect(getState().currentUser.currentUser));
         dispatch(showMyJobs(getState().currentUser.currentUser));
         dispatch(loadSecuredJobOfferings(MAPI_HEADERS));
+        dispatch(loadSecuredJobRequests(MAPI_HEADERS));
         //console.log(getState().currentUser.currentUser);
         history.push('/jobs');
       })
@@ -150,6 +151,26 @@ export function loadSecuredJobOfferings(MAPI_HEADERS) {
             dispatch(loadSecuredJobOffersSuccess(secureJobs));
         }).catch(error => {
             dispatch(ajaxCallError(error));
+            throw(error);
+        });
+    };
+}
+
+export function loadSecuredJobRequestSuccess(jobRequests) {
+    //debugger;
+    return { type: types.LOAD_JOB_REQUEST_SUCCESS, jobRequests};
+}
+export function loadSecuredJobRequests(MAPI_HEADERS) {
+    return function(dispatch) {
+        dispatch(beginAjaxCall());
+        return axios.get(`${types.ROOT_URL}/employee_posts/`,
+        {headers: MAPI_HEADERS })
+        .then(jobRequests => {
+            //debugger;
+            dispatch(loadSecuredJobRequestSuccess(jobRequests.data));
+        }).catch(error => {
+            dispatch(ajaxCallError());
+            toastr.error('There are some error/s with the page');
             throw(error);
         });
     };

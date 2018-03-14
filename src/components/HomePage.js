@@ -12,13 +12,13 @@ import MyMapComponent from './homepage/google-maps';
 import ASignup from './auth/Asignup';
 
 const HomePage = (myPoint) => {
-    const fstpic = "https://s9.postimg.org/q67mp9mhb/unnamed.jpg";
-  //debugger;
+    //const fstpic = "https://s9.postimg.org/q67mp9mhb/unnamed.jpg";
+  
   return (
     
      
      <article>
-      <div className="col-xs-7" id="front_map">
+      <div className="col-xs-9" id="front_map">
        {myPoint.myPoint.country_name !== "Nigeria" &&
        <div>
        <h4>You are not in Nigeria</h4>
@@ -28,10 +28,11 @@ const HomePage = (myPoint) => {
       {myPoint.myPoint.country_name == "Nigeria" &&
       <h5>Unskilled Jobs near {' '}{myPoint.myPoint.region_name}{' '} </h5>
       }
-       {myPoint.myPoint.latitude && 
+       {myPoint.myPoint.latitude && myPoint.jobOffers && 
           <MyMapComponent
            lat={myPoint.myPoint.latitude}
            lng={myPoint.myPoint.longitude}
+           markers={myPoint.jobOffers}
            isMarkerShown
   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpBsAOEHp25wXfjHnX80E3YfkZBkhNsJU&libraries=geometry,drawing,places"
   loadingElement={<div style={{ height: `100%` }} />}
@@ -40,11 +41,9 @@ const HomePage = (myPoint) => {
           />
        }
       </div>
-      <aside className="col-xs-5" id="front_register">
+      <aside className="col-xs-3" id="front_register">
         <ASignup />
-        <div className="imgContPrv">
-         <img src={fstpic} />
-         </div>
+        
       </aside> 
       </article>
       
@@ -55,7 +54,8 @@ const HomePage = (myPoint) => {
 };
 HomePage.propTypes = {
   lat: PropTypes.number,
-  lng: PropTypes.number
+  lng: PropTypes.number,
+  myPoint: PropTypes.object
 };
 
 export default HomePage;

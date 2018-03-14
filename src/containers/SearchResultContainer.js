@@ -44,7 +44,7 @@ export class SearchResultContainer extends Component {
 
   render() {
     const {visibilityFilter, visibleJobOffers,visibleJobRequests, newestJobRequests, latestJobOffers} = this.props;
-    debugger;
+    //debugger;
     return (
       <Page>
        <Headers>

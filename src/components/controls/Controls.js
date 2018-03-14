@@ -30,7 +30,7 @@ class Controls extends Component {
     this.context.router.history.push('/search_results');
   }
   redirectToLatestJob() {
-    debugger;
+    //debugger;
     this.props.actions.searchAllJobs();
     this.props.actions.setVisibilityFilter('latest_jobs');
     this.context.router.history.push('/search_results');
@@ -42,14 +42,14 @@ class Controls extends Component {
     this.context.router.history.push('/search_results');
   }
   redirectToNewestEmployees() {
-    debugger;
+    //debugger;
     this.props.actions.setVisibilityFilter('newest_employees');
     this.context.router.history.push('/search_results');
   }
   
   render(){
       const {loading} = this.props;
-      const fstpic = "https://s9.postimg.org/feennujj3/boota.jpg";
+      //const fstpic = "https://s9.postimg.org/feennujj3/boota.jpg";
       return (
        <BaseWidget type="info">
          <WidgetHeader  loading={loading}>Control Center</WidgetHeader>
@@ -61,9 +61,7 @@ class Controls extends Component {
          <Button onClick={this.redirectToNewestEmployees}>Newest Employees
           <span className="fa fa-cogs fa-lg fa-pull-right"/>
          </Button>
-         <div className="imgContPrv">
-         <img src={fstpic} />
-         </div>
+         
        </BaseWidget>
       );
   }

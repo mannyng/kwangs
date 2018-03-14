@@ -32,7 +32,7 @@ export const getVisibleSecureJobs = createSelector(
 export const getVisibleSecureRequests = createSelector(
   [ getVisibilityFilter, getSecureRequests ],
   (visibilityFilter, secureRequests) => {
-    debugger;
+    //debugger;
     switch (visibilityFilter) {
       case 'SHOW_ALL':
         return secureRequests;
@@ -61,7 +61,7 @@ export const getVisibleUnSecureJobs = createSelector(
 export const getVisibleUnsecureRequests = createSelector(
   [ getVisibilityFilter, getSearchRequests ],
   (visibilityFilter, searchRequests) => {
-    debugger;
+    //debugger;
     switch (visibilityFilter) {
       case 'SHOW_ALL':
         return searchRequests;
@@ -75,7 +75,7 @@ export const getVisibleUnsecureRequests = createSelector(
 export const getJobByState = createSelector(
   [ getVisibilityStateFilter, getSearchJobs, getStateFilter],
   (visibilityStateFilter, searchJobs, stateFilter) => {
-    debugger;
+    //debugger;
     switch (visibilityStateFilter) {
       case 'SHOW_ALL':
         return searchJobs;

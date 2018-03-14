@@ -40,7 +40,7 @@ bootstrap({
 //debugger;
 store.dispatch(loadJobOfferings());
 store.dispatch(searchAllRequests());
-debugger;
+//debugger;
 store.dispatch(loadMyPoint());
 
 const token = localStorage.getItem('token');

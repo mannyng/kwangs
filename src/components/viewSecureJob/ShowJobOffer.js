@@ -5,7 +5,7 @@ import {Button} from 'react-elemental';
 //import { Field, reduxForm } from 'redux-form';
 
 const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onChange,myFriend}) => {
-    debugger;
+    //debugger;
     const currentcustomer = secureJob.customer.id == profile.myprofile.id;
   return(
       <div>

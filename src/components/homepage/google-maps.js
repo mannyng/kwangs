@@ -22,6 +22,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) => {
                 <Marker
                  key={marker.job.id}
                  position={{ lat: marker.location.latitude, lng: marker.location.longitude }}
+                 title={marker.job.title}
                 />
               ))}
              </MarkerClusterer>

@@ -133,6 +133,7 @@ export function fetchCustomerConnect(customer_id) {
         return axios.get(`${types.ROOT_URL}/customers/${customer_id}/customer_connects/my_connections/`,
         {headers: MAPI_HEADERS }).then(customerConnect => {
             dispatch(fetchCustomerConnectSuccess(customerConnect.data));
+            //debugger;
         }).catch(error => {
             dispatch(ajaxCallError(error));
             toastr.error('There are some error/s with the page');
@@ -151,8 +152,28 @@ export function acceptCustomerConnect(id,customer_id) {
     return function(dispatch) { 
         dispatch(beginAjaxCall());
         return axios.get(`${types.ROOT_URL}/customers/${customer_id}/customer_connects/${id}/accept`,
-        {headers: MAPI_HEADERS }).then(customerConnect => {
-            dispatch(fetchCustomerConnectSuccess(customerConnect.data));
+        {headers: MAPI_HEADERS }).then(() => {
+            dispatch(fetchCustomerConnect(customer_id));
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            toastr.error('There are some error/s with the page');
+            throw(error);
+        });
+    }; 
+}
+
+export function rejectCustomerConnect(id,customer_id) {
+        const mytoke = localStorage.getItem('token');
+        const MAPI_HEADERS = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${mytoke}`
+        };
+    //debugger;
+    return function(dispatch) { 
+        dispatch(beginAjaxCall());
+        return axios.delete(`${types.ROOT_URL}/customers/${customer_id}/customer_connects/${id}`,
+        {headers: MAPI_HEADERS }).then(() => {
+            dispatch(fetchCustomerConnect(customer_id));
         }).catch(error => {
             dispatch(ajaxCallError(error));
             toastr.error('There are some error/s with the page');

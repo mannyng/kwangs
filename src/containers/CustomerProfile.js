@@ -42,7 +42,7 @@ export class CustomerProfile extends React.Component {
    //   this.props.dispatch(actions.fetchCustomerConnect(this.props.currentUser));
    //   }
     // }
-
+   //Action trigger is in the CustomerHeader.js
    shouldComponentUpdate(nextProps) {
     // debugger;
         const differentUser = this.props.currentUser !== nextProps.currentUser;

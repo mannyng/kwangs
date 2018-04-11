@@ -17,7 +17,7 @@ const MyEmployerTab = ({actions,customerConnect,profile,myJobs,isOpen,currentUse
             <Tab label="My Jobs"><MyJobs myJobs={myJobs}/></Tab>
             }
             
-            <Tab label="Profile"><MyProfile profile={profile}/></Tab>
+            <Tab label="Profile"><MyProfile profile={profile.myprofile}/></Tab>
             <Tab label="Messages"><MyFriends profile={profile}/></Tab>
         </Tabs>
         

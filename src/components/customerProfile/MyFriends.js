@@ -13,32 +13,32 @@ const MyProfile = ({profile}) => {
         </Text>
       </header>
       <div>{' '}</div>
-    {profile.mymessages && profile.mymessages.map(mymessage =>
-     (<div key={mymessage.friend.id}>
-     {mymessage.x_messages.length > 0 &&
+    {profile.mymessages && profile.myconv.map(mymessage =>
+     (<div key={mymessage.id}>
+     {mymessage.messagas.length > 0 &&
      <div  className="row">
         <div className="col-xs-6">
-        <Link to={'/connect/' + mymessage.friend.username}>
+        <Link to={'/connect/' + mymessage.sender.username}>
          <Text size="large" bold>
-          {mymessage.friend.username}
+          {mymessage.sender.username}
          </Text>
         </Link> 
         </div>
         <div className="col-xs-1"/>
         <div className="col-xs-5">
           
-            <Link to={'/connect/' + mymessage.friend.username}>
+            <Link to={'/connect/' + mymessage.sender.username}>
              <div  className="row">
               
                <div className="col-xs-4">
                <Text size="large" bold>
-               {mymessage.x_messages.length + 1}{' '}
+               {mymessage.messagas.length + 1}{' '}
                </Text>
                </div>
                <div className="col-xs-4">
                
-                {mymessage.x_messages.length > 1 && <Text size="large">Messages</Text>}
-                {mymessage.x_messages.length === 1 && <Text size="large">Message</Text>}
+                {mymessage.messagas.length > 1 && <Text size="large">Messages</Text>}
+                {mymessage.messagas.length === 1 && <Text size="large">Message</Text>}
                
                 </div> 
                 <div className="col-xs-2"/>

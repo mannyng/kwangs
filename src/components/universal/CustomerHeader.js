@@ -29,7 +29,9 @@ class Header extends React.Component {
  componentDidMount() {
     //debugger;
     if (this.props.currentUser) {
-     this.props.dispatch(fetchCustomerConnect(this.props.currentUser));
+     if(this.props.profile.myprofile.id) {
+      this.props.dispatch(fetchCustomerConnect(this.props.profile.myprofile.id));
+     }
      this.props.dispatch(actions.fetchCustomerProfiles(this.props.currentUser));
     }
   }

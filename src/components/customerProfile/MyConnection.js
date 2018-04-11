@@ -19,6 +19,11 @@ const MyConnection = ({myconnection,currentUser,actions}) => {
     actions.acceptCustomerConnect(myconnection.customer_connect.id,myconnection.customer_connect.customer_id);
     alert(`Accepting ${myconnection.friend.username} to you network`);
   }
+  function onClickReject() {
+    //debugger;
+    actions.rejectCustomerConnect(myconnection.customer_connect.id,myconnection.customer_connect.customer_id);
+    alert(`Deleting ${myconnection.friend.username} from your network`);
+  }
   
   //debugger;
   const friend = myconnection.friend.user_id == currentUser;
@@ -29,26 +34,23 @@ const MyConnection = ({myconnection,currentUser,actions}) => {
          
          
          {myconnection.customer_connect.state == "pending" &&
-         <div className="col-xs-8">
+         
          <div className="row">
-         <div className="col-xs-2">{myconnection.friend && myconnection.friend.username}</div>
-         <div className="col-xs-8">{myconnection.customer_connect.msg} </div>
-         </div>
-          <div className="row">
+         <div className="col-xs-1">{myconnection.friend && myconnection.customer.username}</div>
+         <div className="col-xs-1" />
+         <div className="col-xs-5">{myconnection.customer_connect.msg} </div>
+         
           <div className="col-xs-5">
            <Button onClick={onClickAccept}>
-           Accept Connection
+           Accept
            <span className="fa fa-handshake-o fa-lg fa-pull-right"/>
          </Button>
-         </div>
-         <div className="col-xs-2"/>
-         
-         <div className="col-xs-5">
-         <Button onClick={onClickAccept}>
-           Reject Connection
+         OR
+         <Button onClick={onClickReject}>
+           Reject
            <span className="fa fa-battery-empty fa-lg fa-pull-right"/>
          </Button>
-         </div>
+         
          </div>
          </div>}
           {myconnection.customer_connect.state == "accepted" && 
@@ -56,15 +58,15 @@ const MyConnection = ({myconnection,currentUser,actions}) => {
          {!friend &&
            <div className="row">
             <div className="col-xs-5"><Text size="large" bold>{myconnection.friend && myconnection.friend.username}</Text></div>
-             <div className="col-xs-1"/>
-            <div className="col-xs-6">
+             <div className="col-xs-2"/>
+            <div className="col-xs-5">
             <Button>
                 <Link to={'/connect/' + myconnection.friend.username}>Contact{' '}
                 <span className="fa fa-envelope-o fa-lg fa-pull-right"/>
                 </Link>
               </Button> 
               OR
-              <Button onClick={onClickAccept}>
+              <Button onClick={onClickReject}>
                  Block
                 <span className="fa fa-cut fa-lg fa-pull-right"/>
               </Button>
@@ -77,15 +79,15 @@ const MyConnection = ({myconnection,currentUser,actions}) => {
          {!notcustomer &&
            <div className="row">
             <div className="col-xs-5"><Text size="large" bold>{myconnection.customer && myconnection.customer.username}</Text></div>
-             <div className="col-xs-1"/>
-            <div className="col-xs-6">
+             <div className="col-xs-2"/>
+            <div className="col-xs-5">
               <Button>
                  <Link to={'/connect/' + myconnection.customer.username}>Contact{' '}
                 <span className="fa fa-envelope-o fa-lg fa-pull-right"/>
                 </Link>
               </Button> 
               OR
-              <Button onClick={onClickAccept}>
+              <Button onClick={onClickReject}>
                  Block
                 <span className="fa fa-cut fa-lg fa-pull-right"/>
               </Button>

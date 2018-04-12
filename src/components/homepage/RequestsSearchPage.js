@@ -33,7 +33,7 @@ const RequestsSearchPage = (secureJobs) => {
                 <h5>{secureJob.customer.city}</h5>
                 <h5>{secureJob.customer.state}</h5>
                 
-                  <Link to={'/profile/' + secureJob.customer.username} className="btn btn-info pull-right">Customer Job{' '}
+                  <Link to={'/connect/' + secureJob.customer.username} className="btn btn-info pull-right">Customer Job{' '}
                   <i className="fa fa-taxi" aria-hidden="true"/>
                   </Link>
                 <h3>Poster: <small>{secureJob.customer.username}</small></h3>

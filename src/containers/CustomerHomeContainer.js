@@ -54,7 +54,7 @@ shouldComponentUpdate(nextProps) {
       </Sidebar>
       <MainContent>
       <div>      
-      <HomePage myPoint={myPoint}/>
+      <HomePage myPoint={myPoint} jobOffers={jobOffers} />
       </div>
       
       </MainContent>

@@ -35,13 +35,14 @@ export class CustomerProfile extends React.Component {
     this.toggleCloseModal = this.toggleCloseModal.bind(this);
   }
 
-    //componentDidMount() {
-    //  this.props.dispatch(messageModalClose());
+    componentDidMount() {
+      //this.props.dispatch(messageModalClose());
       //debugger;
-   // if (currentUser) {
-   //   this.props.dispatch(actions.fetchCustomerConnect(this.props.currentUser));
-   //   }
-    // }
+    if (this.props.profile.myprofile.id) {
+      this.props.dispatch(actions.fetchCustomerConnect(this.props.profile.myprofile.id));
+      //this.props.dispatch(actions.fetchCustomerConnect(this.props.currentUser));
+      }
+   }
    //Action trigger is in the CustomerHeader.js
    shouldComponentUpdate(nextProps) {
     // debugger;

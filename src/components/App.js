@@ -7,6 +7,7 @@ import CustomerHomePage from '../containers/CustomerHomeContainer';
 //import ManageJobOfferPage from '../containers/ManageJobOfferPage';
 import CustomersHomePage from '../containers/CustomersHomePage';
 import ViewSecureJob from '../containers/ViewSecureJob';
+import ViewSecureRequest from '../containers/ViewSecureRequest';
 import ViewUnsecureJobPage from '../containers/ViewUnsecureJob';
 import ContactConnection from '../containers/ContactConnectionPage';
 import Profiles from '../containers/CustomerProfile';
@@ -43,6 +44,8 @@ class App extends React.Component {
           <Route path="/jobs" component={requireAuth(CustomersHomePage)} />
           <Route path="/job/:id" component={requireAuth(ViewSecureJob)} />
           <Route path="/job" component={requireAuth(ViewSecureJob)} />
+          <Route path="/request/:id" component={requireAuth(ViewSecureRequest)} />
+          <Route path="/request" component={requireAuth(ViewSecureRequest)} />
           <Route path="/connect/:id" component={requireAuth(ContactConnection)} />
           <Route path="/connect" component={requireAuth(ContactConnection)} />
           <Route path="/search_jobs" component={requireAuth(ControlEmployerPage)} />

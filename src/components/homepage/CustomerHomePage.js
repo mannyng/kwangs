@@ -17,13 +17,14 @@ const HomePage = (myPoint) => {
     
      
      <article>
-      <div className="col-xs-7" id="front_map">
+      <div className="col-xs-10" id="front_map">
        
       <h2>Unskilled Jobs near you</h2>
-       {myPoint.myPoint.latitude && 
+       {myPoint.myPoint.latitude && myPoint.jobOffers && 
           <MyMapComponent
            lat={myPoint.myPoint.latitude}
            lng={myPoint.myPoint.longitude}
+           markers={myPoint.jobOffers}
            isMarkerShown
   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpBsAOEHp25wXfjHnX80E3YfkZBkhNsJU&libraries=geometry,drawing,places"
   loadingElement={<div style={{ height: `100%` }} />}

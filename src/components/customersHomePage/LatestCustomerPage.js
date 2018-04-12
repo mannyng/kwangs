@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 const LatestCustomerPage = (secureJobs) => {
-    //debugger;
+    debugger;
   return (
       <article>
       {secureJobs.secureJobs && secureJobs.secureJobs.map((secureJob) => 

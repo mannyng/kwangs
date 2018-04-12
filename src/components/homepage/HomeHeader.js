@@ -14,7 +14,7 @@ const HomeHeader = (jobOffers) => {
    <div className="jumbotron" id="fronte">
        
        <article className="row">
-       {jobOffers.jobOffers && jobOffers.jobOffers.map((jobOffer, index) => 
+       {jobOffers.jobOffers && jobOffers.jobOffers.slice(0, 3).map((jobOffer, index) => 
         (<section key={jobOffer.job.id} className="col-md-4 col-xs-12">
          <div key={"1"} className="panel panel-default">
           <div key={"1"} className="panel-body">

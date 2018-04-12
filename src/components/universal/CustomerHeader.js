@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 //{loading && <LoadingDots interval={100} dots={20}/>}
 import { connect } from 'react-redux';
 import * as actions from '../../actions/authActions';
-import {fetchCustomerConnect} from '../../actions/customerProfilesActions';
+//import {fetchCustomerConnect} from '../../actions/customerProfilesActions';
 import ASignin from '../auth/Asignin';
 
 
@@ -29,9 +29,9 @@ class Header extends React.Component {
  componentDidMount() {
     //debugger;
     if (this.props.currentUser) {
-     if(this.props.profile.myprofile.id) {
-      this.props.dispatch(fetchCustomerConnect(this.props.profile.myprofile.id));
-     }
+     //if(this.props.profile.myprofile.id) {
+      //this.props.dispatch(fetchCustomerConnect(this.props.profile.myprofile.id));
+     //}
      this.props.dispatch(actions.fetchCustomerProfiles(this.props.currentUser));
     }
   }

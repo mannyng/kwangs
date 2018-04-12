@@ -10,10 +10,12 @@ import TextTruncate from 'react-text-truncate';
 
 const HomeHeader = (jobOffers) => {
     //debugger;
+    //With the array.slice(0,n) I was able to list only 3 elements of the array then map() it
   return (
    <div className="jumbotron" id="fronte">
        
        <article className="row">
+       
        {jobOffers.jobOffers && jobOffers.jobOffers.slice(0, 3).map((jobOffer, index) => 
         (<section key={jobOffer.job.id} className="col-md-4 col-xs-12">
          <div key={"1"} className="panel panel-default">
@@ -27,7 +29,7 @@ const HomeHeader = (jobOffers) => {
                   line={1}
                   truncateText="…"
                   text={jobOffer.job.description}
-                  textTruncateChild={<a href={'/public_job/' + index} >Read on</a>}
+                  textTruncateChild={<Link to={'/public_job/' + index} >Read on</Link>}
                  />
                </div>
                

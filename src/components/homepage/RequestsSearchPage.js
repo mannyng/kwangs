@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Gravatar from 'react-gravatar';
 
 
 const RequestsSearchPage = (secureJobs) => {
@@ -26,12 +27,17 @@ const RequestsSearchPage = (secureJobs) => {
                 {' '}Title:{' '}{secureJob.job_request.employee_title}{' '}, 
                 {' '}Experience level:{' '}{secureJob.job_request.employee_experience}</small>
                 ]</p>
-                <p className="5">Description:{' '}{secureJob.job_request.description}</p>
+                <h5>Description:{' '}{secureJob.job_request.description}</h5>
                </div>
-               
+                <div className="row">
+                 <div className="col-xs-offset-4">
+                  <h5>Job posted by: {secureJob.customer.username}{" "} 
+                 <Gravatar email={secureJob.user.email} size={150} /></h5>
+                </div>
+               </div>
                <div>
-                <h5>{secureJob.customer.city}</h5>
-                <h5>{secureJob.customer.state}</h5>
+                <h5>Employee Location: {" "} {secureJob.customer.address}, {" "} {secureJob.customer.city}, {" "} 
+                {secureJob.customer.state}{" "} State</h5>
                 
                   <Link to={'/connect/' + secureJob.customer.username} className="btn btn-info pull-right">Customer Job{' '}
                   <i className="fa fa-taxi" aria-hidden="true"/>

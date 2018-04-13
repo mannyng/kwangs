@@ -2,27 +2,63 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {Button} from 'react-elemental';
+import Gravatar from 'react-gravatar';
 //import { Field, reduxForm } from 'redux-form';
 
 const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onChange,myFriend}) => {
     //debugger;
     const currentcustomer = secureJob.customer.id == profile.myprofile.id;
   return(
-      <div>
-         <h1>Job Details</h1>
+      <div className="panel panel-default">
          <div className="row">
-          <div className="col-md-8">
-          <p>Job Category: {secureJob.job_request.job_category} </p>
-          <p>Employee Category: {secureJob.job_request.employee_category}</p>
-          <p>Payment Type: {secureJob.job_request.pay_type}</p>
-          <p>Employee Type: {secureJob.job_request.employee_type}</p>
-          <p>Job Title: {secureJob.job_request.employee_title}</p>
-          <p>Job Duration: {secureJob.job_request.job_duration}</p>
-          <p>Employee Experience: {secureJob.job_request.employee_experience}</p>
-          <p>Job Description: {secureJob.job_request.description}</p>
-          <p>Job Location: {secureJob.customer.address}</p>
-          <p>Job City: {secureJob.customer.city}, {secureJob.customer.state}</p>
-          <p>Job Poster: {secureJob.customer.username}</p>
+         <div className="col-xs-offset-3">
+         <h1>Job Request Details</h1>
+         </div>
+         <hr />
+        </div>
+        <div className="panel-body">
+         <div className="row">
+             <div className="col-xs-4">
+               <p>Job Type: {secureJob.job_request.job_category} </p>
+             </div>
+             <div className="col-xs-4">
+               <p>Category: {secureJob.job_request.employee_category}</p>
+              </div>
+             <div className="col-xs-4">
+                <p>Job Title: {secureJob.job_request.employee_title}</p>
+             </div> 
+           </div>
+           <div className="row">
+             <div className="col-xs-6">
+               <p>Employee Type: {secureJob.job_request.employee_type}</p>
+              </div>
+             <div className="col-xs-6">
+               <p>Payment Type: {secureJob.job_request.pay_type}</p>
+             </div>
+            </div>
+            <div className="row">
+             <div className="col-xs-6"> 
+               <p>Employee Experience: {secureJob.job_request.employee_experience}</p>
+             </div>
+              <div className="col-xs-6">  
+                <p>Job Duration: {secureJob.job_request.job_duration}</p>
+              </div>
+             </div>
+             <p><h5>Job Description: {secureJob.job_request.description}</h5></p>
+            <div className="row">
+             <div className="col-xs-10">     
+              <h5>Job Location: {secureJob.customer.address}, {" "} {secureJob.customer.city},{" "}
+              {secureJob.customer.state}{" "} State</h5>
+             </div>
+            </div> 
+          <div className="row">
+             <div className="col-xs-offset-4">
+               <h5>Job posted by: {secureJob.customer.username}{" "} 
+               <Gravatar email={secureJob.user.email} size={150} /></h5>
+             </div>
+         </div>
+         <div className="row">
+             <div className="col-xs-6"> 
           {myFriend && myFriend.id == secureJob.customer.id &&
             <Button className="pull-right">
             <Link to={'/connect/' + myFriend.username}>
@@ -78,7 +114,7 @@ const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onCh
          
           </div>
           </div>
-        
+        </div>
       </div>
       );  
 };

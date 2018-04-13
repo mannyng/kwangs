@@ -9,12 +9,10 @@ export default function customerProfilesReducer(state = initialState.profile, ac
             
         case types.CREATE_CUSTOMER_SUCCESS:
             //debugger;
-            return  Object.assign({}, action.profile);
-            //return [
-            //    ...state,
-             //   Object.assign({}, action.profile)
-            //    ];
-         
+        return {
+            ...state,
+            profile: action.profile
+        };
          case types.UPDATE_CUSTOMER_SUCCESS:
             // debugger;
              return [

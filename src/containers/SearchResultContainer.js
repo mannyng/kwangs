@@ -6,6 +6,7 @@ import * as actions from '../actions/customerProfilesActions';
 import JobsSearchPage from '../components/homepage/JobsSearchPage';
 import RequestsSearchPage from '../components/homepage/RequestsSearchPage';
 //import {NavLink} from 'react-router-dom';
+import {Spinner} from 'react-elemental';
 import Header from '../components/universal/CustomerHeader';
 import Page from '../components/layouts/Page';
 import Main from '../components/layouts/Main';
@@ -43,7 +44,7 @@ export class SearchResultContainer extends Component {
   
 
   render() {
-    const {visibilityFilter, visibleJobOffers,visibleJobRequests, newestJobRequests, latestJobOffers} = this.props;
+    const {loading,visibilityFilter, visibleJobOffers,visibleJobRequests, newestJobRequests, latestJobOffers} = this.props;
     //debugger;
     return (
       <Page>
@@ -54,22 +55,23 @@ export class SearchResultContainer extends Component {
         <Sidebar>
           <Controls />
         </Sidebar>
-        {visibilityFilter == 'search_jobs' &&
+        {loading > 0 && <small><Spinner /></small>}
+        {visibilityFilter == 'search_jobs' && loading < 0 &&
         <div className="col-xs-8">
           <JobsSearchPage jobOffers={visibleJobOffers}/>
         </div>
         }
-        {visibilityFilter == 'latest_jobs' &&
+        {visibilityFilter == 'latest_jobs' && loading < 0 &&
         <div className="col-xs-8">
           <JobsSearchPage jobOffers={latestJobOffers}/>
         </div>
         }
-        {visibilityFilter == 'search_requests' &&
+        {visibilityFilter == 'search_requests' && loading < 0 &&
         <div className="col-xs-8">
           <RequestsSearchPage secureJobs={visibleJobRequests}/>
         </div>
         }
-        {visibilityFilter == 'newest_employees' &&
+        {visibilityFilter == 'newest_employees' && loading < 0 &&
         <div className="col-xs-8">
           <RequestsSearchPage secureJobs={newestJobRequests}/>
         </div>

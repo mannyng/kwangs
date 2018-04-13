@@ -123,7 +123,7 @@ ShowJobOffer.propTypes = {
     profile: PropTypes.object.isRequired,
     customerConnect: PropTypes.array,
     secureJob: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired,
+    errors: PropTypes.object,
     onSave: PropTypes.func,
     onChange: PropTypes.func,
     myFriend: PropTypes.object

@@ -113,7 +113,7 @@ export class CustomerProfile extends React.Component {
           }
            {profile.myprofile.id && profile.myprofile.customer_type == 'employee' &&
            <MyEmployeeTab actions={actions} customerConnect={customerConnect}
-            currentUser={currentUser} profile={profile} isOpen={isOpen} />
+            currentUser={currentUser} myJobs={myJobs} profile={profile} isOpen={isOpen} />
           }
           </div>  
           <Footers>

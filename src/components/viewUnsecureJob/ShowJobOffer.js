@@ -55,8 +55,7 @@ const ShowJobOffer = ({secureJob}) => {
 };
 
 ShowJobOffer.propTypes = {
-    secureJob: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    secureJob: PropTypes.object.isRequired
 };
 
 export default ShowJobOffer;

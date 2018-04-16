@@ -14,7 +14,7 @@ import Page from '../components/layouts/Page';
 import Main from '../components/layouts/Main';
 import Headers from '../components/layouts/Headers';
 import Sidebar from '../components/layouts/Sidebar';
-import Controls from '../components/controls/CustomerControls';
+import Controls from '../components/controls/Controls';
 import Footers from '../components/layouts/Footers';
 import Footer from '../components/universal/SecureFooter';
 

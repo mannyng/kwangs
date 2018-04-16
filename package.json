@@ -36,6 +36,7 @@
     "jquery": "3.2.1",
     "jwt-decode": "2.2.0",
     "localStorage": "1.0.3",
+    "lodash": "4.17.5",
     "object-assign": "4.1.0",
     "react": "16.0.0",
     "react-bootstrap-tabs": "1.0.2",
@@ -252,5 +253,6 @@
       "react/sort-comp": 1
     },
     "globals": {}
-  }
+  },
+  "optionalDependencies": {}
 }

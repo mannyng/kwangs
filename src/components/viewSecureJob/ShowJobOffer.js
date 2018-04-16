@@ -59,7 +59,7 @@ const ShowJobOffer = ({onSave, profile, errors, customerConnect, secureJob, onCh
           <div className="row">
              <div className="col-xs-offset-4">
                <p><h5>Job posted by: {secureJob.customer.username}{" "} 
-               <Gravatar email={secureJob.user.email} size={150} /></h5></p>
+               <Gravatar email={secureJob.user} size={150} /></h5></p>
              </div>
          </div>     
          <div className="row">

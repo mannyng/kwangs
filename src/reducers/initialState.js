@@ -136,4 +136,6 @@ export default {
     created_at: '', 
     updated_at: ''
   }]
+  
 };
+ 

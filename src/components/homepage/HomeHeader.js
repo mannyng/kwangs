@@ -46,6 +46,38 @@ const HomeHeader = (jobOffers) => {
         </section>)
         )}
       </article>
+      <article className="row">
+       
+       {jobOffers.jobRequests && jobOffers.jobRequests.slice(0, 3).map((jobRequest, index) => 
+        (<section key={jobRequest.job_request.id} className="col-md-4 col-xs-12">
+         <div key={"1"} className="panel panel-default">
+          <div key={"1"} className="panel-body">
+           
+              <div className="col-md-8 col-xs-8">{jobRequest.job_request.employee_title}</div>
+               
+               <div>
+                <p><small>{jobRequest.job_request.job_category}</small></p>
+                <TextTruncate
+                  line={1}
+                  truncateText="…"
+                  text={jobRequest.job_request.description}
+                  textTruncateChild={<Link to={'/public_job/' + index} >Read on</Link>}
+                 />
+               </div>
+               
+               <div>
+                <h5>{jobRequest.job_request.location}</h5>
+                <h5>{jobRequest.job_request.city}</h5>
+                <h3>Poster: <small>{jobRequest.customer.username}</small></h3>
+                <Link to={'/public_request/' + index} className="btn btn-info">VIew Job{' '}
+                  <i className="fa fa-taxi" aria-hidden="true"/>
+                  </Link>
+               </div>
+          </div>
+         </div>
+        </section>)
+        )}
+      </article>
      </div>
     
    );

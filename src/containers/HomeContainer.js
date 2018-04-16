@@ -33,7 +33,7 @@ export class HomeContainer extends React.Component {
   }
 
   render() {
-    const {jobOffers,myPoint} = this.props;
+    const {jobOffers,myPoint,jobRequests} = this.props;
     //debugger;
     return (
       <Page>
@@ -55,8 +55,9 @@ export class HomeContainer extends React.Component {
       
       <Footers>
       <div>
-      <HomeHeader jobOffers={jobOffers}/>
+      <HomeHeader jobOffers={jobOffers} jobRequests={jobRequests}/>
       </div>
+      
       <Footer/>
       
         <div className="navbar navbar-default navbar-fixed-bottom">
@@ -79,6 +80,7 @@ HomeContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   jobOffers: PropTypes.array.isRequired,
+  jobRequests: PropTypes.array.isRequired,
   history: PropTypes.object.isRequired,
   myPoint: PropTypes.object.isRequired
 };
@@ -88,7 +90,8 @@ function mapStateToProps(state) {
   return {
     jobOffers: state.jobOffers,
     profile: state.profile,
-    myPoint: state.myPoint
+    myPoint: state.myPoint,
+    jobRequests: state.searchRequests
   };
 }
 

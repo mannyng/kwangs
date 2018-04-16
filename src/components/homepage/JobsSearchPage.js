@@ -39,7 +39,7 @@ const JobsSearchPage = (jobOffers) => {
           <div className="row">
              <div className="col-xs-offset-2">
                <h5>Job posted by: {secureJob.customer.username}{" "} 
-               <Gravatar email={secureJob.user.email} size={150} /></h5>
+               <Gravatar email={secureJob.user} size={150} /></h5>
              </div>
          </div>
           <div className="row">

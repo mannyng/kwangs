@@ -73,8 +73,8 @@ export const AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';
 export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';
 export const RECEIVED_WS_DATA = 'RECEIVED_WS_DATA';
 
-export const ROOT_URL = 'http://fen-pi-kofian.c9users.io';
-//export const ROOT_URL = 'http://kwanga.ml:8080';
+//export const ROOT_URL = 'http://fen-pi-kofian.c9users.io';
+export const ROOT_URL = 'http://kwanga.ml:8080';
 const mytoke = localStorage.getItem('token');
 export const API_HEADERS = {
      'Content-Type': 'application/json',

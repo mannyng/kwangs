@@ -6,7 +6,7 @@ import MyReqJobs from './MyReqJobs';
 import MyConnections from './MyConnections';
 import MyFriends from './MyFriends';
 
-const MyEmployeeTab = ({actions,customerConnect,profile,isOpen,myJobs,currentUser}) => {   
+const MyEmployeeTab = ({actions,customerConnect,profile,isOpen,myJobs,currentUser,myFriends, fr_message}) => {   
     //debugger;
     return (
         <Tabs>
@@ -16,13 +16,15 @@ const MyEmployeeTab = ({actions,customerConnect,profile,isOpen,myJobs,currentUse
             <Tab label="My Jobs"><MyReqJobs myJobs={myJobs} profile={profile}/></Tab>
             }
             <Tab label="Profile"><MyProfile profile={profile.myprofile}/></Tab>
-            <Tab label="Messages"><MyFriends profile={profile}/></Tab>
+            <Tab label="Messages"><MyFriends myFriends={myFriends} fr_message={fr_message} /></Tab>
         </Tabs>
         
     );
 };
 
 MyEmployeeTab.propTypes = {
+  myFriends: PropTypes.array.isRequired, 
+  fr_message: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   myJobs: PropTypes.array,

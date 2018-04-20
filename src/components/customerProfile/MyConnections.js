@@ -10,9 +10,10 @@ const MyConnections = ({customerConnect,currentUser,actions,isOpen}) => {
          <Text size="epsilon" bold color="rgb(62, 184, 240)">Connections</Text>
           <hr />
          <div className="row">
-         {customerConnect && customerConnect.map(myconnection =>
-          <MyConnection key={myconnection.customer_connect.id} myconnection={myconnection} actions={actions} currentUser={currentUser} isOpen={isOpen}/>
-         )}
+         {customerConnect && customerConnect.map(myconnection =>(
+          <MyConnection key={myconnection.customer_connect.id} myconnection={myconnection} actions={actions} 
+          currentUser={currentUser} isOpen={isOpen}/>
+         ))}
         </div>
       </div>
       );  

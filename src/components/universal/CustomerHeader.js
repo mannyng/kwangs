@@ -58,15 +58,17 @@ class Header extends React.Component {
  return (
   <div>
     
-   <NavLink to="/profile" activeStyle={activeStyle} key={1}>{profile.myprofile.username}</NavLink>
+   <NavLink to="/home" activeStyle={activeStyle} key={1}>Home page</NavLink>
     {" | "}
    <NavLink to="/jobs" activeStyle={activeStyle} key={2}>Available Jobs</NavLink>
    {' | '}
    <NavLink to="/about" activeStyle={activeStyle} key={3}>About</NavLink>
     {" | "}
+    <NavLink to="/privacy_policy" activeStyle={activeStyle} key={6}>Privacy Policy</NavLink>
+    {" | "}
    <NavLink to="/signout" activeStyle={activeStyle} key={4}>Sign Out</NavLink>
    {" | "}
-   <NavLink to="/home" activeStyle={activeStyle} key={5}>Home page</NavLink>
+   <NavLink to="/profile" activeStyle={activeStyle} key={5}>{profile.myprofile.username} Profile</NavLink>
   
    <Text className="pull-right" size="epsilon" bold color="rgb(62, 184, 240)">
    Kwangs Work Network 
@@ -88,6 +90,8 @@ class Header extends React.Component {
      <NavLink to="/" activeStyle={activeStyle} key={1}>Home</NavLink>
       {" | "}
      <NavLink to="/about" activeStyle={activeStyle} key={3}>About</NavLink>
+      {" | "}
+      <NavLink to="/privacy_policy" activeStyle={activeStyle} key={6}>Privacy Policy</NavLink>
       {" | "}
      <NavLink to="/signin" activeStyle={activeStyle} key={4}>Sign In</NavLink>
       {" | "}

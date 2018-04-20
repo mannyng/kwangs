@@ -282,6 +282,7 @@ export function fetchMyFriends(customer_id) {
         dispatch(beginAjaxCall());
         return axios.get(`${types.ROOT_URL}/customers/${customer_id}/my_friends`,
         {headers: MAPI_HEADERS }).then(myFriends => {
+            //debugger;
             dispatch(fetchMyFriendsSuccess(myFriends.data));
         }).catch(error => {
             dispatch(ajaxCallError(error));

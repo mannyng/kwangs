@@ -41,10 +41,12 @@ const HomePage = (myPoint) => {
           />
        }
       </div>
+      
       <aside className="col-xs-3" id="front_register">
         <ASignup />
         
       </aside> 
+     
       </article>
       
         

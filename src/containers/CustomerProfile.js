@@ -13,7 +13,7 @@ import Footers from '../components/layouts/Footers';
 import Footer from '../components/universal/SecureFooter';
 import Sidebar from '../components/layouts/Sidebar';
 import CustomerControls from '../components/controls/CustomerControls';
-
+import {Text} from 'react-elemental';
 import {messageModalOpen,messageModalClose} from '../actions/modalStatusActions';
 
 
@@ -33,6 +33,7 @@ export class CustomerProfile extends React.Component {
     this.onModalOpen = this.onModalOpen.bind(this);
     this.toggleOpenModal = this.toggleOpenModal.bind(this);
     this.toggleCloseModal = this.toggleCloseModal.bind(this);
+    this._fr_message = this._fr_message.bind(this);
   }
 
     componentDidMount() {
@@ -53,6 +54,25 @@ export class CustomerProfile extends React.Component {
         const differenModalStatus = this.props.isOpen !== nextProps.isOpen;
         
         return differentUser  || differenConnect || differenProfile || differenJobsLength || differenModalStatus;
+    }
+  
+  _fr_message(friendId,username){
+      //console.log(x_messages);
+      //debugger;
+      if (this.props.profile && this.props.profile.myconv){
+      const gote = this.props.profile.myconv.filter((xmessage) => xmessage.sender.id == friendId
+      && xmessage.recipient.id == this.props.profile.myprofile.id ||
+        xmessage.sender.id == this.props.profile.myprofile.id &&
+        xmessage.recipient.id == friendId);
+    if(gote.length >= 1){
+      //debugger;
+      return (
+        <div>
+         <Text><b>{username}</b>:{" "}{gote[0].messagas[0].msg}</Text>
+         </div>
+      );
+      }
+     }
     }
     
   onUsernameChange(event) {
@@ -93,7 +113,7 @@ export class CustomerProfile extends React.Component {
   
   render() {
     //debugger;
-    const {profile, customerConnect, actions, currentUser, myJobs, isOpen} = this.props;
+    const {profile, customerConnect, actions, currentUser, myJobs, isOpen,myFriends} = this.props;
     //debugger;
     return (
       
@@ -109,11 +129,13 @@ export class CustomerProfile extends React.Component {
           <div className="col-xs-7">
           {profile.myprofile.id && profile.myprofile.customer_type == 'employer' &&
            <MyEmployerTab actions={actions} customerConnect={customerConnect}
-            currentUser={currentUser} myJobs={myJobs} isOpen={isOpen} profile={profile} />
+            currentUser={currentUser} myJobs={myJobs} isOpen={isOpen} profile={profile} 
+            myFriends={myFriends} fr_message={this._fr_message}/>
           }
            {profile.myprofile.id && profile.myprofile.customer_type == 'employee' &&
            <MyEmployeeTab actions={actions} customerConnect={customerConnect}
-            currentUser={currentUser} myJobs={myJobs} profile={profile} isOpen={isOpen} />
+            currentUser={currentUser} myJobs={myJobs} profile={profile} isOpen={isOpen}
+            myFriends={myFriends} fr_message={this._fr_message} />
           }
           </div>  
           <Footers>
@@ -135,8 +157,8 @@ CustomerProfile.propTypes = {
   loading: PropTypes.number,
   customerConnect: PropTypes.array,
   myJobs: PropTypes.array.isRequired,
-  isOpen: PropTypes.bool.isRequired
- // createJobOffer: PropTypes.object.isRequired
+  isOpen: PropTypes.bool.isRequired,
+  myFriends: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
@@ -147,7 +169,8 @@ function mapStateToProps(state) {
     loading: state.ajaxCallsInProgress,
     customerConnect: state.customerConnect,
     myJobs: state.myJobs,
-    isOpen: state.isOpen
+    isOpen: state.isOpen,
+    myFriends: state.myFriends
   };
 }
 

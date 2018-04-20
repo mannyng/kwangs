@@ -122,7 +122,6 @@ class CreateJobPage extends Component {
       }
        {this.props.myJobOffer.id && myJobInsight.id == '' &&
        <div>
-       <h4>{myJobOffer.title}</h4>
        <AddJobDetailForm 
        jobCategories={jobCategories}
        submitJobInsight={this.submitJobInsight}

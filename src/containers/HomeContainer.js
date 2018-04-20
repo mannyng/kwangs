@@ -16,6 +16,7 @@ import Sidebar from '../components/layouts/Sidebar';
 import HomeHeader from '../components/homepage/HomeHeader';
 import HomePage from '../components/HomePage';
 import Controls from '../components/controls/Controls';
+//import CustomerControls from '../components/controls/CustomerControls';
 import SearchContainer from './SearchContainer';
 //import Header from './universal/CustomerHeader';
 

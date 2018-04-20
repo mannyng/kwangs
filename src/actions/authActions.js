@@ -128,7 +128,7 @@ export function fetchCustomerProfiles(user) {
             //debugger;
             dispatch(fetchProfilesSuccess(profile.data));
         }).catch(error => {
-         // dispatch(ajaxCallError(error));
+           //dispatch(ajaxCallError(error));
             throw(error);
         });
     };

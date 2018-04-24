@@ -5,13 +5,14 @@ import Gravatar from 'react-gravatar';
 //import TextTruncate from 'react-text-truncate';
 
 const JobsSearchPage = (jobOffers) => {
-  //debugger;
+  debugger;
   return (
    
        
        <article className="row">
        {jobOffers.jobOffers && jobOffers.jobOffers.map((secureJob) => 
         (<section key={secureJob.job.id} className="col-xs-12">
+        {secureJob.insight && secureJob.job &&
          <div className="panel panel-default">
           <div className="row">
          <div className="col-xs-offset-3">
@@ -19,6 +20,7 @@ const JobsSearchPage = (jobOffers) => {
          </div>
          <hr />
         </div>
+        
          <div className="panel-body">
          
           <p>Job Category: {secureJob.insight.job_category} </p>
@@ -52,7 +54,7 @@ const JobsSearchPage = (jobOffers) => {
            </div>
           </div>
         </div>
-      </div>
+      </div>}
         </section>)
         )}
       </article>

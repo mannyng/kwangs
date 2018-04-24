@@ -1,0 +1,5 @@
+RewriteEngine On
+#if it's not a directory or file, rewrite it to index.html (react app)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule   . index.ejs

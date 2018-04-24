@@ -19,7 +19,7 @@ const MyEmployerTab = ({actions,customerConnect,profile,myJobs,isOpen,currentUse
             
             <Tab label="Profile"><MyProfile profile={profile.myprofile}/></Tab>
             <Tab label="Messages"><MyFriends myFriends={myFriends}
-             fr_message={fr_message}/></Tab>
+             fr_message={fr_message} /></Tab>
         </Tabs>
         
     );

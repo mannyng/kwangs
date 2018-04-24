@@ -68,7 +68,7 @@ export class CustomerProfile extends React.Component {
       //debugger;
       return (
         <div>
-         <Text><b>{username}</b>:{" "}{gote[0].messagas[0].msg}</Text>
+         <Text><b>{username}</b>:{" "}{gote[0].messagas[0] && gote[0].messagas[0].msg}</Text>
          </div>
       );
       }

@@ -8,7 +8,7 @@ const IndexPage = (secureJobs) => {
       <article>
       {secureJobs.secureJobs && secureJobs.secureJobs.map((secureJob, index) => 
        (<div className="jumbotron" id="fronte" key={secureJob.job.id}>
-       
+       {secureJob.insight && secureJob.job &&
          <div key={"1"} className="panel panel-default">
           <div key={"1"} className="panel-body">
            
@@ -24,7 +24,7 @@ const IndexPage = (secureJobs) => {
                   textTruncateChild={<Link to={'/job/' + index}>Read on</Link>}
                  />
                </div>
-               
+               {secureJob.location &&
                <div>
                 <h5>{secureJob.location.location}</h5>
                 <h5>{secureJob.location.city}</h5>
@@ -33,9 +33,9 @@ const IndexPage = (secureJobs) => {
                   <i className="fa fa-taxi" aria-hidden="true"/>
                   </Link>
                 <h3>Poster: <small>{secureJob.customer.username}</small></h3>
-               </div>
+               </div>}
           </div>
-         </div>
+         </div>}
        
         
       

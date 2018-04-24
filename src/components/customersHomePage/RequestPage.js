@@ -8,7 +8,7 @@ const RequestPage = (secureJobs) => {
       <article>
       {secureJobs.secureJobs && secureJobs.secureJobs.map((secureJob, index) => 
        (<div className="jumbotron" id="fronte" key={secureJob.job_request.id}>
-       
+        {secureJob.job_request && secureJob.customer &&
          <div key={"1"} className="panel panel-default">
           <div key={"1"} className="panel-body">
            
@@ -35,7 +35,7 @@ const RequestPage = (secureJobs) => {
                 <h3>Poster: <small>{secureJob.customer.username}</small></h3>
                </div>
           </div>
-         </div>
+         </div>}
        
         
       

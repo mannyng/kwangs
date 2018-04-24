@@ -21,8 +21,8 @@ export default {
   entry: path.resolve(__dirname, 'src/index'),
   target: 'web',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/',
+    path: path.resolve(__dirname, '/dist'),
+    publicPath: '/',
     filename: '[name].[chunkhash].js'
   },
   plugins: [

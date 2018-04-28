@@ -28,6 +28,7 @@ import visibilityCategoryFilter from './visibilityCategoryFilterReducer';
 import stateLists from './stateListReducer';
 import searchJobs from './searchJobsReducer';
 import searchRequests from './searchRequestsReducer';
+import admin from '../components/adminProfile/Admin.reducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -58,7 +59,8 @@ const rootReducer = combineReducers({
   searchRequests,
   routing: routerReducer,
   ajaxCallsInProgress,
-  isOpen
+  isOpen,
+  admin
 });
 
 export default rootReducer;

@@ -8,13 +8,12 @@ import Content from '../components/layouts/Content';
 import Headers from '../components/layouts/Headers';
 import Sidebar from '../components/layouts/Sidebar';
 import CreateJobForm from '../components/jobs/CreateJobForm';
-import AddJobLocation from '../components/jobs/AddJobLocation';
-import AddJobDetailForm from '../components/jobs/AddJobDetailForm';
 import AddJobRequestForm from '../components/jobs/CreateRequestForm';
 import ShowResults from '../components/jobs/showResults';
 import CustomerControls from '../components/controls/CustomerControls';
 import Header from '../components/universal/CustomerHeader';
 import {loadJobCategories} from '../actions/jobCategoryActions';
+import {loadStateLists} from '../actions/naijaStateActions';
 import * as actions from '../actions/myJobOfferActions';
 import {reset} from 'redux-form';
 
@@ -31,24 +30,22 @@ class CreateJobPage extends Component {
     
     this.saveJobNew = this.saveJobNew.bind(this);
     this.submitMyJobOffer = this.submitMyJobOffer.bind(this);
-    this.submitJobInsight = this.submitJobInsight.bind(this);
-    this.submitMyJobLocation = this.submitMyJobLocation.bind(this);
     this.submitJobRequest = this.submitJobRequest.bind(this);
   }
    componentDidMount() {
      //if (!this.props.job_offer.id) {
        //debugger;
        this.props.dispatch(loadJobCategories());
+       this.props.dispatch(loadStateLists());
     // }
    }
   shouldComponentUpdate(nextProps) {
     if (this.props.myJobOffer){
      //debugger;
         const differentjobCategory = this.props.jobCategories.length !== nextProps.jobCategories.length;
+        const differentNaijaState = this.props.naijaStateList.length !== nextProps.naijaStateList.length;
         const differentJob = this.props.myJobOffer.id !== nextProps.myJobOffer.id;
-        const differentInsight = this.props.myJobInsight.id !== nextProps.myJobInsight.id;
-        const differentLocation = this.props.myJobLocation.id !== nextProps.myJobLocation.id;
-        return differentjobCategory || differentJob || differentInsight || differentLocation;
+        return differentjobCategory || differentNaijaState || differentJob;
      }
     }
     saveJobNew(values,event) {
@@ -60,20 +57,14 @@ class CreateJobPage extends Component {
   
    submitMyJobOffer(values){
      //debugger;
-    this.props.dispatch(actions.saveMyJobOffer(values.title,values.description,this.props.profile.myprofile.id));
+     const {title,description,job_category,employee_category,job_duration,pay_type,employee_type,
+    employee_title,employee_experience,location,city,state} = values;
+    //this.props.dispatch(actions.saveMyJobOffer(values.title,values.description,this.props.profile.myprofile.id));
+    this.props.dispatch(actions.saveMyJobOffer(this.props.profile.myprofile.id,title,description,job_category,employee_category,job_duration,pay_type,employee_type,
+    employee_title,employee_experience,location,city,state));
     //this.context.router.history.push('/add_job_details');
   }
-  submitJobInsight(values){
-    //ebugger;
-    this.props.dispatch(actions.saveJobInsight(values.job_category,values.employee_category,values.job_duration,
-    values.pay_type,values.employee_type,
-    values.employee_title,values.employee_experience,this.props.myJobOffer.id));
-  }
-  submitMyJobLocation(values){
-     //debugger;
-    this.props.dispatch(actions.saveJobLocation(values.location,values.city,values.state,this.props.myJobOffer.id));
-    //this.context.router.history.push('/add_job_details');
-  }
+  
   submitJobRequest(values){
     //debugger;
     this.props.dispatch(actions.saveJobRequest(values.job_category,values.employee_category,
@@ -105,7 +96,7 @@ class CreateJobPage extends Component {
   }
 
   render() {
-    const {myJobOffer,jobCategories, myJobInsight, myJobLocation} = this.props;
+    const {myJobOffer,jobCategories, myJobInsight, myJobLocation,naijaStateList} = this.props;
     return (
       <Page>
       <Headers>
@@ -117,20 +108,13 @@ class CreateJobPage extends Component {
       </Sidebar>
       {this.props.visibilityFilter == 'add_job_form' &&
       <Content>
-      {myJobOffer.id == '' &&
-       <CreateJobForm submitMyJobOffer={this.submitMyJobOffer} />
+      {myJobOffer && myJobOffer.id == '' &&
+       <CreateJobForm submitMyJobOffer={this.submitMyJobOffer} 
+        jobCategories={jobCategories} 
+        naijaStateList={naijaStateList}/>
       }
-       {this.props.myJobOffer.id && myJobInsight.id == '' &&
-       <div>
-       <AddJobDetailForm 
-       jobCategories={jobCategories}
-       submitJobInsight={this.submitJobInsight}
-       myJobOffer={myJobOffer}/>
-       </div>}
-       {this.props.myJobOffer.id && myJobInsight.id && myJobLocation.id == '' &&
-        <AddJobLocation submitMyJobLocation={this.submitMyJobLocation}/>
-       }
-       {myJobOffer.id && myJobInsight.id && myJobLocation.id &&
+       
+       {myJobOffer && myJobOffer.id && myJobInsight.id && myJobLocation.id &&
        <ShowResults myJobOffer={myJobOffer}
        myJobInsight={myJobInsight} 
        myJobLocation={myJobLocation} />
@@ -162,7 +146,8 @@ CreateJobPage.propTypes = {
   myJobLocation: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   dispatch: PropTypes.func,
-  visibilityFilter: PropTypes.string.isRequired
+  visibilityFilter: PropTypes.string.isRequired,
+  naijaStateList: PropTypes.array.isRequired
 };
 
 function getJobOfferById(jobOffers, id) {
@@ -190,7 +175,12 @@ function mapStateToProps(state, ownProps) {
          text: jobCategory.name
      };
     });
-    
+    const naijaStateFormattedForDropDown = state.stateLists.map(stateList => {
+     return {
+         value: stateList.id,
+         text: stateList.name
+     };
+    });
   return { 
       errorMessage: state.auth.error,
       jobOffer: jobOffer,
@@ -199,6 +189,7 @@ function mapStateToProps(state, ownProps) {
       myJobInsight: state.myJobInsight.myJobInsight,
       myJobLocation: state.myJobLocation.myJobLocation,
       visibilityFilter: state.visibilityFilter,
+      naijaStateList: naijaStateFormattedForDropDown
   };
 }
 function mapDispatchToProps(dispatch) {

@@ -11,28 +11,28 @@ import MyMapComponent from './homepage/google-maps';
 
 import ASignup from './auth/Asignup';
 
-const HomePage = (myPoint) => {
+const HomePage = ({myPoint,jobOffers,authd}) => {
     //const fstpic = "https://s9.postimg.org/q67mp9mhb/unnamed.jpg";
-  
+  //debugger;
   return (
     
      
      <article>
       <div className="col-xs-9" id="front_map">
-       {myPoint.myPoint.country_name !== "Nigeria" &&
+       {myPoint.country_name !== "Nigeria" &&
        <div>
        <h4>You are not in Nigeria</h4>
-       <h5>Unskilled Jobs near {myPoint.myPoint.region_name}{' '}{myPoint.myPoint.country_name}</h5>
+       <h5>Jobs near {myPoint.region_name}{' '}{myPoint.country_name}</h5>
        </div>
        }
-      {myPoint.myPoint.country_name == "Nigeria" &&
-      <h5>Unskilled Jobs near {' '}{myPoint.myPoint.region_name}{' '} </h5>
+      {myPoint.country_name == "Nigeria" &&
+      <h5>Jobs near {' '}{myPoint.region_name}{' '} </h5>
       }
-       {myPoint.myPoint.latitude && myPoint.jobOffers && 
+       {myPoint.latitude && jobOffers && 
           <MyMapComponent
-           lat={myPoint.myPoint.latitude}
-           lng={myPoint.myPoint.longitude}
-           markers={myPoint.jobOffers}
+           lat={myPoint.latitude}
+           lng={myPoint.longitude}
+           markers={jobOffers}
            isMarkerShown
   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpBsAOEHp25wXfjHnX80E3YfkZBkhNsJU&libraries=geometry,drawing,places"
   loadingElement={<div style={{ height: `100%` }} />}
@@ -42,10 +42,10 @@ const HomePage = (myPoint) => {
        }
       </div>
       
-      <aside className="col-xs-3" id="front_register">
+     {!authd && <aside className="col-xs-3" id="front_register">
         <ASignup />
         
-      </aside> 
+      </aside> }
      
       </article>
       
@@ -57,7 +57,9 @@ const HomePage = (myPoint) => {
 HomePage.propTypes = {
   lat: PropTypes.number,
   lng: PropTypes.number,
-  myPoint: PropTypes.object
+  myPoint: PropTypes.object,
+  authd: PropTypes.bool.isRequired,
+  jobOffers: PropTypes.array.isRequired
 };
 
 export default HomePage;

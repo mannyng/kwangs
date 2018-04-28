@@ -18,6 +18,7 @@ const HomeHeader = (jobOffers) => {
        
        {jobOffers.jobOffers && jobOffers.jobOffers.slice(0, 3).map((jobOffer, index) => 
         (<section key={jobOffer.job.id} className="col-md-4 col-xs-12">
+         {jobOffer.insight && jobOffer.location && 
          <div key={"1"} className="panel panel-default">
           <div key={"1"} className="panel-body">
            
@@ -42,7 +43,7 @@ const HomeHeader = (jobOffers) => {
                   </Link>
                </div>
           </div>
-         </div>
+         </div>}
         </section>)
         )}
       </article>

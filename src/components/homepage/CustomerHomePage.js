@@ -19,7 +19,7 @@ const HomePage = (myPoint) => {
      <article>
       <div className="col-xs-10" id="front_map">
        
-      <h2>Unskilled Jobs near you</h2>
+      <h2>Jobs near you</h2>
        {myPoint.myPoint.latitude && myPoint.jobOffers && 
           <MyMapComponent
            lat={myPoint.myPoint.latitude}
@@ -43,7 +43,8 @@ const HomePage = (myPoint) => {
 };
 HomePage.propTypes = {
   lat: PropTypes.number,
-  lng: PropTypes.number
+  lng: PropTypes.number,
+  myPoint: PropTypes.object
 };
 
 export default HomePage;

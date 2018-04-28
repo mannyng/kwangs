@@ -5,7 +5,7 @@ import Gravatar from 'react-gravatar';
 //import TextTruncate from 'react-text-truncate';
 
 const JobsSearchPage = (jobOffers) => {
-  debugger;
+  //debugger;
   return (
    
        

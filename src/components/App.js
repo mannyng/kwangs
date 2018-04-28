@@ -37,7 +37,7 @@ class App extends React.Component {
          <div>
          
         <Switch>
-          <Route exact path="/" component={noRequireAuth(HomePage)} />
+          <Route exact path="/" component={HomePage} />
           <Route path="/home" component={requireAuth(CustomerHomePage)} />
           <Route path="/about" component={AboutPage} />
           <Route path="/privacy_policy" component={PrivacyPolicy} />

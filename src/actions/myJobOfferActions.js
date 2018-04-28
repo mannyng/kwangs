@@ -30,7 +30,8 @@ export function updateMyJobOfferSuccess(myJobOffer) {
 
 
 
-export function saveMyJobOffer(title,description,customer_id) {
+export function saveMyJobOffer(customer_id,title,description,job_category,employee_category,job_duration,pay_type,employee_type,
+    employee_title,employee_experience,location,city,state) {
     const mytoke = localStorage.getItem('token');
     const MAPI_HEADERS = {
          'Content-Type': 'application/json',
@@ -38,15 +39,18 @@ export function saveMyJobOffer(title,description,customer_id) {
         };
     return function (dispatch) {
         dispatch(beginAjaxCall());
-       // debugger;
-        return axios.post(`${types.ROOT_URL}/employer_posts`,{title,description,customer_id},
+        //debugger;
+        return axios.post(`${types.ROOT_URL}/employer_posts`,{customer_id,title,description},
          {headers: MAPI_HEADERS }).then(myJobOffer => {
              toastr.success('Job saved successfully');
-            myJobOffer.id ? dispatch(updateMyJobOfferSuccess(myJobOffer)) :
-            dispatch(createMyJobOfferSuccess(myJobOffer.data.employer_post));
+            dispatch(createMyJobOfferSuccess(myJobOffer.data));
+            //debugger;
+            dispatch(saveJobInsight(myJobOffer.data.id,job_category,employee_category,job_duration,pay_type,employee_type,
+    employee_title,employee_experience));
+            dispatch(saveJobLocation(myJobOffer.data.id,location,city,state));
         }).catch(error => {
             dispatch(ajaxCallError(error));
-            toastr.error('There are some error/s with your submitted information');
+            toastr.error('Error creating job check submitted information');
             throw(error.response);
         });
     };
@@ -94,8 +98,8 @@ export function updateLocationSuccess(myJobLocation) {
     return { type: types.UPDATE_JOB_LOCATION_SUCCESS, myJobLocation};
 }
 
-export function saveJobInsight(job_category,employee_category,job_duration,pay_type,employee_type,
-    employee_title,employee_experience,employer_post_id) {
+export function saveJobInsight(employer_post_id,job_category,employee_category,job_duration,pay_type,employee_type,
+    employee_title,employee_experience) {
     const mytoke = localStorage.getItem('token');
     const MAPI_HEADERS = {
          'Content-Type': 'application/json',
@@ -105,22 +109,21 @@ export function saveJobInsight(job_category,employee_category,job_duration,pay_t
         dispatch(beginAjaxCall());
         //debugger;
         return axios.post(`${types.ROOT_URL}/employer_posts/${employer_post_id}/insights`,
-        {job_category,employee_category,job_duration,pay_type,employee_type,
-    employee_title,employee_experience,employer_post_id},
+        {employer_post_id,job_category,employee_category,job_duration,pay_type,employee_type,
+    employee_title,employee_experience},
         {headers: MAPI_HEADERS }).then(myJobInsight => {
             toastr.success('Job insight saved successfully');
-            myJobInsight.id ? dispatch(updateInsightSuccess(myJobInsight)) :
-            dispatch(createInsightSuccess(myJobInsight.data.insight));
+            dispatch(createInsightSuccess(myJobInsight.data));
         }).catch(error => {
             dispatch(ajaxCallError(error));
-            toastr.error('There are some error/s with your submitted information');
+            toastr.error('Errors creating insight check your submitted information');
             throw(error);
         });
     };
 }
 
 
-export function saveJobLocation(location,city,state,employer_post_id) {
+export function saveJobLocation(employer_post_id,location,city,state) {
     const mytoke = localStorage.getItem('token');
     const MAPI_HEADERS = {
          'Content-Type': 'application/json',
@@ -130,15 +133,14 @@ export function saveJobLocation(location,city,state,employer_post_id) {
         dispatch(beginAjaxCall());
         //debugger;
         return axios.post(`${types.ROOT_URL}/employer_posts/${employer_post_id}/job_locations`,
-        {location,city,state,employer_post_id},
+        {employer_post_id,location,city,state},
         {headers: MAPI_HEADERS }).then(myJobLocation => {
             toastr.success('Job location saved successfully');
-            myJobLocation.id ? dispatch(updateLocationSuccess(myJobLocation)) :
             dispatch(createLocationSuccess(myJobLocation.data.job_location));
             dispatch(loadSecuredJobOfferings());
         }).catch(error => {
             dispatch(ajaxCallError(error));
-            toastr.error('There are some error/s with your submitted information');
+            toastr.error('Error creating job location check your submitted information');
             throw(error);
         });
     };

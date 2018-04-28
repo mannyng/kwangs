@@ -15,6 +15,7 @@ export default {
       threeYear: 0
     }
   },
+  auth:{authenticated: false},
   currentUser: 0,
   jobOffers: [],
   jobCategories: [],
@@ -135,7 +136,14 @@ export default {
     status: '', 
     created_at: '', 
     updated_at: ''
-  }]
-  
+  }],
+  admin: {
+      most_recent_job_offers:[],
+      all_customers: [],
+      all_users:[],
+      recent_requests: [],
+      
+  }
+    
 };
  

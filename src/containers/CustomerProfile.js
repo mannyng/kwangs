@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/customerProfilesActions';
+import * as adminActions from '../actions/adminActions';
 import  MyEmployerTab from '../components/customerProfile/MyEmployerTab';
 import  MyEmployeeTab from '../components/customerProfile/MyEmployeeTab';
+import  MyAdminTab from '../components/adminProfile/MyAdminTab';
 import Header from '../components/universal/CustomerHeader';
 import Headers from '../components/layouts/Headers';
 import Page from '../components/layouts/Page';
@@ -41,8 +43,15 @@ export class CustomerProfile extends React.Component {
       //debugger;
     if (this.props.profile.myprofile.id) {
       this.props.dispatch(actions.fetchCustomerConnect(this.props.profile.myprofile.id));
-      //this.props.dispatch(actions.fetchCustomerConnect(this.props.currentUser));
       }
+    if (this.props.profile.myprofile.status == 'admin') {
+      this.props.dispatch(adminActions.retrieveMostRecentJobOffers());
+      this.props.dispatch(adminActions.loadJobCategories());
+      this.props.dispatch(adminActions.loadStateLists());
+      this.props.dispatch(adminActions.adminRetrieveAllCustomers());
+      this.props.dispatch(adminActions.adminRetrieveAllUsers());
+      this.props.dispatch(adminActions.adminRetrieveRecentRequest());
+    } 
    }
    //Action trigger is in the CustomerHeader.js
    shouldComponentUpdate(nextProps) {
@@ -113,7 +122,7 @@ export class CustomerProfile extends React.Component {
   
   render() {
     //debugger;
-    const {profile, customerConnect, actions, currentUser, myJobs, isOpen,myFriends} = this.props;
+    const {profile, customerConnect, actions, currentUser, myJobs, isOpen,myFriends,most_recent_offers} = this.props;
     //debugger;
     return (
       
@@ -126,16 +135,21 @@ export class CustomerProfile extends React.Component {
             <CustomerControls />
           </Sidebar>
           
-          <div className="col-xs-7">
-          {profile.myprofile.id && profile.myprofile.customer_type == 'employer' &&
+          <div className="col-xs-8">
+          {profile.myprofile.id && profile.myprofile.customer_type == 'employer' && !profile.myprofile.status &&
            <MyEmployerTab actions={actions} customerConnect={customerConnect}
             currentUser={currentUser} myJobs={myJobs} isOpen={isOpen} profile={profile} 
             myFriends={myFriends} fr_message={this._fr_message}/>
           }
-           {profile.myprofile.id && profile.myprofile.customer_type == 'employee' &&
+           {profile.myprofile.id && profile.myprofile.customer_type == 'employee' && !profile.myprofile.status &&
            <MyEmployeeTab actions={actions} customerConnect={customerConnect}
             currentUser={currentUser} myJobs={myJobs} profile={profile} isOpen={isOpen}
             myFriends={myFriends} fr_message={this._fr_message} />
+          }
+          {profile.myprofile.id && profile.myprofile.customer_type == 'employer' && profile.myprofile.status == 'admin' &&
+           <MyAdminTab actions={actions} customerConnect={customerConnect}
+            currentUser={currentUser} myJobs={myJobs} profile={profile} isOpen={isOpen}
+            myFriends={myFriends} fr_message={this._fr_message} most_recent_offers={most_recent_offers} />
           }
           </div>  
           <Footers>
@@ -158,6 +172,8 @@ CustomerProfile.propTypes = {
   customerConnect: PropTypes.array,
   myJobs: PropTypes.array.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  all_users: PropTypes.array.isRequired,
+  most_recent_offers: PropTypes.array.isRequired,
   myFriends: PropTypes.array.isRequired
 };
 
@@ -170,6 +186,8 @@ function mapStateToProps(state) {
     customerConnect: state.customerConnect,
     myJobs: state.myJobs,
     isOpen: state.isOpen,
+    all_users: state.admin.all_users,
+    most_recent_offers: state.admin.most_recent_job_offers,
     myFriends: state.myFriends
   };
 }

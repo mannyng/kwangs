@@ -16,7 +16,7 @@ import Sidebar from '../components/layouts/Sidebar';
 import HomeHeader from '../components/homepage/HomeHeader';
 import HomePage from '../components/HomePage';
 import Controls from '../components/controls/Controls';
-//import CustomerControls from '../components/controls/CustomerControls';
+import CustomerControls from '../components/controls/CustomerControls';
 import SearchContainer from './SearchContainer';
 //import Header from './universal/CustomerHeader';
 
@@ -34,7 +34,7 @@ export class HomeContainer extends React.Component {
   }
 
   render() {
-    const {jobOffers,myPoint,jobRequests} = this.props;
+    const {jobOffers,myPoint,jobRequests,authd} = this.props;
     //debugger;
     return (
       <Page>
@@ -44,12 +44,15 @@ export class HomeContainer extends React.Component {
        </Headers> 
         
       <Main>
-      <Sidebar>
+      {!authd && <Sidebar>
         <Controls />
-      </Sidebar>
+      </Sidebar>}
+      {authd && <Sidebar>
+        <CustomerControls />
+      </Sidebar>}
       <MainContent>
       <div>      
-      <HomePage myPoint={myPoint} jobOffers={jobOffers} />
+      <HomePage myPoint={myPoint} jobOffers={jobOffers} authd={authd} />
       </div>
       
       </MainContent>
@@ -83,7 +86,9 @@ HomeContainer.propTypes = {
   jobOffers: PropTypes.array.isRequired,
   jobRequests: PropTypes.array.isRequired,
   history: PropTypes.object.isRequired,
-  myPoint: PropTypes.object.isRequired
+  myPoint: PropTypes.object.isRequired,
+  //currentUser: PropTypes.number.isRequired,
+  authd: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
@@ -92,7 +97,9 @@ function mapStateToProps(state) {
     jobOffers: state.jobOffers,
     profile: state.profile,
     myPoint: state.myPoint,
-    jobRequests: state.searchRequests
+    jobRequests: state.searchRequests,
+    //currentUser: state.currentUser.currentUser,
+    authd: state.auth.authenticated
   };
 }
 

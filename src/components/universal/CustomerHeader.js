@@ -58,7 +58,7 @@ class Header extends React.Component {
  return (
   <div>
     
-   <NavLink to="/home" activeStyle={activeStyle} key={1}>Home page</NavLink>
+   <NavLink to="/" activeStyle={activeStyle} key={1}>Home page</NavLink>
     {" | "}
    <NavLink to="/jobs" activeStyle={activeStyle} key={2}>Available Jobs</NavLink>
    {' | '}

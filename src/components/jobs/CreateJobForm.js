@@ -25,7 +25,12 @@ renderField.propTypes = {
 };
 
 const CreateJobForm = props => {
-  const { handleSubmit, pristine, reset, submitting, submitMyJobOffer } = props;
+  const { handleSubmit, pristine, reset, submitting, submitMyJobOffer,jobCategories,naijaStateList } = props;
+  const payment_type = ['Cash','Cheque','Bitcoin'];
+  const job_duration = ['Part Time','Full Time','Contract'];
+  const employee_experience = ['Expert','Intermediate','Intern'];
+   const employee_type = ['Individual','Company','Group'];
+  const employee_category = [ 'Daily Pay', 'Weekly Pay', 'Monthly Pay' ]; 
   //debugger
   return (
     <form onSubmit={handleSubmit(submitMyJobOffer)}>
@@ -44,9 +49,121 @@ const CreateJobForm = props => {
            <Field name="description" component="textarea" className="form-control" rows="5" placeholder="Description"/>
         </div>
        </div>
-        
+       <h4>Job Insights</h4>
+        <hr />
+        <Field
+        name="employee_title" 
+        type="text"
+        component={renderField}
+        label="Open Position"
+        className="input-group margin-bottom-xs"
+      />
+      <div className="row">
+        <div className="col-xs-4">
+          <label>Employee Category</label>
+        </div>
+        <div className="col-xs-8">
+           <Field name="employee_category" component="select" className="form-control">
+            <option value="">Select employee category...</option>
+            {employee_category.map(employee_categoryOption =>
+              <option value={employee_categoryOption} key={employee_categoryOption}>{employee_categoryOption}</option>)}
+          </Field>
+        </div>
+       </div>
+       <div className="row">
+        <div className="col-xs-4">
+          <label>Employee Type</label>
+        </div>
+        <div className="col-xs-8">
+           <Field name="employee_type" component="select" className="form-control">
+            <option value="">Select employee type...</option>
+            {employee_type.map(employee_typeOption =>
+              <option value={employee_typeOption} key={employee_typeOption}>{employee_typeOption}</option>)}
+          </Field>
+        </div>
+       </div>
+       
+       <div className="row">
+        <div className="col-xs-4">
+          <label>Job Duration</label>
+        </div>
+        <div className="col-xs-8">
+           <Field name="job_duration" component="select" className="form-control">
+            <option value="">Select job duration...</option>
+            {job_duration.map(job_durationOption =>
+              <option value={job_durationOption} key={job_durationOption}>{job_durationOption}</option>)}
+          </Field>
+        </div>
+       </div>
+       
+       <div className="row">
+        <div className="col-xs-4">
+          <label>Payment Type</label>
+        </div>
+        <div className="col-xs-8">
+           <Field name="pay_type" component="select" className="form-control">
+            <option value="">Select paymen type...</option>
+            {payment_type.map(pay_typeOption =>
+              <option value={pay_typeOption} key={pay_typeOption}>{pay_typeOption}</option>)}
+          </Field>
+        </div>
+       </div>
+       
+       <div className="row">
+        <div className="col-xs-4">
+          <label>Job Category</label>
+        </div>
+        <div className="col-xs-8">
+           <Field name="job_category" component="select" className="form-control">
+            <option value="">Select job category...</option>
+            {jobCategories.map(job_categoryOption =>
+              <option value={job_categoryOption.value} key={job_categoryOption.value}>{job_categoryOption.text}</option>)}
+          </Field>
+        </div>
+       </div>
+       
+       <div className="row">
+        <div className="col-xs-4">
+          <label>Experience</label>
+        </div>
+        <div className="col-xs-8">
+           <Field name="employee_experience" component="select" className="form-control">
+            <option value="">Select job duration...</option>
+            {employee_experience.map(employee_experienceOption =>
+              <option value={employee_experienceOption} key={employee_experienceOption}>{employee_experienceOption}</option>)}
+          </Field>
+        </div>
+       </div>
+       <h4>Job Location</h4><hr/>
+       <Field
+        name="location"
+        type="text"
+        component={renderField}
+        label="Street Address"
+        className="input-group margin-bottom-xs"
+      />
+      <Field
+        name="city"
+        type="text"
+        component={renderField}
+        label="City"
+        className="input-group margin-bottom-xs"
+      />
+      <div className="row">
+        <div className="col-xs-4">
+          <label>State</label>
+        </div>
+        <div className="col-xs-8">
+           <Field name="state" component="select" className="form-control">
+            <option value="">Select state...</option>
+            {naijaStateList.map(job_categoryOption =>
+              <option value={job_categoryOption.value} key={job_categoryOption.value}>{job_categoryOption.text}</option>)}
+          </Field>
+        </div>
+       </div>
+      <hr /> 
       <div>
-        <button type="submit" disabled={submitting} className="btn btn-info">
+        <button type="submit" disabled={submitting || pristine} className="btn btn-info">
          <i className="fa fa-plus" aria-hidden="true"/>Create Job</button>
         <button type="button" disabled={pristine || submitting} onClick={reset} className="btn btn-danger">
           <i className="fa fa-bolt" aria-hidden="true"/>Clear Values </button>
@@ -61,7 +178,8 @@ CreateJobForm.propTypes = {
   reset: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
   submitMyJobOffer: PropTypes.func.isRequired,
-  //profile: PropTypes.object.isRequired
+  naijaStateList: PropTypes.array.isRequired,
+  jobCategories: PropTypes.array.isRequired
 };
 export default reduxForm({
   form: 'createJobForm', // a unique identifier for this form

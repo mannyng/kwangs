@@ -8,7 +8,9 @@ export default function currentUserReducer(state = initialState.currentUser, act
     case CURRENT_USER:
      // let currentUser = jwt_decode(localStorage.getItem('token')).user_id;
       //debugger;
-      return { ...state, currentUser: jwt_decode(localStorage.getItem('token')).user_id };
+      return { ...state, 
+                 currentUser: jwt_decode(localStorage.getItem('token')).user_id
+              };
     case RESET_CURRENT_USER:
       //let currentUser = 0
       //debugger;

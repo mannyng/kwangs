@@ -19,24 +19,11 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 import { bootstrap } from 'react-elemental';
-import karlaBold from 'react-elemental-fonts/karla-bold';
-import karlaRegular from 'react-elemental-fonts/karla-regular';
-import sourceCodeProMedium from 'react-elemental-fonts/source-code-pro-medium';
-import sourceCodeProRegular from 'react-elemental-fonts/source-code-pro-regular';
+
 //import {geolocated, geoPropTypes} from 'react-geolocated';
 require('./favicon.ico'); // Tell webpack to load favicon.ico
 
 const store = configureStore();
-bootstrap({
-  primary: {
-    regular: karlaRegular,
-    bold: karlaBold,
-  },
-  secondary: {
-    regular: sourceCodeProRegular,
-    bold: sourceCodeProMedium,
-  },
-});
 //debugger;
 store.dispatch(loadJobOfferings());
 store.dispatch(searchAllRequests());

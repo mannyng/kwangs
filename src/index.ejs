@@ -10,7 +10,42 @@
     This is an example of how to add features to index.html for only one environment.
     To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token in /webpack.config.prod.js on line 55.
    -->
-   
+   <script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Recipe",
+  "name": "Grandma's Holiday Apple Pie",
+  "author": "Elaine Smith",
+  "image": "http://images.edge-generalmills.com/56459281-6fe6-4d9d-984f-385c9488d824.jpg",
+  "description": "A classic apple pie.",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4",
+    "reviewCount": "276",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "prepTime": "PT30M",
+  "totalTime": "PT1H",
+  "recipeYield": "8",
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "servingSize": "1 medium slice",
+    "calories": "230 calories",
+    "fatContent": "1 g",
+    "carbohydrateContent": "43 g",
+  },
+  "recipeIngredient": [
+    "1 box refrigerated pie crusts, softened as directed on box",
+    "6 cups thinly sliced, peeled apples (6 medium)",
+    "..."
+  ],
+  "recipeInstructions": [
+    "1...",
+    "2..."
+   ]
+}
+</script>
    <% if (htmlWebpackPlugin.options.trackJSToken) { %>
    <script>window._trackJs = {token: '<%= htmlWebpackPlugin.options.trackJSToken %>'};</script>
    <script src="https://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js"></script>

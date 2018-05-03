@@ -10,42 +10,7 @@
     This is an example of how to add features to index.html for only one environment.
     To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token in /webpack.config.prod.js on line 55.
    -->
-   <script type="application/ld+json">
-{
-  "@context": "http://schema.org/",
-  "@type": "Recipe",
-  "name": "Grandma's Holiday Apple Pie",
-  "author": "Elaine Smith",
-  "image": "http://images.edge-generalmills.com/56459281-6fe6-4d9d-984f-385c9488d824.jpg",
-  "description": "A classic apple pie.",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4",
-    "reviewCount": "276",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "prepTime": "PT30M",
-  "totalTime": "PT1H",
-  "recipeYield": "8",
-  "nutrition": {
-    "@type": "NutritionInformation",
-    "servingSize": "1 medium slice",
-    "calories": "230 calories",
-    "fatContent": "1 g",
-    "carbohydrateContent": "43 g"
-  },
-  "recipeIngredient": [
-    "1 box refrigerated pie crusts, softened as directed on box",
-    "6 cups thinly sliced, peeled apples (6 medium)",
-    "..."
-  ],
-  "recipeInstructions": [
-    "1...",
-    "2..."
-   ]
-}
-</script>
+ 
    <% if (htmlWebpackPlugin.options.trackJSToken) { %>
    <script>window._trackJs = {token: '<%= htmlWebpackPlugin.options.trackJSToken %>'};</script>
    <script src="https://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js"></script>
@@ -54,8 +19,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8"/>
   <meta http-equiv="content-language" content="en-us" />
-  <meta name="author" content="Kwangala Work Network" />
-  <meta name="description" content="We are committed to supplying affordable reliable short term contract workers in Nigeria" />
+  <meta name="author" content="Kwangala Work Network" /> 
+  <meta name="contact" content="info@kwangs.io" />
+  <meta name="copyright" content="Copyright (c)2012-2018 
+Many Cares Nig LTD. All Rights Reserved." />
+  <meta name="description" content="We are committed to supplying affordable reliable short term contract workers 
+  in Nigeria, you may want to work part time as a gardner, cleaner,sweeper,bus conductor,private driver, maybe you are 
+  interested in work in a farm or maybe you want to hire farm hand or somebody to clear your farm, or plow or plant your 
+  farm we can match you with the right worker. If you are support our green revolution please sign up and show your support 
+  by post a job request or a job offer. We at Kwangala Work Network assures you of timely and seamless matching with the 
+  right employer or employee all in good time within Abuja Lagos Enugu Kano Kaduna Port Harcout and other cities in Nigeria" />
   <meta name="keywords" content="Jobs in Nigeria, Jobs in Kano, Jobs in Lagos, Jobs in Enugu, Jobs in Port Harcout, Jobs in Aba,
 Job seeking in Kano, Job seeking in Nigeria, Job seeking in Lagos, Job seeking in Enugu,
 Job seeking in Aba, Job seeking in Port Harcout, Looking for a mechanic in Nigeria, Looking for a mechanic in Kano, 

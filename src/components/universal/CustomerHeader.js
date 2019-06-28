@@ -97,7 +97,8 @@ class Header extends React.Component {
       {" | "}
      <NavLink to="/signup" activeStyle={activeStyle} key={5}>Sign Up</NavLink>
     </div>
-    <div className="col-md-6 col-xs-6">
+    <div className="col-md-2"/>
+    <div className="col-md-4 col-xs-6">
        <small> <ASignin /></small>
     </div>
    </div>  

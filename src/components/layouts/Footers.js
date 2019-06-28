@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Footers = ({children}) => (
-    <header className="row">
+    <header className="row container">
      {children}
     </header>
 );

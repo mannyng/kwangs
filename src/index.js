@@ -16,7 +16,8 @@ import {showMyJobs,loadJobRequests} from './actions/myJobOfferActions';
 import './styles/styles.scss'; // Yep, that's right. You can import SASS/CSS files too! Webpack will run the associated loader and plug this into the page.
 //import './styles/font-awesome.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+//import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 import { bootstrap } from 'react-elemental';
 import karlaBold from 'react-elemental-fonts/karla-bold';
@@ -61,10 +62,10 @@ if (token) {
   store.dispatch(fetchCustomerConnect(store.getState().currentUser.currentUser));
   
 }
-
+// {...bootstrap} was inside <Root/> after history
 render(
   <AppContainer>
-    <Root store={store} history={history} {...bootstrap}/>
+    <Root store={store} history={history} {...bootstrap}/> 
   </AppContainer>,
   document.getElementById('app')
 );

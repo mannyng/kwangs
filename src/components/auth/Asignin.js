@@ -46,23 +46,31 @@ class ASignin extends Component {
     //debugger;
     return (
      
-        <div className="form">  
+        <div className="row"> 
           <form onSubmit={handleSubmit(this.submit)}>
+           <div className="form-group col-md-five">
             <Field name="email"
                   component="input"
                   type="text"
                   placeholder="Email" 
+                  className="form-control"
                   error={this.state.errors}
             />
+            </div>
+            <div className="form-group col-md-five">
             <Field name="password" 
                   component="input"
                   type="password" 
                   placeholder="Password" 
+                  className="form-control"
                   error={this.state.errors}
             />
-            
-            <button type="submit" className="blue">Sign In</button>
+            </div>
+            <div className="form-group col-md-two">
+            <button type="submit" className="btn btn-primary">Sign In</button>
+            </div>
           </form>
+          
           {this.sirenderAlert()}
         </div>
     );
